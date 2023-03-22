@@ -35,7 +35,6 @@ class Polynomial : public Vector_t<double> {
   bool IsEqual(const Polynomial&, const double = EPS) const;
  };
 
-
 // Clase para polinomios basados en vectores dispersos
 class SparsePolynomial : public sparse_Vector_t {
  public:
