@@ -79,14 +79,20 @@ std::ostream& operator<<(std::ostream& os, const Polynomial& p) {
 // Evaluación de un polinomio representado por vector denso
 double Polynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
+  for(int i = 0; i < get_size(); i++) {
+    result = result + get_val(i) * pow(x, i);
+  }
   return result;
 }
 
 // Comparación si son iguales dos polinomios representados por vectores densos
 bool Polynomial::IsEqual(const Polynomial& pol, const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  for(int i = 0; i < pol.get_size(); i++) {
+    if(at(i) != pol.at(i)) {
+      return differents;
+    }
+  }
   return !differents;
 }
 
@@ -120,14 +126,20 @@ std::ostream& operator<<(std::ostream& os, const SparsePolynomial& p) {
 // Evaluación de un polinomio representado por vector disperso
 double SparsePolynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
+  for(int i = 0; i < get_nz(); i++) {
+    result = result + at(i).get_val() * pow(x, at(i).get_inx());
+  }
   return result;
 }
 
 // Comparación si son iguales dos polinomios representados por vectores dispersos
 bool SparsePolynomial::IsEqual(const SparsePolynomial& spol, const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  for(int i = 0; i < get_nz(); i++) {
+    if(at(i).get_val() != spol.at(i).get_val()) {
+      return differents;
+    }
+  }
   return !differents;
 }
 
@@ -135,10 +147,11 @@ bool SparsePolynomial::IsEqual(const SparsePolynomial& spol, const double eps) c
 // vector disperso y vector denso
 bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  SparsePolynomial other_pol {pol};
+  if(IsEqual(other_pol) == false) {
+    return differents;
+  }
   return !differents;
 }
 
-
 #endif  // POLYNOMIAL_H_
-

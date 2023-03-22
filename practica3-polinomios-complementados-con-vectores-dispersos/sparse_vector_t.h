@@ -59,14 +59,14 @@ class sparse_Vector_t {
 };
 
 
-bool IsNotZero(const double val, const double eps = EPS) {
+bool IsNotZero(const double val, const double eps = EPS) { // Verifica que el valor almacenado en la posición del vector no es 0
   return fabs(val) > eps;
 }
 
 sparse_Vector_t::sparse_Vector_t(const int n) : pv_(n), nz_(0), n_(n) {}
 
 // FASE II
-sparse_Vector_t::sparse_Vector_t(const Vector_t<double>& v, const double eps) : pv_(), nz_(0), n_(0) {
+sparse_Vector_t::sparse_Vector_t(const Vector_t<double>& v, const double eps) : pv_(), nz_(0), n_(0) { // Constructor de la clase sparse_vector_t
   n_ = v.get_size();
   for(int i = 0; i < v.get_size(); i++) { // Recorre el vector con 0
     if (IsNotZero(v.get_val(i))) { // Si el valor al recorrer el vector no es 0, se incrementa  nz_ (tamaño del vector)
@@ -97,13 +97,13 @@ sparse_Vector_t& sparse_Vector_t::operator=(const sparse_Vector_t& w) {
   return *this;
 }
 
-sparse_Vector_t::~sparse_Vector_t() {}
+sparse_Vector_t::~sparse_Vector_t() {} // Destructor de la clase sparce_vector_t
 
-inline int sparse_Vector_t::get_nz() const {
+inline int sparse_Vector_t::get_nz() const { // Devuelve el tamaño del vector sin los ceros
   return nz_;
 }
 
-inline int sparse_Vector_t::get_n() const {
+inline int sparse_Vector_t::get_n() const { // Devuelve el tamaño del vector original 
   return n_;
 }
 
