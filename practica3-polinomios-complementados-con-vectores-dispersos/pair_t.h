@@ -49,11 +49,11 @@ template<class T> void Pair_t<T>::set(T val, int inx) {
   inx_ = inx;
 }
 
-template<class T> int Pair_t<T>::get_inx() const {
+template<class T> int Pair_t<T>::get_inx() const { // Devuelve el valor de el exponente
   return inx_;
 }
 
-template<class T> T Pair_t<T>::get_val() const {
+template<class T> T Pair_t<T>::get_val() const { // Devuelve el valor
   return val_;
 }
 
