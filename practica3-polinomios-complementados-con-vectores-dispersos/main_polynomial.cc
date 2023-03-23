@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include "polynomial.h"
+# include "polynomial.h"
 
 using namespace std;
 
@@ -90,5 +90,7 @@ int main() {
   cout << "sp3 == p2? " << (sp3.IsEqual(p2) ? "true" : "false") << endl;
   cout << endl;
 
+  // Modificación
+  
   return 0;
 }

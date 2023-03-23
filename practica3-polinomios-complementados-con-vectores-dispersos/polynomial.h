@@ -33,7 +33,7 @@ class Polynomial : public Vector_t<double> {
   // operaciones
   double Eval(const double) const;
   bool IsEqual(const Polynomial&, const double = EPS) const;
- };
+};
 
 // Clase para polinomios basados en vectores dispersos
 class SparsePolynomial : public sparse_Vector_t {
@@ -152,5 +152,8 @@ bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
   }
   return !differents;
 }
+
+// Modificación
+
 
 #endif  // POLYNOMIAL_H_
