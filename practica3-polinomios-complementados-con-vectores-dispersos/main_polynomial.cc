@@ -91,7 +91,6 @@ int main() {
   cout << endl;
 
   // Modificación
-
   cout << "Modificación para p1:" << endl;
   p1.sacar_cero();
   cout << "Modificación para p2" << endl;

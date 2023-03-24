@@ -156,7 +156,6 @@ bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
 }
 
 // Modificación
-
 void Polynomial::sacar_cero() {
   for (int i = 0; i < get_size(); i++) {
     if (!IsNotZero(at(i))) {
@@ -165,6 +164,5 @@ void Polynomial::sacar_cero() {
   }
   cout << endl;
 }
-
 
 #endif  // POLYNOMIAL_H_
