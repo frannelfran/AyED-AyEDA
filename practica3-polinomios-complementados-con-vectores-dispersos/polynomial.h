@@ -16,6 +16,7 @@
 
 #include "vector_t.h"
 #include "sparse_vector_t.h"
+using namespace std;
 
 // Clase para polinomios basados en vectores densos de doubles
 class Polynomial : public Vector_t<double> {
@@ -33,6 +34,7 @@ class Polynomial : public Vector_t<double> {
   // operaciones
   double Eval(const double) const;
   bool IsEqual(const Polynomial&, const double = EPS) const;
+  void sacar_cero();
 };
 
 // Clase para polinomios basados en vectores dispersos
@@ -154,6 +156,15 @@ bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
 }
 
 // Modificación
+
+void Polynomial::sacar_cero() {
+  for (int i = 0; i < get_size(); i++) {
+    if (!IsNotZero(at(i))) {
+     cout << i << endl;
+    }
+  }
+  cout << endl;
+}
 
 
 #endif  // POLYNOMIAL_H_
