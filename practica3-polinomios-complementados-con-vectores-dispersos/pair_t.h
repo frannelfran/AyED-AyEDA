@@ -1,6 +1,6 @@
-// AUTOR: Javier Gonzalez Brito
+// AUTOR: Franco Alla
 // FECHA: 10/03/2023 
-// EMAIL: alu0101548197@ull.edu.es
+// EMAIL: alu0101571669@ull.edu.es
 // VERSION: 3.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 3
