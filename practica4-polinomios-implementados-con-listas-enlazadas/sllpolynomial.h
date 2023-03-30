@@ -42,7 +42,6 @@ class SllPolynomial : public sll_t<pair_double_t> {
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
 };
 
-
 bool IsNotZero(const double val, const double eps = EPS) {
   return fabs(val) > eps;
 }
@@ -50,9 +49,11 @@ bool IsNotZero(const double val, const double eps = EPS) {
 // FASE II
 // constructor
 SllPolynomial::SllPolynomial(const vector_t<double>& v, const double eps) {
-  // poner el código aquí
+  for(int i = 0; i < v.get_size(); i++) { // Recorre el vector
+    if(IsNotZero(v.get_val(i))) { // Mira si el valor almacenado en la posición es distinto de cero
+    }
+  }
 }
-
 
 // E/S
 void SllPolynomial::Write(std::ostream& os) const {

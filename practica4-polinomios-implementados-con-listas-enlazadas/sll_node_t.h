@@ -37,7 +37,6 @@ template <class T> class sll_node_t {
   sll_node_t<T>* next_;
 };
 
-
 // E/S
 template <class T> std::ostream& sll_node_t<T>::write(std::ostream& os) const  {
   os << data_;
