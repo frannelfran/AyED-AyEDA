@@ -48,11 +48,16 @@ bool IsNotZero(const double val, const double eps = EPS) {
 
 // FASE II
 // constructor
-SllPolynomial::SllPolynomial(const vector_t<double>& v, const double eps) {
-  for(int i = 0; i < v.get_size(); i++) { // Recorre el vector
+SllPolynomial::SllPolynomial(const vector_t<double>& v, const double eps){
+  sll_node_t<pair_double_t>* head;
+
+  for(int i = 0; i < v.get_size(); i++) { // Recorre el vector al reves
     if(IsNotZero(v.get_val(i))) { // Mira si el valor almacenado en la posición es distinto de cero
+      head->set_data();
     }
+    break;
   }
+  
 }
 
 // E/S
