@@ -37,7 +37,6 @@ template<class T> class pair_t {
   int inx_;
 };
 
-
 template<class T> pair_t<T>::pair_t() : val_(), inx_(-1) {}
 
 template<class T> pair_t<T>::pair_t(T val, int inx) : val_(val), inx_(inx) {}

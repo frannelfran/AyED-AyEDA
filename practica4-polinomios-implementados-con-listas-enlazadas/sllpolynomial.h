@@ -89,25 +89,36 @@ std::ostream& operator<<(std::ostream& os, const SllPolynomial& p) {
 // Evaluación de un polinomio representado por lista simple
 double SllPolynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
-  
+  sll_node_t<pair_double_t>* aux = get_head(); // Puntero auxiliar igual head
+  while(aux != NULL) {
+    int inx = aux -> get_data().get_inx();
+    double val = aux -> get_data().get_val();
+    result = result + val * pow(x,inx); // Eleva el coeficiente a su potencia correspondiente
+    aux = aux->get_next(); // apunta al siguiente elemento de la lista
+  }
   return result;
 }
 
 // Comparación si son iguales dos polinomios representados por listas simples
-bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,
-			    const double eps) const {
+bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,const double eps) const {
   bool differents = false;
-  // poner el código aquí
-
+  sll_node_t<pair_double_t>* aux1 = get_head(); // Puntero auxiliar igual al head del primer polinomio
+  sll_node_t<pair_double_t>* aux2 = sllpol.get_head(); // Puntero auxiliar igual al head del segundo polinomio
+  while(aux1 != NULL and aux2 != NULL) {
+    if(aux1 -> get_data().get_val() != aux2 -> get_data().get_val()) {
+      return differents;
+    }
+    // Siguiente elemento de la lista
+    aux1 = aux1 -> get_next();
+    aux2 = aux2 -> get_next();
+  }
   return !differents;
 }
 
 // FASE IV
 // Generar nuevo polinomio suma del polinomio invocante mas otro polinomio
-void SllPolynomial::Sum(const SllPolynomial& sllpol,
-			SllPolynomial& sllpolsum,
-			const double eps) {
+void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,const double eps) {
+
   // poner el código aquí
 
 }

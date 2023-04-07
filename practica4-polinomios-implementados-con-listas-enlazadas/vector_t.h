@@ -56,7 +56,6 @@ template<class T> class vector_t {
   void destroy(void);
 };
 
-
 template<class T> vector_t<T>::vector_t(const int n) : v_(NULL), sz_(n) {
   build();
 }
