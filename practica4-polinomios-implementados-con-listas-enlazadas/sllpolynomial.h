@@ -82,7 +82,6 @@ std::ostream& operator<<(std::ostream& os, const SllPolynomial& p) {
   return os;
 }
 
-
 // Operaciones con polinomios
 
 // FASE III
