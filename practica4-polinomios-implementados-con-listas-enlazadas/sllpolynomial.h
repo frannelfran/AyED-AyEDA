@@ -93,7 +93,7 @@ double SllPolynomial::Eval(const double x) const {
     int inx = aux -> get_data().get_inx();
     double val = aux -> get_data().get_val();
     result = result + val * pow(x,inx); // Eleva el coeficiente a su potencia correspondiente
-    aux = aux->get_next(); // apunta al siguiente elemento de la lista
+    aux = aux -> get_next(); // apunta al siguiente elemento de la lista
   }
   return result;
 }
@@ -103,7 +103,7 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,const double eps) const 
   bool differents = false;
   sll_node_t<pair_double_t>* aux1 = get_head(); // Puntero auxiliar igual al head del primer polinomio
   sll_node_t<pair_double_t>* aux2 = sllpol.get_head(); // Puntero auxiliar igual al head del segundo polinomio
-  while(aux1 != NULL and aux2 != NULL) {
+  while(aux1 != NULL and aux2 != NULL) { // Comprueba que las dos listas no esten vacias
     if(aux1 -> get_data().get_val() != aux2 -> get_data().get_val()) {
       return differents;
     }
@@ -117,10 +117,21 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,const double eps) const 
 // FASE IV
 // Generar nuevo polinomio suma del polinomio invocante mas otro polinomio
 void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,const double eps) {
-
-  // poner el código aquí
-
+  double suma{0.0};
+  sll_node_t<pair_double_t>* aux1 = get_head();
+  sll_node_t<pair_double_t>* aux2 = sllpol.get_head();
+  while(aux1 != NULL and aux2 != NULL) {
+    int inx1 = aux1 -> get_data().get_inx();
+    int inx2 = aux2 -> get_data().get_inx();
+    double val1 = aux1 -> get_data().get_val();
+    double val2 = aux2 -> get_data().get_val();
+    if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
+      suma = val1 + val2;
+    }
+    // Siguiente elemento
+    aux1 = aux1 -> get_next();
+    aux2 = aux2 -> get_next();
+  }
 }
-
 
 #endif  // SLLPOLYNOMIAL_H_
