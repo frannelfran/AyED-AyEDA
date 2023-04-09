@@ -120,7 +120,9 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
   double suma{0.0};
   sll_node_t<pair_double_t>* aux1 = get_head();
   sll_node_t<pair_double_t>* aux2 = sllpol.get_head();
-
+  sll_node_t<pair_double_t>* lista;
+  vector_t<double> vector_suma;
+  int i;
   while(aux1 != NULL and aux2 != NULL) {
     int inx1 = aux1 -> get_data().get_inx();
     int inx2 = aux2 -> get_data().get_inx();
@@ -128,7 +130,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
     double val2 = aux2 -> get_data().get_val();
     if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
       suma = val1 + val2;
-      std::cout << suma << " ";
+      sllpolsum.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
     }
     // Siguientes elementos
     aux1 = aux1 -> get_next();
