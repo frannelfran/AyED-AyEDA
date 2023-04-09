@@ -118,23 +118,32 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,const double eps) const 
 // Generar nuevo polinomio suma del polinomio invocante mas otro polinomio
 void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,const double eps) {
   double suma{0.0};
-  sll_node_t<pair_double_t>* aux1 = get_head();
-  sll_node_t<pair_double_t>* aux2 = sllpol.get_head();
-  sll_node_t<pair_double_t>* lista;
-  vector_t<double> vector_suma;
-  int i;
+  sll_node_t<pair_double_t>* aux1 = get_head(); // Apunta a la cabecera de la lista 1
+  sll_node_t<pair_double_t>* aux2 = sllpol.get_head(); // Apunta a la cabecera de la lista 2
+  SllPolynomial lista;
+
   while(aux1 != NULL and aux2 != NULL) {
     int inx1 = aux1 -> get_data().get_inx();
     int inx2 = aux2 -> get_data().get_inx();
     double val1 = aux1 -> get_data().get_val();
     double val2 = aux2 -> get_data().get_val();
+
     if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
       suma = val1 + val2;
-      sllpolsum.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
+      lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
     }
     // Siguientes elementos
     aux1 = aux1 -> get_next();
     aux2 = aux2 -> get_next();
+  }
+  
+  // Mostrar la lista inversa
+  sll_node_t<pair_double_t>* aux3 = lista.get_head();
+  while(aux3 != NULL) {
+    double inx3 = aux3 -> get_data().get_inx();
+    double val3 = aux3 -> get_data().get_val();
+    sllpolsum.push_front(new sll_node_t<pair_double_t>(pair_double_t(val3,inx3)));
+    aux3 = aux3 -> get_next();
   }
 }
 
