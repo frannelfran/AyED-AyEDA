@@ -136,7 +136,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
     aux1 = aux1 -> get_next();
     aux2 = aux2 -> get_next();
   }
-  
+
   // Mostrar la lista inversa
   sll_node_t<pair_double_t>* aux3 = lista.get_head();
   while(aux3 != NULL) {
