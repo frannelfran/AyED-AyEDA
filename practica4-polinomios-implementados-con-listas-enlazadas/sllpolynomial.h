@@ -131,10 +131,16 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
     if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
       suma = val1 + val2;
       lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
+      // Siguientes elementos
+      aux1 = aux1 -> get_next();
+      aux2 = aux2 -> get_next();
     }
-    // Siguientes elementos
-    aux1 = aux1 -> get_next();
-    aux2 = aux2 -> get_next();
+    if(inx1 > inx2) {
+      aux1 = aux1 -> get_next();
+    }
+    if(inx2 > inx1) {
+      aux2 = aux2 -> get_next();
+    }
   }
 
   // Mostrar la lista inversa
