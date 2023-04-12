@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Franco Alla
+// FECHA: 09/04/2023
+// EMAIL: alu0101571669@ull.edu.es
 // VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 4
@@ -121,29 +121,31 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
   sll_node_t<pair_double_t>* aux1 = get_head(); // Apunta a la cabecera de la lista 1
   sll_node_t<pair_double_t>* aux2 = sllpol.get_head(); // Apunta a la cabecera de la lista 2
   SllPolynomial lista;
+  int inx1, inx2;
+  double val1, val2;
 
   while(aux1 != NULL and aux2 != NULL) {
-    int inx1 = aux1 -> get_data().get_inx();
-    int inx2 = aux2 -> get_data().get_inx();
-    double val1 = aux1 -> get_data().get_val();
-    double val2 = aux2 -> get_data().get_val();
-
+    inx1 = aux1 -> get_data().get_inx();
+    inx2 = aux2 -> get_data().get_inx();
+    
     if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
+      val1 = aux1 -> get_data().get_val();
+      val2 = aux2 -> get_data().get_val();
       suma = val1 + val2;
       lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
       // Siguientes elementos
       aux1 = aux1 -> get_next();
       aux2 = aux2 -> get_next();
     }
-    if(inx1 > inx2) {
+    if(inx1 < inx2) {
       aux1 = aux1 -> get_next();
     }
-    if(inx2 > inx1) {
+    else if (inx1 > inx2) {
       aux2 = aux2 -> get_next();
     }
   }
 
-  // Mostrar la lista inversa
+  // Mostrar la lista ordenada
   sll_node_t<pair_double_t>* aux3 = lista.get_head();
   while(aux3 != NULL) {
     double inx3 = aux3 -> get_data().get_inx();

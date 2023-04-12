@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Franco Alla 
+// FECHA: 09/04/2023
+// EMAIL: alu0101571669@ull.edu.es
 // VERSION: 3.1
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 4
