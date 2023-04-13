@@ -40,6 +40,7 @@ class SllPolynomial : public sll_t<pair_double_t> {
   double Eval(const double) const;
   bool IsEqual(const SllPolynomial&, const double = EPS) const;
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
+  void quitar_monomio(SllPolynomial& sllp_quitar);
 };
 
 bool IsNotZero(const double val, const double eps = EPS) {
@@ -139,7 +140,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
       // Siguientes elementos
       aux1 = aux1 -> get_next();
       aux2 = aux2 -> get_next();
-      // Si la lista de una se acaba insertar el/los elemento/s de la otra
+      // Si la lista de una se acaba, insertar el/los elemento/s de la otra
       if(aux1 == NULL and aux2 != NULL) {
         lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux2 -> get_data().get_val(), aux2 -> get_data().get_inx())));
       }
