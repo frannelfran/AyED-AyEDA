@@ -128,27 +128,34 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
     // Obtener los exponentes de las x
     inx1 = aux1 -> get_data().get_inx();
     inx2 = aux2 -> get_data().get_inx();
-    
+
     if(inx1 == inx2) { // Si los exponentes son iguales sumar los coeficientes
       val1 = aux1 -> get_data().get_val();
       val2 = aux2 -> get_data().get_val();
       suma = val1 + val2;
-      // Siguientes elementos
-      aux1 = aux1 -> get_next();
-      aux2 = aux2 -> get_next();
       if(IsNotZero(suma)) { // Si el resultado de la suma es igual a 0 no colocarlo en la lista
         lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(suma,inx1)));
       }
+      // Siguientes elementos
+      aux1 = aux1 -> get_next();
+      aux2 = aux2 -> get_next();
+      
+      if(aux1 == NULL and aux2 != NULL) {
+        lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux2 -> get_data().get_val(), aux2 -> get_data().get_inx())));
+      }
+      else if(aux2 == NULL and aux1 != NULL) {
+        lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux1 -> get_data().get_val(), aux1 -> get_data().get_inx())));
+      } 
     }
     if(inx1 < inx2) {
       val1 = aux1 ->get_data().get_val();
-      aux1 = aux1 -> get_next();
       lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(val1,inx1)));
+      aux1 = aux1 -> get_next();
     }
     else if (inx2 < inx1) {
       val2 = aux2 -> get_data().get_val();
-      aux2 = aux2 -> get_next();
       lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(val2,inx2)));
+      aux2 = aux2 -> get_next();
     }
   }
 
