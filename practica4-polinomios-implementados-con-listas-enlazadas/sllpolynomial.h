@@ -143,9 +143,6 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
       if(aux1 == NULL and aux2 != NULL) {
         lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux2 -> get_data().get_val(), aux2 -> get_data().get_inx())));
       }
-      else if(aux2 == NULL and aux1 != NULL) {
-        lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux1 -> get_data().get_val(), aux1 -> get_data().get_inx())));
-      } 
     }
     if(inx1 < inx2) {
       val1 = aux1 ->get_data().get_val();
