@@ -40,7 +40,6 @@ class SllPolynomial : public sll_t<pair_double_t> {
   double Eval(const double) const;
   bool IsEqual(const SllPolynomial&, const double = EPS) const;
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
-  void quitar_monomio(SllPolynomial& sllp_quitar);
 };
 
 bool IsNotZero(const double val, const double eps = EPS) {
