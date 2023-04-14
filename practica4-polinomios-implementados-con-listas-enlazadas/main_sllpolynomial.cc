@@ -71,5 +71,11 @@ int main() {
   sllp2.Sum(sllp3, sllpsum23);
   cout << "sllp2 + sllp3= " << sllpsum23;
 
+  // Modificación
+  cout << endl; // De un espacio
+  double suma;
+  cout << "La suma de los pares de la primera lista es: "<< sllp1.sum_par() << endl;
+  cout << "La suma de los pares de la segunda lista es: " << sllp2.sum_par() << endl;
+  cout << "La suma de los pares de la tercera lista es: " << sllp3.sum_par() << endl;
   return 0;
 }

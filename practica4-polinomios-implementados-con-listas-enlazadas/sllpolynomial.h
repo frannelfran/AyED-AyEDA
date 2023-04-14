@@ -40,6 +40,7 @@ class SllPolynomial : public sll_t<pair_double_t> {
   double Eval(const double) const;
   bool IsEqual(const SllPolynomial&, const double = EPS) const;
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
+  double sum_par();
 };
 
 bool IsNotZero(const double val, const double eps = EPS) {
@@ -158,11 +159,27 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
   // Mostrar la lista ordenada
   sll_node_t<pair_double_t>* aux3 = lista.get_head();
   while(aux3 != NULL) {
-    double inx3 = aux3 -> get_data().get_inx();
+    int inx3 = aux3 -> get_data().get_inx();
     double val3 = aux3 -> get_data().get_val();
     sllpolsum.push_front(new sll_node_t<pair_double_t>(pair_double_t(val3,inx3)));
     aux3 = aux3 -> get_next();
   }
+}
+
+// Modificación
+double SllPolynomial::sum_par() {
+  sll_node_t<pair_double_t>* aux = get_head();
+  int inx;
+  double val, suma;
+  while(aux != NULL) {
+    inx = aux -> get_data().get_inx();
+    val = aux -> get_data().get_val();
+    if(inx % 2 == 0) {
+      suma = suma + val;
+    }
+    aux = aux -> get_next();
+  }
+  return suma;
 }
 
 #endif  // SLLPOLYNOMIAL_H_
