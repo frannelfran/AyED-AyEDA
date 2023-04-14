@@ -155,7 +155,6 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
       aux2 = aux2 -> get_next();
     }
   }
-
   // Mostrar la lista ordenada
   sll_node_t<pair_double_t>* aux3 = lista.get_head();
   while(aux3 != NULL) {
