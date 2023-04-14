@@ -139,10 +139,10 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,SllPolynomial& sllpolsum,con
       // Siguientes elementos
       aux1 = aux1 -> get_next();
       aux2 = aux2 -> get_next();
-      // Si la lista de una se acaba, insertar el/los elemento/s de la otra
-      if(aux1 == NULL and aux2 != NULL) {
-        lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux2 -> get_data().get_val(), aux2 -> get_data().get_inx())));
-      }
+    }
+    // Si la lista de una se acaba, insertar el/los elemento/s de la otra
+    if(aux1 == NULL and aux2 != NULL) {
+      lista.push_front(new sll_node_t<pair_double_t>(pair_double_t(aux2 -> get_data().get_val(), aux2 -> get_data().get_inx())));
     }
     if(inx1 < inx2) {
       val1 = aux1 ->get_data().get_val();
