@@ -66,13 +66,26 @@ template<class T> void rpn_t<T>::operate_(const char c) {
   stack_.pop();
   int operando2 = stack_.top();
   std::cout << "   Sacamos de la pila otro operando: " << operando2 << std::endl;
+  stack_.pop();
   
   switch (c) {
     case '+':
       resultado = operando1 + operando2;
       stack_.push(resultado);
       break;
-    // poner código resto de operadores
+    case '-':
+      resultado = operando2 - operando1;
+      stack_.push(resultado);
+      break;
+    case '*':
+      resultado = operando1 * operando2;
+      stack_.push(resultado);
+      break;
+    case '/':
+      resultado = operando2 / operando1;
+      stack_.push(resultado);
+      break;
+    // Fin de los casos
   }
 
   // poner código
