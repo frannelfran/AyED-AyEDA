@@ -50,7 +50,7 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
       std::cout << " (es un dígito) " << std::endl
 		  << "   Lo metemos en la pila..." << std::endl;
       stack_.push(i);
-    } 
+    }
     else {
       std::cout << " (es un operador)" << std::endl;
       operate_(c);
