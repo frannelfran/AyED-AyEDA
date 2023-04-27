@@ -89,5 +89,4 @@ template<class T> void rpn_t<T>::operate_(const char c) {
   std::cout << "   Metemos en la pila el resultado: " << resultado << std::endl;
 }
 
- 
 #endif  // RPNT_H_
