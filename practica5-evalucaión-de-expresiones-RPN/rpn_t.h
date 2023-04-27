@@ -37,6 +37,7 @@ template <class T> class rpn_t {
 
 // operaciones
 template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
+  int resultado;
   while (!q.empty()) 	{
     char c = q.front();
     
@@ -55,7 +56,7 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
       operate_(c);
     }
   }
-  // poner código
+  return stack_.top();
 }
 
 template<class T> void rpn_t<T>::operate_(const char c) {
