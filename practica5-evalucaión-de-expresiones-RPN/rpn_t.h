@@ -60,15 +60,26 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
 }
 
 template<class T> void rpn_t<T>::operate_(const char c) {
-  assert(c == '+' || c == '-' || c == '*' || c == '/');
+  assert(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'l' || c == 'r');
   int resultado;
-  int operando1 = stack_.top();
-  std::cout << "   Sacamos de la pila un operando: " << operando1 << std::endl;
-  stack_.pop();
-  int operando2 = stack_.top();
-  std::cout << "   Sacamos de la pila otro operando: " << operando2 << std::endl;
-  stack_.pop();
-  
+  int operando1;
+  int operando2;
+  int operando3; // Operando si encuentra un l de (log) y un r de raíz
+
+  if(c == 'l' || c == 'r') {
+    operando3 = stack_.top();
+    std::cout << "   Sacamos de la pila un operando: " << operando3 << std::endl;
+    stack_.pop(); // Lo sacamos de la pila
+  }
+  else {
+    operando1 = stack_.top();
+    std::cout << "   Sacamos de la pila un operando: " << operando1 << std::endl;
+    stack_.pop();
+    operando2 = stack_.top();
+    std::cout << "   Sacamos de la pila otro operando: " << operando2 << std::endl;
+    stack_.pop();
+  }
+
   switch (c) {
     case '+':
       resultado = operando1 + operando2;
@@ -81,6 +92,15 @@ template<class T> void rpn_t<T>::operate_(const char c) {
       break;
     case '/':
       resultado = operando2 / operando1;
+      break;
+    case '^':
+      resultado = pow(operando1,operando2);
+      break;
+    case 'l':
+      resultado = log(operando3);
+      break;
+    case 'r':
+      resultado = sqrt(operando3);
       break;
     // Fin de los casos
   }
