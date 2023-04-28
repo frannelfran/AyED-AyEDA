@@ -46,6 +46,7 @@ template<class T> void stack_l_t<T>::push(const T& dato) {
   dll_node_t<T>* nodo = new dll_node_t<T>(dato);
   assert(nodo != NULL);
   l_.push_front(nodo);
+  // Modificación
   std::cout << "\n";
   std::cout << "La cola tiene: " << count_add() << " elementos impares." << std::endl;
 }
@@ -75,6 +76,7 @@ template<class T> std::ostream& stack_l_t<T>::write(std::ostream& os) const {
   return os;
 }
 
+// Modificación
 template<class T> int stack_l_t<T>::count_add() {
   
   dll_node_t<T>* aux = l_.get_head();
