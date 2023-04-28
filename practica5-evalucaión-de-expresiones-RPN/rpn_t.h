@@ -93,7 +93,7 @@ template<class T> void rpn_t<T>::operate_(const char c) {
     case '/': // Divide los operandos
       resultado = operando2 / operando1;
       break;
-    case 'c':
+    case 'c': // Eleva al cuadrado el operando
       resultado = pow(operando3, 2);
       break;
     case '^': // Eleva los operandos
