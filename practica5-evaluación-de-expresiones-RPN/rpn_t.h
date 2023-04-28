@@ -97,7 +97,7 @@ template<class T> void rpn_t<T>::operate_(const char c) {
       resultado = pow(operando3, 2);
       break;
     case '^': // Eleva los operandos
-      resultado = pow(operando1,operando2);
+      resultado = pow(operando2,operando1);
       break;
     case 'l': // Realiza el logaritmo en base 2 del operando
       resultado = log(operando3);

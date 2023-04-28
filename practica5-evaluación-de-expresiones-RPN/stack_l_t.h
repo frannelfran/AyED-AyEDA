@@ -15,6 +15,7 @@
 #include <cassert>
 
 #include "dll_t.h"
+#include "queue_l_t.h"
 
 // Clase para pilas mediante estructura dinámica
 template<class T> class stack_l_t {
@@ -36,6 +37,7 @@ template<class T> class stack_l_t {
 
 private:
   dll_t<T> l_;
+  int count_add();
 };
 
 
@@ -44,6 +46,8 @@ template<class T> void stack_l_t<T>::push(const T& dato) {
   dll_node_t<T>* nodo = new dll_node_t<T>(dato);
   assert(nodo != NULL);
   l_.push_front(nodo);
+  std::cout << "\n";
+  std::cout << "La cola tiene: " << count_add() << " elementos impares." << std::endl;
 }
 
 template<class T> void stack_l_t<T>::pop(void) {
@@ -69,6 +73,21 @@ template<class T> std::ostream& stack_l_t<T>::write(std::ostream& os) const {
   }
   os << " └─────┘" << std::endl;
   return os;
+}
+
+template<class T> int stack_l_t<T>::count_add() {
+  
+  dll_node_t<T>* aux = l_.get_head();
+  int val;
+  T contador{0};
+  while(aux != NULL) {
+    val = aux -> get_data();
+    if(val % 2 != 0) {
+      contador++;
+    }
+    aux = aux -> get_next();
+  }
+  return contador;
 }
 
 #endif  // STACKL_H_
