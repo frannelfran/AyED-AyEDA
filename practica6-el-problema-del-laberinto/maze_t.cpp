@@ -103,7 +103,8 @@ maze_t::write(ostream& os) const
 }
 
 
-
+// m == filas
+// n == columnas
 // FASE I
 // comprueba que la fila i y columna j son válidas antes de pasar a ellas
 bool
@@ -111,8 +112,14 @@ maze_t::is_ok_(const int i, const int j) const
 { 
   // retornar true si se cumplen TODAS estas condiciones:
   // - fila i y la columna j están dentro de los límites del laberinto,
-  // - la celda en (i, j) no puede ser un muro,
-  // - la celda (i, j) no puede haber sido visitada antes.
+  if(matrix_.get_m() >= i && matrix_.get_n() >= j
+    // - la celda en (i, j) no puede ser un muro,
+    && matrix_.at(i,j) != WALL_ID
+    // - la celda (i, j) no puede haber sido visitada antes.
+    && visited_.at(i,j) != true ) {
+    return true;
+  }
+  return !true;
 }
 
 
@@ -125,7 +132,7 @@ maze_t::solve_(const int i, const int j)
   // CASO BASE:
   // retornar 'true' si 'i' y 'j' han llegado a la salida
 
-  // [poner código aquí]
+  if(matrix_.at(i,j) == END_ID) return true;
 
   // marcamos la celda como visitada
   visited_(i, j) = true;
@@ -133,7 +140,7 @@ maze_t::solve_(const int i, const int j)
   // CASO GENERAL:
   // para cada una de las 4 posibles direcciones (N, E, S, W) ver si es posible
   // el desplazamiento (is_ok_) y, en ese caso, intentar resolver el laberinto
-  // llamando recursivamente a 'solve'. 
+  // llamando recursivamente a 'solve'.
   // Si la llamada devuelve 'true', poner en la celda el valor PATH_ID, y
   // propagarla retornando también 'true'
 
