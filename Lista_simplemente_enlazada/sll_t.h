@@ -154,7 +154,6 @@ template <class T> void sll_t<T>::delete_odd(sll_t<T> lista) {
       aux2 = aux3;
       char letra_impar = aux2 -> get_data();
       push_front(new sll_node_t<char>(letra_impar));
-      delete aux3;
     }
     aux1 = aux1 -> get_next();
     i += 2;
