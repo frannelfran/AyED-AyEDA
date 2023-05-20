@@ -78,6 +78,7 @@ int main(void)
   delete ultimo;
   lista.write(cout);
   cout << endl;
+  cout << endl;
   
 
 
