@@ -88,5 +88,12 @@ int main(void)
   lista.write(cout);
   cout << endl;
 
+  sll_t<char> lista_impar;
+  lista_impar.delete_odd(lista);
+
+  cout << "\nLista con los elementos impares puestos\n" << endl;
+  lista_impar.write(cout);
+  cout << endl;
+
   return 0;
 }

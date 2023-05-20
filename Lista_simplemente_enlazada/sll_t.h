@@ -37,7 +37,7 @@ template <class T> class sll_t {
   sll_node_t<T>* erase_after(sll_node_t<T>*);
   sll_node_t<T>* erase_last();
   void change_elto();
-  void duplicate();
+  void delete_odd(sll_t<T>);
 
   sll_node_t<T>* search(const T&) const;
 
@@ -139,6 +139,28 @@ template <class T> void sll_t<T>::change_elto() {
   char primero = aux2 -> get_data();
   erase_after(aux);
   push_front(new sll_node_t<T>(primero));
+}
+
+template <class T> void sll_t<T>::delete_odd(sll_t<T> lista) {
+  sll_node_t<char>* aux1 = lista.get_head();
+  sll_node_t<char>* aux2;
+  sll_node_t<char>* aux3;
+  unsigned i = 0;
+  while(aux1 -> get_next() != NULL) {
+    if(i % 2 == 0) {
+      char letra_par = aux1 -> get_data();
+      aux3 = lista.search(letra_par);
+      aux3 = lista.erase_after(aux3);
+      aux2 = aux3;
+      char letra_impar = aux2 -> get_data();
+      push_front(new sll_node_t<char>(letra_impar));
+      delete aux3;
+    }
+    aux1 = aux1 -> get_next();
+    i += 2;
+  }
+  std::cout << "\nLista con los elementos impares quitados\n" << std::endl;
+  lista.write();
 }
 
 #endif  // SLLT_H_
