@@ -81,11 +81,12 @@ int main(void)
   lista.write(cout);
   cout << endl;
 
+  // Intercambia el primer y segundo elemento de la lista
   cout << "Primer y segundo elemento de la lista intercambiados" << endl;
   lista.change_elto();
 
-
   lista.write(cout);
   cout << endl;
+
   return 0;
 }
