@@ -72,12 +72,9 @@ int main(void)
   cout << endl;
 
   // Busca el último elemento de la lista y lo borra
-  sll_node_t<char>* ultimo = lista.buscar_ultimo();
-  char last_element = ultimo -> get_data();
-  cout << "Se ha borrado " << "'" << last_element << "'"  << " de la lista." << endl;
-  delete ultimo;
+  lista.erase_last();
   lista.write(cout);
   cout << endl;
-  
+
   return 0;
 }

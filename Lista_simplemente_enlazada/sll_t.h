@@ -37,7 +37,7 @@ template <class T> class sll_t {
   sll_node_t<T>* erase_after(sll_node_t<T>*);
 
   sll_node_t<T>* search(const T&) const;
-  sll_node_t<T>* buscar_ultimo();
+  sll_node_t<T>* erase_last();
 
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
@@ -117,13 +117,15 @@ template <class T> std::ostream& sll_t<T>::write(std::ostream& os) const {
   return os;
 }
 
-template <class T> sll_node_t<T>* sll_t<T>::buscar_ultimo() {
+template <class T> sll_node_t<T>* sll_t<T>::erase_last() {
   sll_node_t<char>* aux = get_head();
   while(aux -> get_next() != NULL) {
     aux = aux -> get_next();
   }
   sll_node_t<char>* ultimo = aux;
-  return ultimo;
+  char last_element = ultimo -> get_data();
+  cout << "Se ha borrado " << "'" << last_element << "'"  << " de la lista." << endl;
+  delete ultimo;
 }
 
 #endif  // SLLT_H_
