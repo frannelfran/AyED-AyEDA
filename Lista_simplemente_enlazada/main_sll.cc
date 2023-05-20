@@ -69,7 +69,17 @@ int main(void)
 
   // Impresión de la lista elemento a elemento
   lista.write(cout);
-  cout << endl;	
+  cout << endl;
+
+  // Elimina el último elemento de la lista
+  sll_node_t<char>* ultimo = lista.erase_last();
+  char last_element = ultimo -> get_data();
+  nodo = lista.search(last_element);
+  nodo = lista.erase_after(nodo);
+  delete nodo;
+
+  lista.write(cout);
+  cout << endl;
 
   return 0;
 }
