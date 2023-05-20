@@ -36,6 +36,7 @@ template <class T> class sll_t {
   void insert_after(sll_node_t<T>*, sll_node_t<T>*);
   sll_node_t<T>* erase_after(sll_node_t<T>*);
   sll_node_t<T>* erase_last();
+  void change_elto();
 
   sll_node_t<T>* search(const T&) const;
 
@@ -129,4 +130,16 @@ template <class T> sll_node_t<T>* sll_t<T>::erase_last() {
   std::cout << "Se ha extraído la letra " << "'" << element << "'" << std::endl;
   return aux;
 }
+
+template <class T> void sll_t<T>::change_elto() {
+  assert(!empty());
+  sll_node_t<char>* aux = get_head();
+  sll_node_t<char>* aux2 = aux -> get_next();
+  char primero = aux2 -> get_data();
+  erase_after(aux);
+  push_front(new sll_node_t<T>(primero));
+
+}
+
+
 #endif  // SLLT_H_
