@@ -37,7 +37,7 @@ template <class T> class dll_t {
 
   dll_node_t<T>* pop_back(void);
   dll_node_t<T>* pop_front(void);
-
+  void insert_nodo(char, char);
   dll_node_t<T>* erase(dll_node_t<T>*);
 
   // E/S
@@ -156,6 +156,19 @@ template <class T> std::ostream& dll_t<T>::write(std::ostream& os) const {
     aux = aux->get_next();
   }
   return os;
+}
+
+template <class T> void dll_t<T>::insert_nodo(char letra_a_insertar, char nodo_a_buscar) {
+  dll_node_t<T>* aux = get_head();
+  assert(!empty()); // Mientras no este vacía la lista
+
+  while(aux != NULL) {
+    char buscar = aux -> get_data();
+    if(buscar == nodo_a_buscar) {
+      aux -> set_data(letra_a_insertar);
+    }
+    aux = aux -> get_next();
+  }
 }
 
 #endif  // DLLT_H_

@@ -87,5 +87,33 @@ int main(void) {
   lista.write();
   cout << endl;
 
+  //Inserción de un nodo después de otro
+  char letra_insertar, buscar_nodo;
+  
+  cout << "Que letra quieres insertar ? ";
+  cin >> letra_insertar;
+  cout << "Delante de que nodo quieres colocar " << letra_insertar << " ? ";
+  cin >> buscar_nodo;
+  lista.insert_nodo(letra_insertar, buscar_nodo);
+  
+  lista.write();
+  cout << endl;
+
+  
+
+
+  
+  
+
+
+
+
+  
+
+
+
+
+  
+
   return 0;
 }
