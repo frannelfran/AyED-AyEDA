@@ -99,8 +99,18 @@ int main(void) {
   lista.write();
   cout << endl;
 
-  
+  //Intercambiar el penúltimo elemento con la cola
+  cout << "Intercambiando el último elemento con el penúltimo de la lista..." << endl;
+  lista.change_last();
+  lista.write();
+  cout << endl;
 
+  //Duplicar todos los elementos de la lista insertandolos por detrás
+  
+  cout << "Clonando elementos de la lista..." << endl;
+  lista.duplicate();
+  lista.write();
+  cout << endl;
 
   
   

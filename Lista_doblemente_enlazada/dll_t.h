@@ -38,6 +38,8 @@ template <class T> class dll_t {
   dll_node_t<T>* pop_back(void);
   dll_node_t<T>* pop_front(void);
   void insert_nodo(char, char);
+  void change_last();
+  void duplicate();
   dll_node_t<T>* erase(dll_node_t<T>*);
 
   // E/S
@@ -170,5 +172,33 @@ template <class T> void dll_t<T>::insert_nodo(char letra_a_insertar, char nodo_a
     aux = aux -> get_next();
   }
 }
+
+template <class T> void dll_t<T>::change_last() {
+  dll_node_t<T>* cola = get_tail();
+  dll_node_t<T>* antes_cola = cola -> get_prev();
+  char aux, aux2;
+
+  assert(!empty());
+  aux = cola -> get_data();
+  aux2 = antes_cola -> get_data();
+  cola -> set_data(aux2);
+  antes_cola -> set_data(aux);
+}
+
+template <class T> void dll_t<T>::duplicate() {
+  dll_node_t<T>* aux = get_head();
+  dll_node_t<T>* tail = get_tail();
+  char letra, letra_cola;
+  letra_cola = tail -> get_data();
+
+  assert(!empty());
+  while(letra != letra_cola) {
+    letra = aux -> get_data();
+    push_back(new dll_node_t<T>(letra));
+    aux = aux -> get_next();
+  }
+}
+
+
 
 #endif  // DLLT_H_
