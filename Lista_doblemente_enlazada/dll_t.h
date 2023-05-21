@@ -40,6 +40,8 @@ template <class T> class dll_t {
   void insert_nodo(char, char);
   void change_last();
   void duplicate();
+  void erase_odd();
+  void pair_list(dll_t<char>);
   dll_node_t<T>* erase(dll_node_t<T>*);
 
   // E/S
@@ -199,6 +201,46 @@ template <class T> void dll_t<T>::duplicate() {
   }
 }
 
+/*template<class T> void dll_t<T>::erase_odd() { // Cambiar porque está mal
+  dll_node_t<T>* aux = get_head();
+  dll_node_t<T>* aux2;
+  unsigned i = 0;
+  assert(!empty());
+  while(aux != NULL) {
+    if(i % 2 != 0) {
+      aux2 = aux;
+      delete aux2;
+    }
+    aux = aux -> get_next();
+    i++;
+  }
+}*/
+
+
+template <class T> void dll_t<T>::pair_list(dll_t<char> lista) {
+  dll_node_t<T>* aux = lista.get_head(); // Cola de la lista
+  dll_t<char> lista_par;
+  unsigned i = 0;
+  char letra_par;
+  assert(!lista.empty());
+  // Colocar los elementos pares en otra lista
+  while(aux != NULL) {
+    if(i % 2 == 0) {
+      letra_par = aux -> get_data();
+      lista_par.push_front(new dll_node_t<T>(letra_par));
+    }
+    aux = aux -> get_next(); // Siguiente eleento
+    i++;
+  }
+
+  // Ordenar la lista
+  aux = lista_par.get_head();
+  while(aux != NULL) {
+    letra_par = aux -> get_data();
+    push_front(new dll_node_t<T>(letra_par));
+    aux = aux -> get_next();
+  }
+}
 
 
 #endif  // DLLT_H_

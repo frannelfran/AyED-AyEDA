@@ -106,24 +106,23 @@ int main(void) {
   cout << endl;
 
   //Duplicar todos los elementos de la lista insertandolos por detrás
-  
   cout << "Clonando elementos de la lista..." << endl;
   lista.duplicate();
   lista.write();
   cout << endl;
 
-  
-  
+  //Eliminar y liberar los elementos en las posiciónes impares
+  //cout << "Quitando los elementos de posiciones impares de la lista..." << endl;
+  //lista.erase_odd();
+  //lista.write();
+  //cout << endl;
 
-
-
-
-  
-
-
-
-
-  
+  //Eliminar los elementos de posiciones pares de una lista y ponerlos en otra
+  dll_t<char> lista_par;
+  lista_par.pair_list(lista);
+  cout << "Generando lista con las posiciones pares de la otra..." << endl;
+  lista_par.write();
+  cout << endl;
 
   return 0;
 }
