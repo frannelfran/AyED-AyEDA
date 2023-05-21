@@ -32,6 +32,7 @@ template<class T> class stack_l_t {
   bool empty(void) const;
   void change();
   void mirror(stack_l_t<T>);
+  void delete_odd(stack_l_t<T>);
 
   // E/S	
   std::ostream& write(std::ostream& os = std::cout) const;
@@ -91,6 +92,28 @@ template <class T> void stack_l_t<T>::mirror(stack_l_t<T> pila_normal) {
     pila_normal.pop();
     pila_normal.write();
     push(letra);
+  }
+}
+
+template <class T> void stack_l_t<T>::delete_odd(stack_l_t<T> pila_original) {
+  dll_node_t<T>* aux = pila_original.l_.get_head();
+  dll_node_t<T>* aux2;
+  stack_l_t<T> pila_par;
+  int k = 2;
+  unsigned i = 0;
+  assert(!pila_original.empty());
+  while(aux != NULL) {
+    if(i % k != 0) {
+      char letra_impar = aux -> get_data();
+      push(letra_impar);
+    }
+    else {
+      char letra_par = aux -> get_data();
+      pila_par.push(letra_par);
+      pila_par.write();
+    }
+    aux = aux -> get_next();
+    i++;
   }
 }
 

@@ -17,6 +17,7 @@
 using namespace std;
 
 int main(void) {
+
   stack_v_t<char> pila_vector;
   cout << "********** PILA VECTOR **********" << endl;
   for (int i = 0; i < 10; i++) {
@@ -25,13 +26,6 @@ int main(void) {
     cout << endl;
   }
   cout << endl;
-
-  while (!pila_vector.empty()) {
-    pila_vector.pop();
-    pila_vector.write();
-    cout << endl;
-  }
-
 
   stack_l_t<char> pila_lista;
   cout << "********** PILA LISTA **********" << endl;
@@ -53,6 +47,14 @@ int main(void) {
   pila_invertida.mirror(pila_lista);
   cout << "Invirtiendo pila..." << endl;
   pila_invertida.write();
+  cout << endl;
+
+  //Eliminar los elementos pares de una pila y colocarlos en otra
+  stack_l_t<char> pila_impares;
+  cout << "Gnerando pila con los elementos de las posiciones pares..." << endl;
+  pila_impares.delete_odd(pila_invertida);
+  cout << "Generando pila con los elementos de las posiciones impares de la anterior..." << endl;
+  pila_impares.write();
   cout << endl;
 
   return 0;

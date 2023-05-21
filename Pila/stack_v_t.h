@@ -76,6 +76,4 @@ template<class T> std::ostream& stack_v_t<T>::write(std::ostream& os) const {
   return os;
 }
 
-
-
 #endif  // STACKV_H_
