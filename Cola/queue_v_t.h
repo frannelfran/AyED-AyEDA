@@ -33,6 +33,7 @@ public:
 	void pop(void);
 	const T& front(void) const;
 	const T& back(void) const;
+	void mirror();
 
 	void write(ostream& os = cout) const;
 	
@@ -129,5 +130,19 @@ operator<<(ostream& os, const queue_v_t<T>& q)
 {
 	q.write(os);
 	return os;
+}
+
+template <class T> void queue_v_t<T>::mirror() {
+
+	assert(!empty());
+	int dim = size();
+	T cola[dim];
+	for(int i = 0; i < dim; i++) {
+		cola[i] = front();
+		pop();
+	}
+	for(int j = (dim -1); j > -1; j--) {
+		push(cola[j]);
+	}
 }
 

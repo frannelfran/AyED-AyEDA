@@ -34,6 +34,7 @@ template <class T> class queue_l_t {
   void pop(void);
   const T& front(void) const;
   const T& back(void) const;
+  void divide(queue_l_t<T>&, queue_l_t<T>&);
 
   // E/S
   std::ostream& write(std::ostream& os = std::cout) const;
@@ -86,6 +87,21 @@ template<class T> std::ostream& operator<<(std::ostream& os,
   q.write(os);
   return os;
 }
+
+template<class T> void queue_l_t<T>::divide(queue_l_t<T>& cola_par, queue_l_t<T>& cola_impar) {
+  dll_node_t<T>* aux = l_.get_head();
+  assert(!empty());
+  unsigned i = 0;
+  while(aux != NULL) {
+    char letra = aux -> get_data();
+    if(i % 2 == 0) cola_par.push(letra);
+    else cola_impar.push(letra);
+    aux = aux -> get_next();
+    i++;
+  }
+}
+
+
 
 
 #endif  // QUEUE_H_

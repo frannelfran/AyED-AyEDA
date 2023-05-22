@@ -23,12 +23,6 @@ int main(void)
 
 	cout << endl;
 
-	while (!cola_vector.empty())
-	{
-		cola_vector.pop();
-		cout << cola_vector;
-	}
-
 	queue_l_t<char> cola_lista;
 
 	for (int i = 0; i < 10; i++)
@@ -39,11 +33,27 @@ int main(void)
 
 	cout << endl;
 
-	while (!cola_lista.empty())
-	{
-		cola_lista.pop();
-		cout << cola_lista;
-	}
+	//Invertir una cola
+	cout << "Cola original: ";
+	cola_vector.write();
+	cout << "Cola invertida: ";
+	cola_vector.mirror();
+	cola_vector.write();
+	cout << endl;
+
+	//Dividir la cola en posiciones pares e impares
+	queue_l_t<char> cola_par, cola_impar;
+	cola_lista.divide(cola_par, cola_impar);
+	cout << "Cola con posiciones pares: ";
+	cola_par.write();
+	cout << "Cola con posiciones impares: ";
+	cola_impar.write();
+
+	//Fusionar las dos colas resultantes del problema anterior
+	queue_l_t<char> cola_fusionada;
+	
+	
+	
 
 	return 0;
 }
