@@ -51,9 +51,9 @@ int main(void)
 
 	//Fusionar las dos colas resultantes del problema anterior
 	queue_l_t<char> cola_fusionada;
-	
-	
-	
+	cola_fusionada.fusion(cola_par, cola_impar);
+	cout << "Cola fusionada: ";
+	cola_fusionada.write();
 
 	return 0;
 }

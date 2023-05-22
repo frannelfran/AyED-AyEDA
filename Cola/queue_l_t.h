@@ -35,6 +35,7 @@ template <class T> class queue_l_t {
   const T& front(void) const;
   const T& back(void) const;
   void divide(queue_l_t<T>&, queue_l_t<T>&);
+  void fusion(queue_l_t<T>&, queue_l_t<T>&);
 
   // E/S
   std::ostream& write(std::ostream& os = std::cout) const;
@@ -101,7 +102,26 @@ template<class T> void queue_l_t<T>::divide(queue_l_t<T>& cola_par, queue_l_t<T>
   }
 }
 
+template <class T> void queue_l_t<T>::fusion(queue_l_t<T>& cola_par, queue_l_t<T>& cola_impar) {
+  dll_node_t<T>* aux_par = cola_par.l_.get_tail();
+  dll_node_t<T>* aux_impar = cola_impar.l_.get_tail();
+  assert(!cola_par.empty() || !cola_impar.empty());
 
+  while(!cola_par.empty() || !cola_impar.empty()) {
+    if(!cola_par.empty()) {
+      char letra_par = aux_par -> get_data();
+      push(letra_par);
+      aux_par = aux_par -> get_prev();
+      cola_par.pop();
+    }
 
+    if(!cola_impar.empty()) {
+      char letra_impar = aux_impar -> get_data();
+      push(letra_impar);
+      aux_impar = aux_impar -> get_prev();
+      cola_impar.pop();
+    }
+  }
+}
 
 #endif  // QUEUE_H_
