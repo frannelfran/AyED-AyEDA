@@ -17,5 +17,4 @@ class Cell {
 
 
   private:
-  
 };
