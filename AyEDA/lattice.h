@@ -5,10 +5,9 @@ using namespace std;
 
 class Lattice {
   public:
-   Lattice(); // Constructor de la clase
+   Lattice(Cell&); // Constructor de la clase
 
-
-   
+  
   private:
-  vector<State> celulas_; // Conjunto de células
+  vector<Cell> celulas_; // Conjunto de células
 };

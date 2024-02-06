@@ -6,7 +6,7 @@ using namespace std;
 
 class Cell {
   public:
-  Cell(); // Constructor de la clase estado
+  Cell(State&); // Constructor de la clase estado
 
   // Funciones de la clase
   int NextState(const Lattice&); // Devolver el siguiente estado
@@ -15,6 +15,8 @@ class Cell {
   // Setters
   void SetState(State);
 
-
+  friend ostream& operator<<(ostream& os, const Cell& cell);
+  
   private:
+  State estado_celula;
 };

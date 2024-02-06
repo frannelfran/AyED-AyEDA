@@ -4,7 +4,7 @@ using namespace std;
 
 class State {
   public:
-   State(); // Cosntructor de la clase State
+   State(bool); // Cosntructor de la clase State
 
    // Setters
    
