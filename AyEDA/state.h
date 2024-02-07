@@ -13,5 +13,5 @@ class State {
    inline bool GetState() { return this->state_; }
 
   private:
-  bool state_; // Estado actual
+   bool state_; // Estado actual
 };

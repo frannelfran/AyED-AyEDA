@@ -9,5 +9,5 @@ class Lattice {
 
   
   private:
-  vector<Cell> celulas_; // Conjunto de células
+   vector<Cell> celulas_; // Conjunto de células
 };
