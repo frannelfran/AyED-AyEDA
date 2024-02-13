@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "cell.h"
+class Cell;
 
 using namespace std;
 

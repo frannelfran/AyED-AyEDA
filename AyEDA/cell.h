@@ -3,6 +3,7 @@
 #include "position.h"
 #include "state.h"
 #include "lattice.h"
+class Lattice;
 
 using namespace std;
 
