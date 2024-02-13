@@ -6,9 +6,6 @@ class State {
   public:
    State(bool); // Cosntructor de la clase State
 
-   // Setters
-   
-
    // Getters
    inline bool GetState() { return this->state_; }
 

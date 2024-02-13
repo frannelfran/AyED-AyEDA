@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
+#include "cell.h"
 
+#pragma once
 using namespace std;
 
 class Lattice {
   public:
-   Lattice(Cell&); // Constructor de la clase
+   Lattice(const Cell&); // Constructor de la clase
 
   
   private:
-   vector<Cell> celulas_; // Conjunto de células
+   vector<Cell> lattice_; // Conjunto de células
 };

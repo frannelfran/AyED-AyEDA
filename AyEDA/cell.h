@@ -1,13 +1,14 @@
 #include <iostream>
-#include "lattice.h"
 #include "state.h"
 #include "position.h"
+#include "lattice.h"
 
+#pragma once
 using namespace std;
 
 class Cell {
   public:
-  Cell(State&, Position&); // Constructor de la clase estado
+  Cell(Position&, State&); // Constructor de la clase estado
 
   // Funciones de la clase
   int NextState(const Lattice&); // Devolver el siguiente estado
