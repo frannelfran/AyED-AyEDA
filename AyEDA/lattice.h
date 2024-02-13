@@ -1,8 +1,8 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include "cell.h"
 
-#pragma once
 using namespace std;
 
 class Lattice {

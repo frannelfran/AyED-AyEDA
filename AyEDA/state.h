@@ -1,17 +1,17 @@
+#pragma once
 #include <iostream>
 
-#pragma once
 using namespace std;
 
 class State {
   public:
    // Constructores de la clase
    State();
-   State(bool);
+   State(int);
 
    // Getters
-   inline bool GetState() { return this->state_; }
+   inline int GetState() { return this->state_; }
 
   private:
-   bool state_; // Estado actual
+   int state_; // Estado actual
 };

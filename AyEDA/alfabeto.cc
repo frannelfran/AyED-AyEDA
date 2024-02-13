@@ -6,7 +6,7 @@
  * @return Objeto de la clase Alfabeto
 */
 
-Alfabeto::Alfabeto(bool parametro) {
+Alfabeto::Alfabeto(int parametro) {
   alfabeto_.insert(parametro);
 }
 
