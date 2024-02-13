@@ -1,25 +1,20 @@
 #include <iostream>
-#include "state.h"
 #include "position.h"
-#include "lattice.h"
+#include "state.h"
 
 #pragma once
 using namespace std;
 
+
 class Cell {
   public:
-  Cell(Position&, State&); // Constructor de la clase estado
+   // Constructores de la clase
+   Cell();
+   Cell(const Position&, const State&);
 
-  // Funciones de la clase
-  int NextState(const Lattice&); // Devolver el siguiente estado
-  void UpdateState(); // Actualizar el estado de la célula
 
-  // Setters
-  void SetState(State);
 
-  friend ostream& operator<<(ostream& os, const Cell& cell);
-  
   private:
-   State estado_celula;
    Position posicion_;
+   State estado_;
 };

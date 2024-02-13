@@ -1,5 +1,7 @@
 #include "position.h"
 
+Position::Position() {}
+
 /**
  * @brief Constructor de la clase Position
  * @param posicion Posicion de la célula

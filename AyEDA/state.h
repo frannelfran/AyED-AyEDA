@@ -1,10 +1,13 @@
 #include <iostream>
 
+#pragma once
 using namespace std;
 
 class State {
   public:
-   State(bool); // Cosntructor de la clase State
+   // Constructores de la clase
+   State();
+   State(bool);
 
    // Getters
    inline bool GetState() { return this->state_; }
