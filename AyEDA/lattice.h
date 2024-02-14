@@ -20,7 +20,7 @@ class Lattice {
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);
-   
+
   private:
    vector<Cell> lattice_; // Conjunto de células
 };
