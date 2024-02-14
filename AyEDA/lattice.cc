@@ -1,13 +1,15 @@
 #include "lattice.h"
 
+Lattice::Lattice() {}
+
 /**
  * @brief Constructor de la clase Lattice
- * @param celula Objeto de la clase Cell
+ * @param vector_celulas Vector que contiene las células
  * @return Objeto Lattice
 */
 
-Lattice::Lattice(const Cell& celula) {
-  this->lattice_.push_back(celula);
+Lattice::Lattice(const vector<Cell>& vector_celulas) {
+  this->lattice_ = vector_celulas;
 }
 
 /**
@@ -18,4 +20,16 @@ Lattice::Lattice(const Cell& celula) {
 
 const Cell& Lattice::GetCell(const Position& posicion) const {
   return lattice_.at(posicion.GetData());
+}
+
+/**
+ * @overload Sobrecarga del operador <<
+*/
+
+ostream& operator<<(ostream& os, const Lattice& latt) {
+  for (auto it = latt.lattice_.begin(); it != latt.lattice_.end(); it++) {
+    os << *it;
+  }
+  cout << endl;
+  return os;
 }

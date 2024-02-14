@@ -7,24 +7,24 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  Position pos(0);
-  State est(0);
-  State cambio(1);
-  Cell celula(pos, est);
-  celula.SetState(cambio);
-  Lattice latt(celula);
-  latt.GetCell(0);
-  cout << celula << endl;
-  ifstream file (argv[1]);
+  int size{stoi(argv[1]) - 1}, posicion{0};
+  ifstream file (argv[2]);
+  bool estado;
+  vector<Cell> vector_celulas;
 
+
+  while (size >= 0) {
+    file >> estado;
+    Position pos(posicion);
+    State est(estado);
+    Cell celula(pos, est);
+    vector_celulas.push_back(celula);
+    posicion++;
+    size--;
+  }
+  Lattice latt(vector_celulas);
+  cout << latt;
   
-
-
-
-
-
-
-
 
 
 

@@ -7,14 +7,14 @@ class State {
   public:
    // Constructores de la clase
    State();
-   State(int);
+   State(bool);
 
    // Setters
-   inline void SetData(int estado) { this->state_ = estado; }
+   inline void SetData(bool estado) { this->state_ = estado; }
 
    // Getters
-   inline int GetData() { return this->state_; }
+   inline bool GetData() { return this->state_; }
 
   private:
-   int state_; // Estado actual
+   bool state_; // Estado actual
 };

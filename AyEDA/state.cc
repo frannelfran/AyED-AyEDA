@@ -8,6 +8,6 @@ State::State() {}
  * @return Objeto de la clase State
 */
 
-State::State(int state) {
+State::State(bool state) {
   this->state_ = state;
 }
