@@ -9,8 +9,11 @@ class State {
    State();
    State(int);
 
+   // Setters
+   inline void SetData(int estado) { this->state_ = estado; }
+
    // Getters
-   inline int GetState() { return this->state_; }
+   inline int GetData() { return this->state_; }
 
   private:
    int state_; // Estado actual

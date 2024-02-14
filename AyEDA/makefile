@@ -1,6 +1,6 @@
 main:
 	@echo "Compilando ficheros..."
-	g++ -g alfabeto.cc position.cc lattice.cc cell.cc state.cc main.cc -o automata_celular
+	g++ -g position.cc lattice.cc cell.cc state.cc main.cc -o automata_celular
 
 .PHONY: clean
 

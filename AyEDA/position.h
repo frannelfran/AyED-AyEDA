@@ -9,7 +9,7 @@ class Position {
    Position();
    Position(int);
 
-   inline int GetPoicion() { return this->position_; }
+   inline int GetData() const { return this->position_; }
 
   private:
    int position_;

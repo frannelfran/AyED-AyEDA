@@ -1,4 +1,3 @@
-#include "alfabeto.h"
 #include "lattice.h"
 #include "cell.h"
 #include "position.h"
@@ -8,6 +7,13 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  cout << "wjkbowhofihwfopw" << endl;
-  return 0;
+  Position pos(0);
+  State est(0);
+  State cambio(1);
+  Cell celula(pos, est);
+  celula.SetState(cambio);
+  Lattice latt(celula);
+  latt.GetCell(0);
+  cout << celula << endl;
+  
 }

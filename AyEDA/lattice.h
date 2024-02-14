@@ -13,8 +13,8 @@ class Lattice {
    // Getters
    const Cell& GetCell(const Position&) const; // Obtener la célula según su posición
 
-   // Sobrecarga de operadores
-   friend ostream& operator<<(ostream& os, const Lattice& latt);
+   // Funciones
+   void NextGeneration();
    
   private:
    vector<Cell> lattice_; // Conjunto de células

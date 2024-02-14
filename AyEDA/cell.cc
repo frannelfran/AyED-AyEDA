@@ -1,4 +1,6 @@
 #include "cell.h"
+#include "state.h"
+#include "position.h"
 
 Cell::Cell() {}
 
@@ -21,4 +23,28 @@ Cell::Cell(const Position& posicion, const State& estado) {
 
 State Cell::GetState() const {
   return this->estado_;
+}
+
+/**
+ * @brief Función para establecer un estado
+ * @param estado Estado a establecer
+*/
+
+void Cell::SetState(State estado) {
+  estado_.SetData(estado.GetData());
+}
+
+/**
+ * @overload Sobrecarga del operador <<
+*/
+
+ostream& operator<<(ostream& os, const Cell& cell) {
+  State est = cell.estado_;
+  if (est.GetData() == 1) {
+    os << "x";
+  }
+  else {
+    os << " ";
+  }
+  return os;
 }
