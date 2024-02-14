@@ -15,5 +15,18 @@ int main(int argc, char* argv[]) {
   Lattice latt(celula);
   latt.GetCell(0);
   cout << celula << endl;
+  ifstream file (argv[1]);
+
   
+
+
+
+
+
+
+
+
+
+
+
 }
