@@ -14,6 +14,9 @@ class Lattice {
    // Getters
    const Cell& GetCell(const Position&) const; // Obtener la célula según su posición
 
+   // Setters
+   void SetLattice(const vector<Cell>&); // Establecer el retículo
+
    // Funciones
    void NextGeneration();
    void Initial(int);
