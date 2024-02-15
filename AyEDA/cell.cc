@@ -26,6 +26,15 @@ State Cell::GetState() const {
 }
 
 /**
+ * @brief Devolver la posición de la célula
+ * @return Posición de la célula
+*/
+
+Position Cell::GetPosition() const {
+  return this->posicion_;
+}
+
+/**
  * @brief Función para establecer un estado
  * @param estado Estado a establecer
 */

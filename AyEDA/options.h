@@ -25,7 +25,7 @@ struct Options {
 */
 
 std::optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 6) {
+  if (argc < 2 || argc > 8) {
     cerr << "Pruebe [-h | --help] para más información\n";
     return nullopt;
   }

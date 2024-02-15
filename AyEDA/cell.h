@@ -16,6 +16,7 @@ class Cell {
 
    // Getters
    State GetState() const;
+   Position GetPosition() const;
 
    // Setters
    void SetState(State);

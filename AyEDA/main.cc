@@ -49,6 +49,13 @@ int main(int argc, char* argv[]) {
   }
 
   if (options.value().frontera_abierta) {
+    
+
+
+
+
+
+
   }
 
 
