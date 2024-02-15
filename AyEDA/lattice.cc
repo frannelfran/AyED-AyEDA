@@ -37,13 +37,13 @@ const Cell& Lattice::GetCell(const Position& posicion) const {
 */
 
 void Lattice::Initial(int size) {
-  int posicion = 0, posicion_par = size / 2;
+  int posicion_par = size / 2;
   for (int it = 0; it < size; it++) {
     bool estado = false;
     if (it == posicion_par) {
       estado = true;
     }
-    Position pos(posicion);
+    Position pos(it);
     State sta(estado);
     Cell cell(pos, sta);
     lattice_.push_back(cell);
