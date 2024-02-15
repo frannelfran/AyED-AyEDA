@@ -16,7 +16,7 @@ class Lattice {
 
    // Funciones
    void NextGeneration();
-   void Initial();
+   void Initial(int);
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);
