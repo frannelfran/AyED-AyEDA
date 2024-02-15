@@ -47,5 +47,16 @@ int main(int argc, char* argv[]) {
   else {
     latt.Initial(options.value().size);
   }
+
+  if (options.value().frontera_abierta) {
+  }
+
+
+
+
+
+
+
+
   cout << latt;
 }

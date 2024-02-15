@@ -20,6 +20,7 @@ class Lattice {
    // Funciones
    void NextGeneration();
    void Initial(int);
+   void AgregarFrontera(bool, int);
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);
