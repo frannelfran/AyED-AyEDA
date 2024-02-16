@@ -39,6 +39,27 @@ const Cell& Lattice::GetCell(const Position& posicion) const {
 }
 
 /**
+ * @brief Establecer la frontera del retículo
+ * @param frontera Tipo de frontera
+ * @param fria Saber si la frontera es fría o caliente
+*/
+
+void Lattice::SetFrontera(const string& frontera, bool fria) {
+  assert (frontera == "open" || frontera == "periodic"); // Aseguramos los tipos de frontera
+  if (frontera == "open") {
+    const State estado_frontera = fria ? State(0) : State(1);
+    // Insertamos las células en la parte izquierda
+    lattice_.insert(lattice_.begin(), Cell(Position(0), estado_frontera));
+    lattice_.push_back(Cell(Position(lattice_.size() - 1), estado_frontera));
+    // Ajustamos las posiciones de cada célula
+    for (int it = 0; it < lattice_.size(); it++) {
+      lattice_[it].SetPosicion(Position(it));
+    }
+  }
+  this->frontera_ = frontera; // Establecer el tipo de frontera
+}
+
+/**
  * @brief Hacer la configuración inicial del retículo
  * @param size Número de células del retículo
 */

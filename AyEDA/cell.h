@@ -20,6 +20,7 @@ class Cell {
 
    // Setters
    void SetState(State);
+   void SetPosicion(Position);
 
    // Funciones
    int NextState(const Lattice&);

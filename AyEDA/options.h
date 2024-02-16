@@ -8,11 +8,13 @@
 #include <string_view>
 #include <cassert>
 
+using namespace std;
+
 struct Options {
   int size;
-  bool frontera_abierta = false;
   bool fria = false;
   bool has_file = false;
+  string type_border;
   string filename;
 };
 
@@ -39,8 +41,13 @@ std::optional<Options> parse_args(int argc, char* argv[]) {
     }
     if (*it == "-border") { // Establecer el tipo de frontera
       it = next(it);
-      if (*it == "open") { // Leo el tipo de frontera
-        options.frontera_abierta = true;
+      // Frontera abierta
+      if (*it == "open") {
+        options.type_border = *it;
+      }
+      // Frontera periódica
+      if (*it == "periodic") {
+        options.type_border = *it;
       }
     }
     if (*it == "0") { // Frontera fría o abierta

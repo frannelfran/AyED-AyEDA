@@ -27,18 +27,9 @@ int main(int argc, char* argv[]) {
     latt.Initial(options.value().size);
   }
 
-  // Vemos el tipo de frontera
-  if (options.value().frontera_abierta) {
-    
-
-    
-  }
-
-
-
-
-
-
+  // Settear la frontera
+  latt.SetFrontera(options.value().type_border, options.value().fria);
+  
 
 
   cout << latt;

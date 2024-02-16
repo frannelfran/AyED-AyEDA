@@ -35,6 +35,15 @@ Position Cell::GetPosition() const {
 }
 
 /**
+ * @brief Establecer la posición de la célula
+ * @param posicion Posición a establecer en la célula
+*/
+
+void Cell::SetPosicion(Position posicion) {
+  posicion_.SetData(posicion.GetData());
+}
+
+/**
  * @brief Función para establecer un estado
  * @param estado Estado a establecer
 */
