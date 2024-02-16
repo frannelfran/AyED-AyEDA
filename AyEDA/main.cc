@@ -30,5 +30,10 @@ int main(int argc, char* argv[]) {
   // Settear la frontera
   latt.SetFrontera(options.value().type_border, options.value().fria);
 
+  // Calcular las nuevas generaciones
+  latt.NextGeneration();
+
+
+
   cout << latt;
 }

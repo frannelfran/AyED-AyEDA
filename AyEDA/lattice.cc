@@ -2,6 +2,12 @@
 
 Lattice::Lattice() {}
 
+/**
+ * @brief Construir el retículo si se aporta un fichero
+ * @param file Fichero con los estados
+ * @param size Tamaño del retículo
+*/
+
 void Lattice::Build(ifstream& file, int size) {
   int posicion = 0;
   vector<Cell> vector_celulas; // Vector donde se van a almacenar las células
@@ -76,6 +82,11 @@ void Lattice::Initial(int size) {
     Cell cell(pos, sta);
     lattice_.push_back(cell);
   }
+}
+
+void Lattice::NextGeneration() {
+  // Primera parte
+  Cell celula_c, celula_l, celula_r;
 }
 
 /**
