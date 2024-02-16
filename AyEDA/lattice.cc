@@ -2,14 +2,21 @@
 
 Lattice::Lattice() {}
 
-/**
- * @brief Constructor de la clase Lattice
- * @param vector_celulas Vector que contiene las células
- * @return Objeto Lattice
-*/
-
-Lattice::Lattice(const vector<Cell>& vector_celulas) {
-  this->lattice_ = vector_celulas;
+void Lattice::Build(ifstream& file, int size) {
+  int posicion = 0;
+  vector<Cell> vector_celulas; // Vector donde se van a almacenar las células
+  while (!file.eof()) { // Recorrer hasta llegar al final del fichero
+    int estado;
+    file >> estado;
+    Position pos(posicion);
+    State sta(estado);
+    Cell celula(pos, sta);
+    vector_celulas.push_back(celula); // Pusheamos las células en el vector de células
+    posicion++;
+  }
+  // Comprobar que el tamaño introducido coincida con el número de células del fichero
+  assert(vector_celulas.size() == size);
+  SetLattice(vector_celulas);
 }
 
 /**

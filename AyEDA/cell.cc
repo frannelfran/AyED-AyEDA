@@ -55,5 +55,6 @@ ostream& operator<<(ostream& os, const Cell& cell) {
   else {
     os << " ";
   }
+  cout << cell.posicion_.GetData();
   return os;
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <cassert>
 #include "cell.h"
 class Cell;
 
@@ -9,7 +11,6 @@ using namespace std;
 class Lattice {
   public:
    Lattice();
-   Lattice(const vector<Cell>&); // Constructor de la clase
 
    // Getters
    const Cell& GetCell(const Position&) const; // Obtener la célula según su posición
@@ -18,9 +19,9 @@ class Lattice {
    void SetLattice(const vector<Cell>&); // Establecer el retículo
 
    // Funciones
-   void NextGeneration();
-   void Initial(int);
-   void AgregarFrontera(bool, int);
+   void NextGeneration(); // Calcular la siguiente generación
+   void Initial(int); // Configuración inicial
+   void Build(ifstream&, int); // Crear el retículo con los datos del fichero
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);

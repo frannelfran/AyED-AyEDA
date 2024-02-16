@@ -9,7 +9,12 @@ class Position {
    Position();
    Position(int);
 
+   // Getters
+
    inline int GetData() const { return this->position_; }
+
+   // Setters
+   inline void SetData(int posicion) { this->position_ = posicion; }
 
   private:
    int position_;

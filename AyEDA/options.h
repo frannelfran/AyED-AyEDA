@@ -10,7 +10,6 @@
 
 struct Options {
   int size;
-  bool ayuda = false;
   bool frontera_abierta = false;
   bool fria = false;
   bool has_file = false;
@@ -25,17 +24,14 @@ struct Options {
 */
 
 std::optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 2 || argc > 8) {
-    cerr << "Pruebe [-h | --help] para más información\n";
-    return nullopt;
+  if (argc < 6) {
+    cout << "Modo de empleo: ./automata_celular -size <n> -border <b [v]> -init <file>" << endl;
+    exit(EXIT_SUCCESS);
   }
 
   std::vector<string_view> args(argv + 1, argv + argc);
   Options options;
   for (auto it = args.begin(); it != args.end(); it++) {
-    if (*it == "-h" || *it == "--help") { // Mostrar Ayuda
-      options.ayuda = true;
-    }
     if (*it == "-size") { // Establecer el tamaño
       it = next(it);
       options.size = stoi(string(*it)); 
