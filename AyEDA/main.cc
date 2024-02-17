@@ -32,16 +32,17 @@ int main(int argc, char* argv[]) {
   lattice.SetFrontera(options.value().type_border, options.value().fria);
 
   // Calcular las nuevas generaciones
-  string seguir;
+  char tecla;
   cout << "Retículo introducido: " << lattice;
   while (true) {
     lattice.NextGeneration();
     cout << lattice;
-    cout << "seguir ? [y | n] ";
-    cin >> seguir;
-    if (seguir == "n") {
+    cout << "seguir ? [ENTER para continuar | n para finalizar] ";
+    tecla = getchar();
+    if (tecla == 'n') {
       break;
     }
+    assert (tecla == '\n');
   }
   return 0;
 }

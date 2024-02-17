@@ -21,7 +21,7 @@ void Lattice::Build(ifstream& file, int size) {
     posicion++;
   }
   // Comprobar que el tamaño introducido coincida con el número de células del fichero
-  assert(vector_celulas.size() == size);
+  assert (vector_celulas.size() == size);
   SetLattice(vector_celulas);
 }
 
