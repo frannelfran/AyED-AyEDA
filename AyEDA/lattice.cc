@@ -9,6 +9,7 @@ Lattice::Lattice() {}
 */
 
 void Lattice::Build(ifstream& file, int size) {
+  assert (size > 0); // Aseguramos que el tamaño no sea negativo
   int posicion = 0;
   vector<Cell> vector_celulas; // Vector donde se van a almacenar las células
   while (!file.eof()) { // Recorrer hasta llegar al final del fichero
