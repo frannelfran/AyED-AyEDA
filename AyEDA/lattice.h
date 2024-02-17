@@ -14,8 +14,8 @@ class Lattice {
 
    // Getters
    inline const Cell& GetCell(const Position& posicion) const { return this->lattice_.at(posicion.GetData()); } // Obtener la célula según su posición
-   inline const string& GetFrontera() const { return this->frontera_; }
-   inline const int GetSize() const { return this->lattice_.size(); }
+   inline const string& GetFrontera() const { return this->frontera_; } // Obtener la frontera
+   inline const int GetSize() const { return this->lattice_.size(); } // Obtener el número de células del retículo
 
    // Setters
    inline void SetLattice(const vector<Cell>& vector_celulas) { this->lattice_ = vector_celulas; } // Establecer el retículo
