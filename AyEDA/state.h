@@ -13,7 +13,7 @@ class State {
    inline void SetData(bool estado) { this->state_ = estado; }
 
    // Getters
-   inline bool GetData() { return this->state_; }
+   inline bool GetData() const { return this->state_; }
 
   private:
    bool state_; // Estado actual

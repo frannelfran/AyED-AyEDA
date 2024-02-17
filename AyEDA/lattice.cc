@@ -85,8 +85,34 @@ void Lattice::Initial(int size) {
 }
 
 void Lattice::NextGeneration() {
+  vector<int> nuevos_estados;
   // Primera parte
-  Cell celula_c, celula_l, celula_r;
+  if (frontera_ == "open") {
+    for (auto it = lattice_.begin() + 1; it != lattice_.end() - 1; it++) {
+      Cell& celula =  *it;
+      int nuevo_estado = celula.NextState(*this);
+      cout << nuevo_estado << endl;
+      nuevos_estados.push_back(nuevo_estado);
+    }
+    // Segunda parte
+    int i = 0;
+    for (auto it = lattice_.begin() + 1; it != lattice_.end() -1; it++, i++) {
+      Cell& celula = *it;
+      State estado = celula.GetState();
+      estado.SetData(nuevos_estados[i]);
+      celula.SetState(estado);
+    }
+  }
+  else {
+
+
+
+
+
+
+
+    
+  }
 }
 
 /**
