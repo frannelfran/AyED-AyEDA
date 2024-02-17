@@ -86,6 +86,7 @@ void Lattice::Initial(int size) {
 
 void Lattice::NextGeneration() {
   vector<int> nuevos_estados;
+  // Calcular la siguiente generación cuando la frontera es abierta
   // Primera parte
   if (frontera_ == "open") {
     for (auto it = lattice_.begin() + 1; it != lattice_.end() - 1; it++) {
@@ -103,15 +104,23 @@ void Lattice::NextGeneration() {
       celula.SetState(estado);
     }
   }
+
+  // Calcular cuando la frontera es periódica
   else if (frontera_ == "periodic") {
-
-
-
-
-
-
-
-    
+    // Primera parte
+    for (auto it = lattice_.begin(); it != lattice_.end(); it++) {
+      Cell celula = *it;
+      int nuevo_estado = celula.NextState(*this);
+      nuevos_estados.push_back(nuevo_estado);
+    }
+    // Segunda parte
+    int i = 0;
+    for (auto it = lattice_.begin(); it != lattice_.end(); it++, i++) {
+      Cell& celula = *it;
+      State estado = celula.GetState();
+      estado.SetData(nuevos_estados[i]);
+      celula.SetState(estado);
+    }
   }
 }
 
