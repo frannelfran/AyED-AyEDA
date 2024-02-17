@@ -39,7 +39,6 @@ int main(int argc, char* argv[]) {
     cout << lattice;
     cout << "seguir ? [y | n] ";
     cin >> seguir;
-    assert(seguir == "y");
     if (seguir == "n") {
       break;
     }
