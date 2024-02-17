@@ -17,42 +17,6 @@ Cell::Cell(const Position& posicion, const State& estado) {
 }
 
 /**
- * @brief Función que devuelve el estado de la célula
- * @return Estado de la célula
-*/
-
-State Cell::GetState() const {
-  return this->estado_;
-}
-
-/**
- * @brief Devolver la posición de la célula
- * @return Posición de la célula
-*/
-
-Position Cell::GetPosition() const {
-  return this->posicion_;
-}
-
-/**
- * @brief Establecer la posición de la célula
- * @param posicion Posición a establecer en la célula
-*/
-
-void Cell::SetPosicion(Position posicion) {
-  posicion_.SetData(posicion.GetData());
-}
-
-/**
- * @brief Función para establecer un estado
- * @param estado Estado a establecer
-*/
-
-void Cell::SetState(State estado) {
-  estado_.SetData(estado.GetData());
-}
-
-/**
  * @brief Aplicar la formula para calcular el siguiente estado
  * @param state_l Estado de la célula de la izquierda
  * @param state_r Estado de la célula de la derecha
@@ -83,7 +47,7 @@ int Cell::NextState(const Lattice& lattice) {
     posicion_right.SetData(posicion_.GetData() + 1);
     celula_r = lattice.GetCell(posicion_right);
   }
-  
+
   // Sino es periódica
   else if (lattice.GetFrontera() == "periodic") {
     // Mirar cuando se encuentra en la primera posición

@@ -15,12 +15,12 @@ class Cell {
    Cell(const Position&, const State&);
 
    // Getters
-   State GetState() const;
-   Position GetPosition() const;
+   inline State GetState() const { return this->estado_; } // Obtener el estado de la célula
+   inline Position GetPosition() const { return this->posicion_; } // Obtener la posición de la célula
 
    // Setters
-   void SetState(State);
-   void SetPosicion(Position);
+   inline void SetState(State estado) { estado_.SetData(estado.GetData()); } // Settear el estado
+   inline void SetPosicion(Position posicion) { posicion_.SetData(posicion.GetData()); } // Settear la posición
 
    // Funciones
    int NextState(const Lattice&);

@@ -26,25 +26,6 @@ void Lattice::Build(ifstream& file, int size) {
 }
 
 /**
- * @brief Asignar el retículo
- * @param vector_celulas Vector que contiene las células
-*/
-
-void Lattice::SetLattice(const vector<Cell>& vector_celulas) {
-  this->lattice_ = vector_celulas;
-}
-
-/**
- * @brief Obtener la célula según su posición
- * @param posicion Posición de la célula a buscar
- * @return Objeto Cell
-*/
-
-const Cell& Lattice::GetCell(const Position& posicion) const {
-  return lattice_.at(posicion.GetData());
-}
-
-/**
  * @brief Establecer la frontera del retículo
  * @param frontera Tipo de frontera
  * @param fria Saber si la frontera es fría o caliente
@@ -92,7 +73,6 @@ void Lattice::NextGeneration() {
     for (auto it = lattice_.begin() + 1; it != lattice_.end() - 1; it++) {
       Cell& celula =  *it;
       int nuevo_estado = celula.NextState(*this);
-      cout << nuevo_estado << endl;
       nuevos_estados.push_back(nuevo_estado);
     }
     // Segunda parte

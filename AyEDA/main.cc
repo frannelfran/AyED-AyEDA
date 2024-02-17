@@ -14,26 +14,35 @@ int main(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
-  Lattice latt; // Objeto retículo
+  Lattice lattice; // Objeto retículo
 
   // Verificamos que se haya introducido un fichero para saber si poner la configuración inicial
   if (options.value().has_file) {
     ifstream file (options.value().filename);
-    latt.Build(file, options.value().size);
+    lattice.Build(file, options.value().size);
+    file.close(); // Cerrar el fichero
   }
 
   // Sino hacer la configuración inicial
   else {
-    latt.Initial(options.value().size);
+    lattice.Initial(options.value().size);
   }
 
   // Settear la frontera
-  latt.SetFrontera(options.value().type_border, options.value().fria);
+  lattice.SetFrontera(options.value().type_border, options.value().fria);
 
   // Calcular las nuevas generaciones
-  latt.NextGeneration();
-
-
-
-  cout << latt;
+  string seguir;
+  cout << "Retículo introducido: " << lattice;
+  while (true) {
+    lattice.NextGeneration();
+    cout << lattice;
+    cout << "seguir ? [y | n] ";
+    cin >> seguir;
+    assert(seguir == "y");
+    if (seguir == "n") {
+      break;
+    }
+  }
+  return 0;
 }
