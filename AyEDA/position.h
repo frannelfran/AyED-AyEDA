@@ -10,7 +10,6 @@ class Position {
    Position(int);
 
    // Getters
-
    inline int GetData() const { return this->position_; }
 
    // Setters
