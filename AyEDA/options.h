@@ -26,7 +26,7 @@ struct Options {
 */
 
 std::optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 6) {
+  if (argc < 5) {
     cout << "Modo de empleo: ./automata_celular -size <n> -border <b [v]> -init <file>" << endl;
     exit(EXIT_SUCCESS);
   }
