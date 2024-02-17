@@ -7,7 +7,6 @@ class Lattice;
 
 using namespace std;
 
-
 class Cell {
   public:
    // Constructores de la clase
