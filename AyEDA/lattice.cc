@@ -103,7 +103,7 @@ void Lattice::NextGeneration() {
       celula.SetState(estado);
     }
   }
-  else {
+  else if (frontera_ == "periodic") {
 
 
 
