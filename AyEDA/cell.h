@@ -23,7 +23,7 @@ class Cell {
 
    // Funciones
    int NextState(const Lattice&);
-   int CalcularEstado(const State&, const State&); // aplicar la fórmula para calcular el estado siguiente
+   int CalcularEstado(const State&, const State&); // Aplicar la fórmula para calcular el estado siguiente
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Cell& cell);
