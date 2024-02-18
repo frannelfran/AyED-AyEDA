@@ -24,8 +24,8 @@ Cell::Cell(const Position& posicion, const State& estado) {
 */
 
 int Cell::CalcularEstado(const State& state_l, const State& state_r) {
-  int l = state_l.GetData(), c = estado_.GetData(), r = state_r.GetData();
-  return (c + r + c * r + l * c *r) % 2;
+  int l = state_l.GetData(), c = estado_.GetData(), r = state_r.GetData(); // Obtener los estados de cada célula
+  return (c + r + c * r + l * c * r) % 2; // Calcular el nuevo estado
 }
 
 /**
