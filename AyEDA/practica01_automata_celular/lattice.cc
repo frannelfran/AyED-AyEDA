@@ -39,10 +39,6 @@ void Lattice::SetFrontera(const string& frontera, bool fria) {
     lattice_.insert(lattice_.begin(), Cell(Position(0), estado_frontera));
     // Insertamos la célula en la parte derecha
     lattice_.push_back(Cell(Position(lattice_.size() - 1), estado_frontera));
-    // Ajustamos las posiciones de las células en el retículo
-    for (int it = 1; it < lattice_.size() - 1; it++) {
-      lattice_[it].SetPosicion(Position(it));
-    }
   }
   this->frontera_ = frontera; // Establecer el tipo de frontera
 }
