@@ -6,8 +6,8 @@ using namespace std;
 class Position {
   public:
    // Constructores de la clase
-   Position();
-   Position(int);
+   inline Position() {}
+   inline Position(int position) { this->position_ = position; }
 
    // Getters
    inline int GetData() const { return this->position_; }

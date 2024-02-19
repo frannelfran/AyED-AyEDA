@@ -6,8 +6,8 @@ using namespace std;
 class State {
   public:
    // Constructores de la clase
-   State();
-   State(bool);
+   inline State() {}
+   inline State(bool state) { this->state_ = state; }
 
    // Setters
    inline void SetData(bool estado) { this->state_ = estado; }
