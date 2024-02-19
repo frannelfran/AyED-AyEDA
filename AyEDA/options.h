@@ -25,13 +25,13 @@ struct Options {
  * @return Objeto Options
 */
 
-std::optional<Options> parse_args(int argc, char* argv[]) {
+optional<Options> parse_args(int argc, char* argv[]) {
   if (argc < 5 || argc > 8) {
     cout << "Modo de empleo: ./automata_celular -size <n> -border <b [v]> -init <file>" << endl;
     exit(EXIT_SUCCESS);
   }
 
-  std::vector<string_view> args(argv + 1, argv + argc);
+  vector<string_view> args(argv + 1, argv + argc);
   Options options;
   for (auto it = args.begin(); it != args.end(); it++) {
     if (*it == "-size") { // Establecer el tamaño
