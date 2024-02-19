@@ -37,7 +37,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
     if (*it == "-size") { // Establecer el tamaño
       it = next(it);
       options.size = stoi(string(*it)); 
-      assert(options.size > 1); // El número debe ser mayor que 1
+      assert(options.size > 0); // El número debe ser mayor que 0
     }
     if (*it == "-border") { // Establecer el tipo de frontera
       it = next(it);
@@ -48,6 +48,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
       // Frontera periódica
       else if (*it == "periodic") {
         options.type_border = *it;
+        assert (options.size > 1); // Si la frontera es periódica el tamaño debe ser mayor que 1
       }
     }
     if (*it == "0") { // Frontera fría o abierta

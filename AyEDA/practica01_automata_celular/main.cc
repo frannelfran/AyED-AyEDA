@@ -1,7 +1,4 @@
 #include "lattice.h"
-#include "cell.h"
-#include "position.h"
-#include "state.h"
 #include "options.h"
 #include <cassert>
 #include <fstream>
