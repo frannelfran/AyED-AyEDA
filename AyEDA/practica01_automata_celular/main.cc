@@ -22,9 +22,7 @@ int main(int argc, char* argv[]) {
     lattice.Build(file, options.value().size);
     file.close(); // Cerrar el fichero
   }
-
-  // Sino hacer la configuración inicial
-  else {
+  else { // Sino hacer la configuración inicial
     lattice.Initial(options.value().size);
   }
 
