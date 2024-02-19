@@ -36,11 +36,12 @@ void Lattice::SetFrontera(const string& frontera, bool fria) {
   assert (frontera == "open" || frontera == "periodic"); // Aseguramos los tipos de frontera
   if (frontera == "open") {
     const State estado_frontera = fria ? State(0) : State(1);
-    // Insertamos las células en la parte izquierda
+    // Insertamos la células en la parte izquierda
     lattice_.insert(lattice_.begin(), Cell(Position(0), estado_frontera));
+    // Insertamos la célula en la parte derecha
     lattice_.push_back(Cell(Position(lattice_.size() - 1), estado_frontera));
-    // Ajustamos las posiciones de cada célula
-    for (int it = 0; it < lattice_.size(); it++) {
+    // Ajustamos las posiciones de las células en el retículo
+    for (int it = 1; it < lattice_.size() - 1; it++) {
       lattice_[it].SetPosicion(Position(it));
     }
   }
@@ -70,8 +71,8 @@ void Lattice::Initial(int size) {
 void Lattice::NextGeneration() {
   vector<int> nuevos_estados;
   // Calcular la siguiente generación cuando la frontera es abierta
-  // Primera parte
   if (frontera_ == "open") {
+    // Primera parte
     for (auto it = lattice_.begin() + 1; it != lattice_.end() - 1; it++) {
       Cell& celula =  *it;
       int nuevo_estado = celula.NextState(*this);
@@ -91,7 +92,7 @@ void Lattice::NextGeneration() {
   else if (frontera_ == "periodic") {
     // Primera parte
     for (auto it = lattice_.begin(); it != lattice_.end(); it++) {
-      Cell celula = *it;
+      Cell& celula = *it;
       int nuevo_estado = celula.NextState(*this);
       nuevos_estados.push_back(nuevo_estado);
     }
