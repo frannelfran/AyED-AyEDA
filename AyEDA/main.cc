@@ -34,10 +34,10 @@ int main(int argc, char* argv[]) {
   // Calcular las nuevas generaciones
   char tecla;
   cout << "Retículo introducido: " << lattice;
+  cout << "---Evoluciones del retículo--- [ENTER para continuar | n para finalizar]" << endl;
   while (true) {
     lattice.NextGeneration();
     cout << lattice;
-    cout << "seguir ? [ENTER para continuar | n para finalizar] ";
     tecla = getchar();
     if (tecla == 'n') {
       break;
