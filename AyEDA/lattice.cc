@@ -9,7 +9,7 @@ Lattice::Lattice() {}
 */
 
 void Lattice::Build(ifstream& file, int size) {
-  assert (size > 0); // Aseguramos que el tamaño no sea negativo
+  assert (size > 1); // Aseguramos que el tamaño no sea negativo ni igual a 1
   int posicion = 0;
   vector<Cell> vector_celulas; // Vector donde se van a almacenar las células
   while (!file.eof()) { // Recorrer hasta llegar al final del fichero
@@ -53,6 +53,7 @@ void Lattice::SetFrontera(const string& frontera, bool fria) {
 */
 
 void Lattice::Initial(int size) {
+  assert (size > 1); // Comprobamos que el tamaño no sea negativo ni igual a 1
   int posicion_par = size / 2;
   for (int it = 0; it < size; it++) {
     bool estado = false;

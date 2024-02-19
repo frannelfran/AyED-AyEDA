@@ -37,7 +37,7 @@ std::optional<Options> parse_args(int argc, char* argv[]) {
     if (*it == "-size") { // Establecer el tamaño
       it = next(it);
       options.size = stoi(string(*it)); 
-      assert(options.size > 0); // El número debe ser mayor que 0
+      assert(options.size > 1); // El número debe ser mayor que 1
     }
     if (*it == "-border") { // Establecer el tipo de frontera
       it = next(it);
@@ -46,7 +46,7 @@ std::optional<Options> parse_args(int argc, char* argv[]) {
         options.type_border = *it;
       }
       // Frontera periódica
-      if (*it == "periodic") {
+      else if (*it == "periodic") {
         options.type_border = *it;
       }
     }
