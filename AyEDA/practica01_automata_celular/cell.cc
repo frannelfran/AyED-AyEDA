@@ -62,7 +62,7 @@ int Cell::NextState(const Lattice& lattice) {
       posicion_right.SetData(posicion_.GetData() + 1);
     }
   }
-  // Obtengo las células según su posición
+  
   celula_l = lattice.GetCell(posicion_left);
   celula_r = lattice.GetCell(posicion_right);
   return CalcularEstado(celula_l.GetState(), celula_r.GetState()); // Calculo el siguiente estado
