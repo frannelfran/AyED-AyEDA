@@ -40,38 +40,31 @@ int Cell::NextState(const Lattice& lattice) {
   
   // Comprobar que la frontera es abierta
   if (lattice.GetFrontera() == "open") {
-    // Obtengo la célula de la izquierda
+    // Obtengo la posición de la célula de la izquierda
     posicion_left.SetData(posicion_.GetData() - 1);
-    celula_l = lattice.GetCell(posicion_left);
-    // Obtengo la célula de la derecha
+    // Obtengo la posición de la célula de la derecha
     posicion_right.SetData(posicion_.GetData() + 1);
-    celula_r = lattice.GetCell(posicion_right);
   }
-
-  // Sino es periódica
-  else if (lattice.GetFrontera() == "periodic") {
+  else if (lattice.GetFrontera() == "periodic") { // Sino es periódica
     // Mirar cuando se encuentra en la primera posición
     if (posicion_.GetData() == 0) {
       posicion_left.SetData(lattice.GetSize() - 1);
-      celula_l = lattice.GetCell(posicion_left);
       posicion_right.SetData(1);
-      celula_r = lattice.GetCell(posicion_right);
     }
     // Mirar cuando se encuentra en la última posición
     else if (posicion_.GetData() == lattice.GetSize() - 1) {
       posicion_right.SetData(0);
-      celula_r = lattice.GetCell(posicion_right);
       posicion_left.SetData(posicion_.GetData() - 1);
-      celula_l = lattice.GetCell(posicion_left);
     }
     // Sino aplicar el recorrido predeterminado
     else {
       posicion_left.SetData(posicion_.GetData() - 1);
       posicion_right.SetData(posicion_.GetData() + 1);
-      celula_l = lattice.GetCell(posicion_left);
-      celula_r = lattice.GetCell(posicion_right);
     }
   }
+  // Obtengo las células según su posición
+  celula_l = lattice.GetCell(posicion_left);
+  celula_r = lattice.GetCell(posicion_right);
   return CalcularEstado(celula_l.GetState(), celula_r.GetState()); // Calculo el siguiente estado
 }
 
