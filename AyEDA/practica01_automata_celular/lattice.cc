@@ -9,10 +9,9 @@ Lattice::Lattice() {}
 */
 
 void Lattice::Build(ifstream& file, int size) {
-  int posicion = 0;
+  int posicion = 0, estado;
   vector<Cell> vector_celulas; // Vector donde se van a almacenar las células
   while (!file.eof()) { // Recorrer hasta llegar al final del fichero
-    int estado;
     file >> estado;
     Position pos(posicion);
     State sta(estado);

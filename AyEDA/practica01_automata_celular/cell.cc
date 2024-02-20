@@ -73,12 +73,7 @@ int Cell::NextState(const Lattice& lattice) {
 */
 
 ostream& operator<<(ostream& os, const Cell& cell) {
-  State est = cell.estado_;
-  if (est.GetData() == 1) {
-    os << "x";
-  }
-  else {
-    os << " ";
-  }
+  string estado = (cell.estado_.GetData() == 1) ? "x" : " ";
+  os << estado;
   return os;
 }
