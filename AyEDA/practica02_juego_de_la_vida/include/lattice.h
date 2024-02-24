@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <sstream>
 #include <cassert>
 #include "cell.h"
 #include "options.h"
@@ -18,11 +17,11 @@ class Lattice {
 
    // Getters
    inline const string& GetFrontera() const { return this->frontera_; } // Obtener la frontera
-   inline const int GetSize() const { return this->lattice_.size(); } // Obtener el número de células del retículo
+   inline const Cell& GetCell(const Position& pos) const { return lattice_[pos.GetDataM()][pos.GetDataN()]; } // Obtener la célula según su posición
 
    // Setters
    void SetFrontera(const string&, bool);
-   void SetReticulo(const optional<Options>&); // Verificar si se ha introucido un fichero para configurar el retículo
+   void SetReticulo(const optional<Options>&); // Establecer la configuración según los parámetros establecidos
    void SetViva(); // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
 
    // Funciones
@@ -31,7 +30,6 @@ class Lattice {
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);
-   const Cell& operator[](const Position&) const;
 
   private:
    vector<vector<Cell>> lattice_; // Conjunto de células

@@ -71,7 +71,7 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
   else { // Establecer la configuración inicial
     *this = Lattice(opciones.value().fila, opciones.value().columna);
   }
-  SetFrontera(opciones.value().type_border, opciones.value().fria);
+  SetFrontera(opciones.value().type_border, opciones.value().fria); // Establecer la frontera
 }
 
 /**
@@ -87,7 +87,7 @@ void Lattice::SetFrontera(const string& frontera, bool fria) {
 
 /**
  * @brief Calcular cuántas células están 'vivas'
- * @return Número de células en estado 1
+ * @return Número de células con estado 1
 */
 
 size_t Lattice::Population() {
@@ -108,14 +108,6 @@ size_t Lattice::Population() {
 
 void Lattice::NextGeneration() {
   cout << "hiohefoihwe" << endl;
-}
-
-/**
- * @overload Sobrecarga del operador []
-*/
-
-const Cell& Lattice::operator[](const Position& pos) const {
-  return lattice_[pos.GetDataM()][pos.GetDataN()];
 }
 
 /**
