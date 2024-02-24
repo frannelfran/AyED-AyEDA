@@ -59,6 +59,7 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
 */
 
 void Lattice::SetFrontera(const string& frontera, bool fria) {
+  assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
   this->frontera_ = frontera;
 }
 
@@ -67,6 +68,7 @@ void Lattice::SetFrontera(const string& frontera, bool fria) {
 */
 
 void Lattice::NextGeneration() {
+  cout << "hiohefoihwe" << endl;
 }
 
 /**
