@@ -22,9 +22,11 @@ class Lattice {
    // Setters
    void SetFrontera(const string&, bool);
    void SetReticulo(const optional<Options>&); // Verificar si se ha introucido un fichero para configurar el retículo
+   void SetViva(); // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
 
    // Funciones
    void NextGeneration(); // Calcular la siguiente generación
+   size_t Population(); // Número de células vivas
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Lattice& latt);

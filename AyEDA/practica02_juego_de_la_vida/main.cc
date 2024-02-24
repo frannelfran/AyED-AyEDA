@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
   cout << latt;
   cout << "--------------------------\n";
   char opcion;
-  
+
   // Manejar las opciones
   do {
     switch (opcion) {
@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
       break;
       case 'L': {
         int number = 5;
+        cout << "---Siguientes 5 generaciones---" << endl;
         while (number != 0) {
           latt.NextGeneration();
           cout << latt;
@@ -39,7 +40,7 @@ int main(int argc, char* argv[]) {
       }
       break;
       case 'c':
-        cout << "Número de céulas vivas" << endl;
+        cout << "Número de céluas vivas: " << latt.Population() << endl;
       break;
       case 's':
       ofstream file("save_board.txt");

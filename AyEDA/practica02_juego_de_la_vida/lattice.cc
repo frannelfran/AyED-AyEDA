@@ -15,6 +15,23 @@ Lattice::Lattice(int M, int N) {
       lattice_[i][j] = Cell(Position(i, j), State(0));
     }
   }
+  SetViva();
+}
+
+/**
+ * @brief Función para cambiar el estado de una cálula según su posición
+*/
+
+void Lattice::SetViva() {
+  int fila, columna, numero;
+  cout << "¿Cuantas células quieres modificar? ";
+  cin >> numero;
+  while (numero != 0) {
+    cin >> fila >> columna;
+    assert(fila >= 0 && columna >= 0 && fila < lattice_.size() && columna < lattice_[fila].size());
+    lattice_[fila][columna].SetState(State(1)); // Cambio el estado de la célula
+    numero--;
+  }
 }
 
 /**
@@ -61,6 +78,23 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
 void Lattice::SetFrontera(const string& frontera, bool fria) {
   assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
   this->frontera_ = frontera;
+}
+
+/**
+ * @brief Calcular cuántas células están 'vivas'
+ * @return Número de células en estado 1
+*/
+
+size_t Lattice::Population() {
+  int contador = 0;
+  for (int i = 0; i < lattice_.size(); i++) {
+    for (int j = 0; j < lattice_[i].size(); j++) {
+      if (lattice_[i][j].GetState().GetData() == 1) {
+        contador++;
+      }
+    }
+  }
+  return contador;
 }
 
 /**
