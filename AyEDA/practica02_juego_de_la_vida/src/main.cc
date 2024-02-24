@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
       }
       break;
       case 'c':
-        cout << "Número de céluas vivas: " << latt.Population() << endl;
+        cout << "Número de células vivas: " << latt.Population() << endl;
       break;
       case 's':
       ofstream file("save_board.txt");
