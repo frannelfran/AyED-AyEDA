@@ -6,7 +6,7 @@
  * @param N Número de columnas de la matriz
 */
 
-Lattice::Lattice(int M, int N) {
+Lattice::Lattice(int N, int M) {
   assert (M > 0 && N > 0); // Comprobar que las filas y columnas son mayores que 0
   lattice_.resize(M);
   for (int i = 0; i < M; i++) {
@@ -103,6 +103,14 @@ size_t Lattice::Population() {
 
 void Lattice::NextGeneration() {
   cout << "hiohefoihwe" << endl;
+}
+
+/**
+ * @overload Sobrecarga del operador []
+*/
+
+const Cell& Lattice::operator[](const Position& pos) const {
+  return lattice_[pos.GetDataM()][pos.GetDataN()];
 }
 
 /**
