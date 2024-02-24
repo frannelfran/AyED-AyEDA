@@ -12,7 +12,8 @@ int main(int argc, char* argv[]) {
 
   // Establecemos la configuración del retículo según los parámetros
   Lattice latt;
-  latt.EstablecerReticulo(*options);
+  latt.SetReticulo(*options);
+  cout << latt;
 
 
 

@@ -41,13 +41,13 @@ Lattice::Lattice(const string& filename) {
  * @param inicial Saber que configuración tendrá el retículo
 */
 
-void Lattice::EstablecerReticulo(const optional<Options>& opciones) {
+void Lattice::SetReticulo(const optional<Options>& opciones) {
   // Verificar que se hayan introducido un fichero
   if (opciones.value().has_file) {
-    Lattice(opciones.value().filename);
+    *this = Lattice(opciones.value().filename);
   }
   else { // Establecer la configuración inicial
-    Lattice(opciones.value().fila, opciones.value().columna);
+    *this = Lattice(opciones.value().fila, opciones.value().columna);
   }
   SetFrontera(opciones.value().type_border, opciones.value().fria);
 }
@@ -59,6 +59,7 @@ void Lattice::EstablecerReticulo(const optional<Options>& opciones) {
 */
 
 void Lattice::SetFrontera(const string& frontera, bool fria) {
+  this->frontera_ = frontera;
 }
 
 /**

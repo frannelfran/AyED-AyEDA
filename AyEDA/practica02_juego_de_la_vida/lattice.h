@@ -21,7 +21,7 @@ class Lattice {
 
    // Setters
    void SetFrontera(const string&, bool);
-   void EstablecerReticulo(const optional<Options>&); // Verificar si se ha introucido un fichero para configurar el retículo
+   void SetReticulo(const optional<Options>&); // Verificar si se ha introucido un fichero para configurar el retículo
 
    // Funciones
    void NextGeneration(); // Calcular la siguiente generación
