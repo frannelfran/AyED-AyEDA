@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include <cassert>
 #include "cell.h"
 #include "options.h"

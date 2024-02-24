@@ -28,7 +28,7 @@ void Lattice::SetViva() {
   cin >> numero;
   while (numero != 0) {
     cin >> fila >> columna;
-    assert(fila >= 0 && columna >= 0 && fila < lattice_.size() && columna < lattice_[fila].size());
+    assert (fila >= 0 && columna >= 0 && fila < lattice_.size() && columna < lattice_[fila].size());
     lattice_[fila][columna].SetState(State(1)); // Cambio el estado de la célula
     numero--;
   }
@@ -40,14 +40,19 @@ void Lattice::SetViva() {
 */
 
 Lattice::Lattice(const string& filename) {
+  int fila, columna;
+  char caracter;
   ifstream file(filename);
-  int filas, columnas, estado;
-  file >> filas >> columnas;
-  lattice_.resize(filas);
-  for (int i = 0; i < filas; i++) {
-    lattice_[i].resize(columnas);
-    for (int j = 0; j < columnas; j++) {
-      file >> estado;
+  file >> fila >> columna;
+  assert (fila > 0 && columna > 0); // comprobar que la fila/columna son mayores que 0
+  // Creo el retículo con los datos proporcionados
+  lattice_.resize(fila);
+  for (int i = 0; i < fila; i++) {
+    lattice_[i].resize(columna);
+    file.get(caracter); // Saltarse el salto de línea
+    for (int j = 0; j < columna; j++) {
+      file.get(caracter);
+      State estado = (caracter == 'x') ? State(1) : State(0); // Establecer el estado según el carácter
       lattice_[i][j] = Cell(Position(i, j), State(estado));
     }
   }
