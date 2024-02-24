@@ -18,6 +18,7 @@ int main(int argc, char* argv[]) {
   cout << latt;
   cout << "--------------------------\n";
   char opcion;
+  
   // Manejar las opciones
   do {
     switch (opcion) {
