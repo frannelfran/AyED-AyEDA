@@ -1,6 +1,6 @@
-#include "cell.h"
-#include "state.h"
-#include "position.h"
+#include "../include/cell.h"
+#include "../include/state.h"
+#include "../include/position.h"
 
 Cell::Cell() {}
 

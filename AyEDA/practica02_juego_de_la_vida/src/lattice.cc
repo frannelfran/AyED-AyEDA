@@ -1,4 +1,4 @@
-#include "lattice.h"
+#include "../include/lattice.h"
 
 /**
  * @brief Constructor por defecto de la clase

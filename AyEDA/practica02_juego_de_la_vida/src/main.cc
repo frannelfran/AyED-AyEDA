@@ -1,6 +1,6 @@
 #include <iostream>
-#include "lattice.h"
-#include "options.h"
+#include "../include/lattice.h"
+#include "../include/options.h"
 
 using namespace std;
 
