@@ -20,7 +20,7 @@ class Lattice {
    inline const Cell& GetCell(const Position& pos) const { return lattice_[pos.GetDataM()][pos.GetDataN()]; } // Obtener la célula según su posición
 
    // Setters
-   void SetFrontera(const string&, bool);
+   void SetFrontera(const string&);
    void SetReticulo(const optional<Options>&); // Establecer la configuración según los parámetros establecidos
    void SetViva(); // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
 

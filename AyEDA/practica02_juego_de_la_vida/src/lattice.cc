@@ -71,7 +71,7 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
   else { // Establecer la configuración inicial
     *this = Lattice(opciones.value().fila, opciones.value().columna);
   }
-  SetFrontera(opciones.value().type_border, opciones.value().fria); // Establecer la frontera
+  SetFrontera(opciones.value().type_border); // Establecer la frontera
 }
 
 /**
@@ -80,7 +80,7 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
  * @param fria Saber si la frontera es fría o caliente
 */
 
-void Lattice::SetFrontera(const string& frontera, bool fria) {
+void Lattice::SetFrontera(const string& frontera) {
   assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
   this->frontera_ = frontera;
 }

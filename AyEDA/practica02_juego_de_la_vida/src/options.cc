@@ -8,7 +8,7 @@
 */
 
 optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 5 || argc > 8) {
+  if (argc < 5 || argc > 6) {
     cout << "Modo de empleo: ./juego_de_la_vida -size <M> <N> -init <file> -border <b>" << endl;
     exit(EXIT_SUCCESS);
   }
@@ -33,9 +33,6 @@ optional<Options> parse_args(int argc, char* argv[]) {
       else if (*it == "noborder") {
         options.type_border = *it;
       }
-    }
-    if (*it == "0") { // Frontera fría o abierta
-      options.fria = true;
     }
     if (*it == "-init") { // Nombre del fichero
       it = next(it);

@@ -13,7 +13,6 @@ using namespace std;
 struct Options {
   int fila;
   int columna;
-  bool fria = false;
   bool has_file = false;
   string type_border;
   string filename;
