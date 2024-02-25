@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
         cout << "G(" << generacion << ")" << endl;
         latt.NextGeneration();
         cout << latt;
+        generacion++;
       break;
       case 'L': {
         int number = 5;
@@ -55,7 +56,6 @@ int main(int argc, char* argv[]) {
       cout << "Cuadrícula guardada en " << nombre_fichero << endl;
       break;
     }
-    generacion++;
   } while (cin >> opcion);
   
   return 0;
