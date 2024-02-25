@@ -8,7 +8,7 @@
 
 Lattice::Lattice(int N, int M) {
   assert (M > 0 && N > 0); // Comprobar que las filas y columnas son mayores que 0
-  lattice_.resize(M);
+  this->lattice_.resize(M);
   for (int i = 0; i < M; i++) {
     lattice_[i].resize(N);
     for (int j = 0; j < N; j++) {
@@ -82,7 +82,35 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
 
 void Lattice::SetFrontera(const string& frontera) {
   assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
+  if (frontera == "reflective") {
+    // Obtengo las dimensiones del retículo
+    int filas = lattice_.size();
+    int columnas = (filas > 0) ? lattice_[0].size() : 0;
+    // Copiar el estado de las células en los bordes a las células adicionales
+    // para simular la frontera reflectiva
+    for (int i = 0; i < filas; i++) {
+      lattice_[i].insert(lattice_[i].begin(), lattice_[i][0]); // Copiar la primera columna al principio
+      lattice_[i].push_back(lattice_[i][columnas]); // Copiar la última columna al final
+    }
+    // Insertar una fila extra al principio y al final de la cuadricula
+    lattice_.insert(lattice_.begin(), lattice_[0]); // Copiar la primera fila al principio
+    lattice_.push_back(lattice_[filas]); // Copiar la última fila al final
+  }
+  AjustarPosiciones();
   this->frontera_ = frontera;
+}
+
+/**
+ * @brief Ajustar las posiciones de la cuadrícula
+*/
+
+void Lattice::AjustarPosiciones() {
+  // Recorro el retículo para ajustar las posiciones una vez agragada la frontera
+  for (int i = 0; i < lattice_.size(); i++) {
+    for (int j = 0; j < lattice_[i].size(); j++) {
+      lattice_[i][j].SetPosition(Position(i, j));
+    }
+  }
 }
 
 /**
@@ -92,6 +120,7 @@ void Lattice::SetFrontera(const string& frontera) {
 
 size_t Lattice::Population() {
   int contador = 0;
+  // Recorro la cuadrícula para saber cuántas células hay vivas dentor del retículo
   for (int i = 0; i < lattice_.size(); i++) {
     for (int j = 0; j < lattice_[i].size(); j++) {
       if (lattice_[i][j].GetState().GetData() == 1) {
@@ -107,7 +136,34 @@ size_t Lattice::Population() {
 */
 
 void Lattice::NextGeneration() {
-  cout << "hiohefoihwe" << endl;
+  vector<int> nuevos_estados;
+  if (this->frontera_ == "reflective") {
+    // Cada célula busca cuál es su nuevo estado
+    for (int i = 1; i < lattice_.size() - 1; i++) {
+      for (int j = 0; j < lattice_[i].size() - 1; j++) {
+        Cell& celula = lattice_[i][j];
+        int nuevo_estado = celula.NextState(*this);
+        nuevos_estados.push_back(nuevo_estado);
+      }
+    }
+    // Se actualizan los estados de las células
+    ActualizarCelulas(nuevos_estados);
+  }
+}
+
+/**
+ * @brief Actualizar los estados de las células dentor de la cuadrícula
+ * @param nuevos_estados Vector donde están almacenados los nuevos estados de las células
+*/
+
+void Lattice::ActualizarCelulas(const vector<int>& nuevos_estados) {
+  int it = 0;
+    for (int i = 1; i < lattice_.size() - 1; i++) {
+      for (int j = 0; j < lattice_[i].size() - 1; j++, it++) {
+      Cell& celula = lattice_[i][j];
+      celula.SetState(State(nuevos_estados[it]));
+    }
+  }
 }
 
 /**

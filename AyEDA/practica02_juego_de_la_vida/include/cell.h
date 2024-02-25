@@ -19,6 +19,7 @@ class Cell {
 
    // Setters
    inline void SetState(State estado) { estado_.SetData(estado.GetData()); } // Settear el estado
+   inline void SetPosition(Position posicion) { posicion_.SetData(posicion.GetDataM(), posicion.GetDataN()); } // Settear la posición
 
    // Funciones
    int NextState(const Lattice&);

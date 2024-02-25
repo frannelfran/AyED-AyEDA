@@ -18,6 +18,8 @@ int main(int argc, char* argv[]) {
   cout << latt;
   cout << "--------------------------\n";
   char opcion;
+  int generacion = 0;
+  string nombre_fichero;
 
   // Manejar las opciones
   do {
@@ -26,6 +28,7 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
       break;
       case 'n':
+        cout << "G(" << generacion << ")" << endl;
         latt.NextGeneration();
         cout << latt;
       break;
@@ -33,8 +36,10 @@ int main(int argc, char* argv[]) {
         int number = 5;
         cout << "---Siguientes 5 generaciones---" << endl;
         while (number != 0) {
+          cout << "G(" << generacion << ")" << endl;
           latt.NextGeneration();
           cout << latt;
+          generacion++;
           number--;
         }
       }
@@ -43,10 +48,14 @@ int main(int argc, char* argv[]) {
         cout << "Número de células vivas: " << latt.Population() << endl;
       break;
       case 's':
-      ofstream file("save_board.txt");
+      cout << "Indicar nombre de fichero: ";
+      cin >> nombre_fichero;
+      ofstream file(nombre_fichero);
       file << latt;
+      cout << "Cuadrícula guardada en " << nombre_fichero << endl;
       break;
     }
+    generacion++;
   } while (cin >> opcion);
   
   return 0;
