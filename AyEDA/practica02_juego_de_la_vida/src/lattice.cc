@@ -146,7 +146,7 @@ void Lattice::AjustarPosiciones() {
 */
 
 size_t Lattice::Population() {
-  int contador = 0;
+  size_t contador = 0;
   // Recorro la cuadrícula para saber cuántas células hay vivas dentor del retículo
   for (int i = 0; i < lattice_.size(); i++) {
     for (int j = 0; j < lattice_[i].size(); j++) {

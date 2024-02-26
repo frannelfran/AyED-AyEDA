@@ -26,15 +26,18 @@ int main(int argc, char* argv[]) {
     cin >> opcion;
     assert (opcion == 'x' || opcion == 'n' || opcion == 'L' || opcion == 'c' || opcion == 's');
     switch (opcion) {
+      // Salir del programa
       case 'x':
         return EXIT_SUCCESS;
       break;
+      // Calcular la siguiente generación
       case 'n':
         cout << "G(" << generacion << ")" << endl;
         latt.NextGeneration();
         cout << latt;
         generacion++;
       break;
+      // Calcular las siguientes 5 generaciones de la cuadrícula
       case 'L': {
         int number = 5;
         cout << "---Siguientes 5 generaciones---" << endl;
@@ -47,9 +50,11 @@ int main(int argc, char* argv[]) {
         }
       }
       break;
+      // Calcular el número de células vivas
       case 'c':
         cout << "Número de células vivas: " << latt.Population() << endl;
       break;
+      // salvar la cuadrícula actual en un fichero
       case 's':
       cout << "Indicar nombre de fichero: ";
       cin >> nombre_fichero;
@@ -59,6 +64,4 @@ int main(int argc, char* argv[]) {
       break;
     }
   }
-  
-  return 0;
 }
