@@ -103,11 +103,11 @@ void Lattice::SetFrontera(const string& frontera) {
       AgregarFrontera();
     }
   }
-  AjustarPosiciones();
+  AjustarPosiciones(); // Ajustamos las posiciones de las células
 }
 
 /**
- * @brief Método para agregar fornteras a la cuadrícula
+ * @brief Método para agregar fronteras a la cuadrícula
 */
 
 void Lattice::AgregarFrontera() {
