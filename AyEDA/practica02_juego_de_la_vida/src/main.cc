@@ -22,7 +22,9 @@ int main(int argc, char* argv[]) {
   string nombre_fichero;
 
   // Manejar las opciones
-  do {
+  while (true) {
+    cin >> opcion;
+    assert (opcion == 'x' || opcion == 'n' || opcion == 'L' || opcion == 'c' || opcion == 's');
     switch (opcion) {
       case 'x':
         return EXIT_SUCCESS;
@@ -56,7 +58,7 @@ int main(int argc, char* argv[]) {
       cout << "Cuadrícula guardada en " << nombre_fichero << endl;
       break;
     }
-  } while (cin >> opcion);
+  }
   
   return 0;
 }

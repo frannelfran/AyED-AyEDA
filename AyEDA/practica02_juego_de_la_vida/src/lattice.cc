@@ -82,16 +82,7 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
 
 void Lattice::SetFrontera(const string& frontera) {
   assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
-  this->frontera_ = frontera;
-  AgregarFrontera();
-  AjustarPosiciones();
-}
-
-/**
- * @brief Método para agregar fornteras a la cuadrícula
-*/
-
-void Lattice::AgregarFrontera() {
+  this->frontera_ = frontera; // Establecemos la frontera
   // Obtengo las dimensiones del retículo
   int filas = lattice_.size();
   int columnas = (filas > 0) ? lattice_[0].size() : 0;
@@ -107,20 +98,33 @@ void Lattice::AgregarFrontera() {
     lattice_.push_back(lattice_[filas]); // Copiar la última fila al final
   }
   else if (frontera_ == "noborder") { // Sino la frontera es "no frontera"
-    // Verifico si alguna de las células del borde no ha cambiado su estado
-    // Insertar una frontera de células muertas
-    Cell muerta (Position(0, 0), State(0));
-    vector<Cell> vector_muertas(columnas + 2, muerta);
-    // Poner la frontera en las columnas derecha e izquierda
-    for (int i = 0; i < filas; i++) {
-      lattice_[i].insert(lattice_[i].begin(), muerta);
-      lattice_[i].push_back(muerta);
+    // Verifico que hay una célula viva en el borde
+    if (lattice_[0][0].GetState().GetData() != 0 || lattice_[0][filas - 1].GetState().GetData() != 0 || lattice_[0][columnas - 1].GetState().GetData() != 0 || lattice_[filas - 1][columnas - 1].GetState().GetData() != 0) {
+      AgregarFrontera();
     }
-    // Poner la frontera en la primera y última fila del retículo
-    lattice_.insert(lattice_.begin(), vector_muertas);
-    lattice_.push_back(vector_muertas);
-    
   }
+  AjustarPosiciones();
+}
+
+/**
+ * @brief Método para agregar fornteras a la cuadrícula
+*/
+
+void Lattice::AgregarFrontera() {
+  int filas = lattice_.size();
+  int columnas = lattice_[0].size();
+
+  Cell muerta (Position(0, 0), State(0));
+  for (int i = 0; i < filas; i++) {
+    lattice_[i].insert(lattice_[i].begin(), muerta);
+    lattice_[i].push_back(muerta);
+  }
+  // Poner la frontera en la primera fila del retículo
+  vector<Cell> vector_muertas(columnas + 2, muerta);
+  lattice_.insert(lattice_.begin(), vector_muertas);
+
+  // Poner la frontera en la última fila del retículo
+  lattice_.push_back(vector_muertas);
 }
 
 /**
@@ -162,10 +166,10 @@ void Lattice::NextGeneration() {
   vector<int> nuevos_estados;
   // Cada célula busca cuál es su nuevo estado
   for (int i = 1; i < lattice_.size() - 1; i++) {
-    for (int j = 0; j < lattice_[i].size() - 1; j++) {
+    for (int j = 1; j < lattice_[i].size() - 1; j++) {
       Cell& celula = lattice_[i][j];
       int nuevo_estado = celula.NextState(*this);
-      nuevos_estados.push_back(nuevo_estado);
+      nuevos_estados.push_back(nuevo_estado); // Almacenamos los nuevos estados en un vector
     }
   }
   // Las células actualizan su estado
@@ -173,12 +177,10 @@ void Lattice::NextGeneration() {
   if (frontera_ == "noborder") {
     int num_fila = lattice_.size();
     int num_columna = lattice_[0].size();
-    if (lattice_[1][1].GetState().GetData() != 0 ||
-        lattice_[num_fila - 1][1].GetState().GetData() != 0 ||
-        lattice_[1][num_columna - 1].GetState().GetData() != 0 ||
-        lattice_[num_fila - 1][num_columna - 1].GetState().GetData() != 0)
-        AgregarFrontera(); // Agregamos otra frontera
-        AjustarPosiciones(); // ajustamos las posiciones
+    if (lattice_[1][1].GetState().GetData() != 0 || lattice_[num_fila - 1][1].GetState().GetData() != 0 || lattice_[1][num_columna - 1].GetState().GetData() != 0 || lattice_[num_fila - 1][num_columna - 1].GetState().GetData() != 0) {
+      AgregarFrontera(); // Agregamos otra frontera
+      AjustarPosiciones(); // Ajustamos las posiciones
+    }
   }
 }
 
@@ -190,7 +192,7 @@ void Lattice::NextGeneration() {
 void Lattice::ActualizarCelulas(const vector<int>& nuevos_estados) {
   int it = 0;
     for (int i = 1; i < lattice_.size() - 1; i++) {
-      for (int j = 0; j < lattice_[i].size() - 1; j++, it++) {
+      for (int j = 1; j < lattice_[i].size() - 1; j++, it++) {
       Cell& celula = lattice_[i][j];
       celula.SetState(State(nuevos_estados[it]));
     }
