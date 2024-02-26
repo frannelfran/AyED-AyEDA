@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
   // Manejar las opciones
   while (true) {
     cin >> opcion;
-    assert (opcion == 'x' || opcion == 'n' || opcion == 'L' || opcion == 'c' || opcion == 's');
+    assert (opcion == 'x' || opcion == 'n' || opcion == 'L' || opcion == 'c' || opcion == 's'); // Comprobar que no se introducen otras opciones
     switch (opcion) {
       // Salir del programa
       case 'x':
@@ -54,13 +54,13 @@ int main(int argc, char* argv[]) {
       case 'c':
         cout << "Número de células vivas: " << latt.Population() << endl;
       break;
-      // salvar la cuadrícula actual en un fichero
+      // Salvar la cuadrícula actual en un fichero
       case 's':
-      cout << "Indicar nombre de fichero: ";
-      cin >> nombre_fichero;
-      ofstream file(nombre_fichero);
-      file << latt.GetFilas() << " " << latt.GetColumnas() << latt;
-      cout << "Cuadrícula guardada en " << nombre_fichero << endl;
+        cout << "Indicar nombre de fichero: ";
+        cin >> nombre_fichero;
+        ofstream file(nombre_fichero);
+        file << latt.GetFilas() << " " << latt.GetColumnas() << latt;
+        cout << "Cuadrícula guardada en " << nombre_fichero << endl;
       break;
     }
   }
