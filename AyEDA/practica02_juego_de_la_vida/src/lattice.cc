@@ -82,10 +82,20 @@ void Lattice::SetReticulo(const optional<Options>& opciones) {
 
 void Lattice::SetFrontera(const string& frontera) {
   assert (frontera == "reflective" || frontera == "noborder"); // Comprobar que no se introduce otro tipo de frontera
-  if (frontera == "reflective") {
-    // Obtengo las dimensiones del retículo
-    int filas = lattice_.size();
-    int columnas = (filas > 0) ? lattice_[0].size() : 0;
+  this->frontera_ = frontera;
+  AgregarFrontera();
+  AjustarPosiciones();
+}
+
+/**
+ * @brief Método para agregar fornteras a la cuadrícula
+*/
+
+void Lattice::AgregarFrontera() {
+  // Obtengo las dimensiones del retículo
+  int filas = lattice_.size();
+  int columnas = (filas > 0) ? lattice_[0].size() : 0;
+  if (frontera_ == "reflective") {
     // Copiar el estado de las células en los bordes a las células adicionales
     // para simular la frontera reflectiva
     for (int i = 0; i < filas; i++) {
@@ -96,8 +106,21 @@ void Lattice::SetFrontera(const string& frontera) {
     lattice_.insert(lattice_.begin(), lattice_[0]); // Copiar la primera fila al principio
     lattice_.push_back(lattice_[filas]); // Copiar la última fila al final
   }
-  AjustarPosiciones();
-  this->frontera_ = frontera;
+  else if (frontera_ == "noborder") { // Sino la frontera es "no frontera"
+    // Verifico si alguna de las células del borde no ha cambiado su estado
+    // Insertar una frontera de células muertas
+    Cell muerta (Position(0, 0), State(0));
+    vector<Cell> vector_muertas(columnas + 2, muerta);
+    // Poner la frontera en las columnas derecha e izquierda
+    for (int i = 0; i < filas; i++) {
+      lattice_[i].insert(lattice_[i].begin(), muerta);
+      lattice_[i].push_back(muerta);
+    }
+    // Poner la frontera en la primera y última fila del retículo
+    lattice_.insert(lattice_.begin(), vector_muertas);
+    lattice_.push_back(vector_muertas);
+    
+  }
 }
 
 /**
@@ -137,17 +160,25 @@ size_t Lattice::Population() {
 
 void Lattice::NextGeneration() {
   vector<int> nuevos_estados;
-  if (this->frontera_ == "reflective") {
-    // Cada célula busca cuál es su nuevo estado
-    for (int i = 1; i < lattice_.size() - 1; i++) {
-      for (int j = 0; j < lattice_[i].size() - 1; j++) {
-        Cell& celula = lattice_[i][j];
-        int nuevo_estado = celula.NextState(*this);
-        nuevos_estados.push_back(nuevo_estado);
-      }
+  // Cada célula busca cuál es su nuevo estado
+  for (int i = 1; i < lattice_.size() - 1; i++) {
+    for (int j = 0; j < lattice_[i].size() - 1; j++) {
+      Cell& celula = lattice_[i][j];
+      int nuevo_estado = celula.NextState(*this);
+      nuevos_estados.push_back(nuevo_estado);
     }
-    // Se actualizan los estados de las células
-    ActualizarCelulas(nuevos_estados);
+  }
+  // Las células actualizan su estado
+  ActualizarCelulas(nuevos_estados);
+  if (frontera_ == "noborder") {
+    int num_fila = lattice_.size();
+    int num_columna = lattice_[0].size();
+    if (lattice_[1][1].GetState().GetData() != 0 ||
+        lattice_[num_fila - 1][1].GetState().GetData() != 0 ||
+        lattice_[1][num_columna - 1].GetState().GetData() != 0 ||
+        lattice_[num_fila - 1][num_columna - 1].GetState().GetData() != 0)
+        AgregarFrontera(); // Agregamos otra frontera
+        AjustarPosiciones(); // ajustamos las posiciones
   }
 }
 

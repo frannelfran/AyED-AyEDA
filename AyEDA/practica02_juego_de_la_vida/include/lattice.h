@@ -27,7 +27,8 @@ class Lattice {
    // Funciones
    void NextGeneration(); // Calcular la siguiente generación
    void AjustarPosiciones(); // Ajustar las posiciones del retículo
-   void ActualizarCelulas(const vector<int>&);
+   void ActualizarCelulas(const vector<int>&); // Actulizar los estados de las células
+   void AgregarFrontera(); // Agregar frontera
    size_t Population(); // Número de células vivas
 
    // Sobrecarga de operadores

@@ -47,12 +47,12 @@ int Cell::NextState(const Lattice& lattice) {
 */
 
 int Cell::Moore(int vivas) {
-  if (estado_.GetData()) {
+  if (estado_.GetData() == 1) {
     if (!(vivas < 2 || vivas > 3)) {
       return 1;
     }
   }
-  else { // Sino la célula está muerta
+  else if (estado_.GetData() == 0){ // Sino la célula está muerta
     if (vivas == 3) {
       return 1;
     }
