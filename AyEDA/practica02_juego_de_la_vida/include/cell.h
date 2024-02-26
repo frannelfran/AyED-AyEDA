@@ -23,6 +23,7 @@ class Cell {
 
    // Funciones
    int NextState(const Lattice&);
+   int Moore(int); // Aplicar la regla de Moore para obtener el nuevo estado
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Cell& cell);

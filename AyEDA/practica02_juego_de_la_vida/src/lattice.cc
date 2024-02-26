@@ -8,7 +8,7 @@
 
 Lattice::Lattice(int N, int M) {
   assert (M > 0 && N > 0); // Comprobar que las filas y columnas son mayores que 0
-  this->lattice_.resize(M);
+  lattice_.resize(M);
   for (int i = 0; i < M; i++) {
     lattice_[i].resize(N);
     for (int j = 0; j < N; j++) {

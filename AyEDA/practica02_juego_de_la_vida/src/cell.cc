@@ -37,14 +37,23 @@ int Cell::NextState(const Lattice& lattice) {
     }
   }
   // Aplicar las reglas de Moore si la célula está viva
+  return Moore(celulas_vivas);
+}
+
+/**
+ * @brief Función que aplica la regla de Moore para saber el nuevo estado de la célula
+ * @param vivas Número de células vivas alrededor de la célula a examinar sus vecinas
+ * @return Nuevo estado de la célula
+*/
+
+int Cell::Moore(int vivas) {
   if (estado_.GetData()) {
-    if (celulas_vivas < 2 || celulas_vivas > 3) {
-      return 0;
+    if (!(vivas < 2 || vivas > 3)) {
+      return 1;
     }
-    return 1;
   }
   else { // Sino la célula está muerta
-    if (celulas_vivas == 3) {
+    if (vivas == 3) {
       return 1;
     }
   }
