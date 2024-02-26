@@ -27,7 +27,7 @@ int Cell::NextState(const Lattice& lattice) {
   // Calcular las células vecinas teniendo en cuenta la vecindad de Moore
   for (int i = posicion_.GetDataM() - 1; i <= posicion_.GetDataM() + 1; i++) {
     for (int j = posicion_.GetDataN() - 1; j <= posicion_.GetDataN() + 1; j++) {
-      // No contar esta céula misma como vecino
+      // No contar la misma célula como vecina
       if (!(i == posicion_.GetDataM() && j == posicion_.GetDataN())) {
         const Cell& vecina = lattice.GetCell(Position(i, j));
         if (vecina.GetState().GetData() == 1) {
@@ -36,7 +36,7 @@ int Cell::NextState(const Lattice& lattice) {
       }
     }
   }
-  // Aplicar las reglas de Moore si la célula está viva
+  // Aplicar las reglas de Moore
   return Moore(celulas_vivas);
 }
 

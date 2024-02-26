@@ -26,9 +26,10 @@ void Lattice::SetViva() {
   int fila, columna, numero;
   cout << "¿Cuantas células quieres modificar? ";
   cin >> numero;
+  assert (numero >= 0); // Verificar que no se introduce un número negativo
   while (numero != 0) {
     cin >> fila >> columna;
-    assert (fila >= 0 && columna >= 0 && fila < lattice_.size() && columna < lattice_[fila].size());
+    assert (fila >= 0 && columna >= 0 && fila < lattice_.size() && columna < lattice_[fila].size()); // Verificar que no se sale del rango de la cuadrícula
     lattice_[fila][columna].SetState(State(1)); // Cambio el estado de la célula
     numero--;
   }
