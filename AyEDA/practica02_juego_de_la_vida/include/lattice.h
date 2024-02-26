@@ -18,6 +18,8 @@ class Lattice {
    // Getters
    inline const string& GetFrontera() const { return this->frontera_; } // Obtener la frontera
    inline const Cell& GetCell(const Position& pos) const { return lattice_[pos.GetDataM()][pos.GetDataN()]; } // Obtener la célula según su posición
+   inline int GetFilas() { return this->lattice_.size(); } // Obtener las filas de la cuadrícula
+   inline int GetColumnas() { return this->lattice_[0].size(); } // Obtener las columnas de la cuadrícula
 
    // Setters
    void SetFrontera(const string&);

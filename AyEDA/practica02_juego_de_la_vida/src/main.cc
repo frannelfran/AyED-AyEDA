@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
       cout << "Indicar nombre de fichero: ";
       cin >> nombre_fichero;
       ofstream file(nombre_fichero);
-      file << latt;
+      file << latt.GetFilas() << " " << latt.GetColumnas() << latt;
       cout << "Cuadrícula guardada en " << nombre_fichero << endl;
       break;
     }

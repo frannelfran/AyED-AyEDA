@@ -175,8 +175,8 @@ void Lattice::NextGeneration() {
   // Las células actualizan su estado
   ActualizarCelulas(nuevos_estados);
   if (frontera_ == "noborder") {
-    int num_fila = lattice_.size();
-    int num_columna = lattice_[0].size();
+    int num_fila = GetFilas();
+    int num_columna = GetColumnas();
     if (lattice_[1][1].GetState().GetData() != 0 || lattice_[num_fila - 1][1].GetState().GetData() != 0 || lattice_[1][num_columna - 1].GetState().GetData() != 0 || lattice_[num_fila - 1][num_columna - 1].GetState().GetData() != 0) {
       AgregarFrontera(); // Agregamos otra frontera
       AjustarPosiciones(); // Ajustamos las posiciones
