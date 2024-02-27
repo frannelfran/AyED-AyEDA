@@ -61,6 +61,7 @@ int main(int argc, char* argv[]) {
         ofstream file(nombre_fichero);
         file << latt.GetFilas() << " " << latt.GetColumnas() << latt;
         cout << "Cuadrícula guardada en " << nombre_fichero << endl;
+        file.close(); // Cerrar el fichero
       break;
     }
   }
