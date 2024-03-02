@@ -22,12 +22,12 @@ class Cell {
 
    // Funciones
    virtual int NextState(const Lattice&) = 0;
+   virtual void UpdateState() = 0;
 
    // Sobrecarga de operadores
    friend ostream& operator<<(ostream& os, const Cell& cell);
 
   protected:
-   virtual ostream& Display(ostream&) = 0;
    Position posicion_;
    State estado_;
 };

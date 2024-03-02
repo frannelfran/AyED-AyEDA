@@ -11,6 +11,7 @@ using namespace std;
 
 class Lattice {
   public:
+   inline Lattice() {}
    // Getters
    inline const string& GetFrontera() const { return this->frontera_; } // Obtener la frontera
    virtual const Cell& GetCell(const Position& pos) const = 0; // Obtener la célula según su posición
@@ -32,5 +33,4 @@ class Lattice {
 
   protected:
    string frontera_;
-   virtual ostream& Display(ostream&) const = 0;
 };

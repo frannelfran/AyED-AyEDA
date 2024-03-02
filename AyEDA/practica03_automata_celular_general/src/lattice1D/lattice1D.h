@@ -1,5 +1,6 @@
 #pragma once
 #include "../lattice/lattice.h"
+#include <cassert>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Lattice1D : public Lattice {
    // Setters
    void SetFrontera(const string&) const override;
    void SetViva() const override;
+   void SetReticulo(const optional<Options>&) const override;
 
    // Funciones
    void NextGeneration() const override;
