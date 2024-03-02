@@ -11,8 +11,6 @@ using namespace std;
 
 class Lattice {
   public:
-   inline Lattice() {}
-
    // Getters
    inline const string& GetFrontera() const { return this->frontera_; } // Obtener la frontera
    virtual const Cell& GetCell(const Position& pos) const = 0; // Obtener la célula según su posición
@@ -26,7 +24,7 @@ class Lattice {
    virtual void NextGeneration() const = 0; // Calcular la siguiente generación
    virtual void AjustarPosiciones() const = 0; // Ajustar las posiciones del retículo
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
-   virtual void AgregarFrontera() = 0; // Agregar frontera
+   virtual void AgregarFrontera() const = 0; // Agregar frontera
    virtual size_t Population() const = 0; // Número de células vivas
 
    // Sobrecarga de operadores

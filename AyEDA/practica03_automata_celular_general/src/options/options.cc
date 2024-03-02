@@ -8,8 +8,14 @@
 */
 
 optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 5 || argc > 6) {
-    cout << "Modo de empleo: ./juego_de_la_vida -size <M> <N> -init <file> -border <b>" << endl;
+  if (argc < 4 || argc > 11) {
+    cout << "Modo de empleo: ./automata_celular_general -dim <d> -size<N, <...>> -init <file> -cell <t> -border <b> [v]" << endl;
+    cout << "d: Dimensión del autómata celular\n";
+    cout << "N: Tamaño de las dimensiones del autómata celular\n";
+    cout << "file: Nombre del fichero\n";
+    cout << "t: Tipo de célula\n";
+    cout << "b: Tipo de frontera\n";
+    cout << "v: [0|1]\n";
     exit(EXIT_SUCCESS);
   }
 
