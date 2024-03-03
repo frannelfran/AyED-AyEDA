@@ -11,7 +11,7 @@ class Cell {
   public:
    // Constructores de la clase
    Cell();
-   Cell(const Position&, const State&);
+   inline Cell(const Position& posicion, const State& estado) : posicion_(posicion), estado_(estado) {}
 
    // Getters
    inline State GetState() const { return this->estado_; } // Obtener el estado de la célula
