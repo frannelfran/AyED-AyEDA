@@ -57,6 +57,16 @@ optional<Options> parse_args(int argc, char* argv[]) {
       options.filename = string(*it);
       options.has_file = true;
     }
+    if (*it == "-cell") { // Establecer el tipo de célula
+      it = next(it);
+      options.cell_type = string(*it);
+      if (options.dim == 1) {
+        assert (options.cell_type == "Ace100" || options.cell_type == "Ace30");
+      }
+      else if (options.dim == 2) {
+        assert (options.cell_type == "Life23_3" || options.cell_type == "Life51_346");
+      }
+    }
     if (*it == "-border") {
       it = next(it);
       options.type_border = string(*it);

@@ -18,14 +18,13 @@ class Lattice {
 
    // Setters
    virtual void SetFrontera(const optional<Options>&) = 0;
-   virtual void SetReticulo(const optional<Options>&) const = 0; // Establecer la configuración según los parámetros establecidos
    virtual void SetViva() = 0; // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
 
    // Funciones
    virtual void NextGeneration() const = 0; // Calcular la siguiente generación
-   virtual void AjustarPosiciones() const = 0; // Ajustar las posiciones del retículo
+   virtual void AjustarPosiciones() = 0; // Ajustar las posiciones del retículo
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
-   virtual void AgregarFrontera() const = 0; // Agregar frontera
+   virtual void AgregarFrontera() = 0; // Agregar frontera
    virtual size_t Population() const = 0; // Número de células vivas
    virtual void Build(const optional<Options>&) = 0; 
 

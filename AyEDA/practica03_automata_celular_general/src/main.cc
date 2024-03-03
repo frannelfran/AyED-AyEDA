@@ -11,14 +11,20 @@ int main(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
-  Lattice1D latt1D;
+  Lattice* latt; // Puntero a retículo
 
-  // Retículo unidimensional
-  if (options.value().dim == 1) {
-    latt1D.Build(options);
-    cout << latt1D << endl;
-    
+  if (options->has_file) {
+    int dim;
+    ifstream file(options->filename);
+    file >> dim;
+    assert (dim == 1 || dim == 2); // Comprobar que no se haya puesto otra dimensión
+    if (dim == 1 && options->has_file) {
+      
   }
+
+  cout << latt1D;
+
+
 
 
 

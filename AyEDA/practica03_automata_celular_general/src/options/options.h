@@ -17,6 +17,7 @@ struct Options {
   int columna;
   bool has_file = false;
   string type_border;
+  string cell_type;
   bool fria = false;
   string filename;
 };

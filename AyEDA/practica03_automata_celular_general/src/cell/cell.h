@@ -10,7 +10,7 @@ using namespace std;
 class Cell {
   public:
    // Constructores de la clase
-   Cell();
+   inline Cell() {}
    inline Cell(const Position& posicion, const State& estado) : posicion_(posicion), estado_(estado) {}
 
    // Getters
@@ -19,7 +19,8 @@ class Cell {
 
    // Setters
    inline void SetState(State estado) { estado_.SetData(estado.GetData()); } // Settear el estado
-
+   inline void SetPosition(Position posicion) { posicion_ = posicion; } // Settear la posición
+   
    // Funciones
    virtual int NextState(const Lattice&) = 0;
    virtual void UpdateState() = 0;
