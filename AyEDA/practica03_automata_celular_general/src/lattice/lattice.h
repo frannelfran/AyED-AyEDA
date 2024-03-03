@@ -17,9 +17,9 @@ class Lattice {
    virtual const Cell& GetCell(const Position& pos) const = 0; // Obtener la célula según su posición
 
    // Setters
-   virtual void SetFrontera(const string&) const = 0;
+   virtual void SetFrontera(const optional<Options>&) = 0;
    virtual void SetReticulo(const optional<Options>&) const = 0; // Establecer la configuración según los parámetros establecidos
-   virtual void SetViva() const = 0; // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
+   virtual void SetViva() = 0; // Método para pedir al usuario una posición para que la célula de la misma se vuelva viva
 
    // Funciones
    virtual void NextGeneration() const = 0; // Calcular la siguiente generación

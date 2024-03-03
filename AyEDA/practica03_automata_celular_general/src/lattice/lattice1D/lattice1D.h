@@ -1,5 +1,8 @@
 #pragma once
-#include "../lattice/lattice.h"
+#include "lattice/lattice.h"
+#include "cellace/cellace.h"
+#include "cellace/cellace110/cellace110.h"
+#include "cellace/cellace30/cellace30.h"
 #include <cassert>
 
 using namespace std;
@@ -14,8 +17,8 @@ class Lattice1D : public Lattice {
    inline const Cell& GetCell(const Position& pos) const override { return this->reticulo_.at(pos.GetX()); }
    
    // Setters
-   void SetFrontera(const string&) const override;
-   void SetViva() const override;
+   void SetFrontera(const optional<Options>&) override;
+   void SetViva() override;
    void SetReticulo(const optional<Options>&) const override;
 
    // Funciones

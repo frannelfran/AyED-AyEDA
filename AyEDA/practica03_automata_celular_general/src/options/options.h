@@ -11,10 +11,13 @@
 using namespace std;
 
 struct Options {
+  int dim;
+  int size;
   int fila;
   int columna;
   bool has_file = false;
   string type_border;
+  bool fria = false;
   string filename;
 };
 

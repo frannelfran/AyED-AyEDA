@@ -22,28 +22,50 @@ optional<Options> parse_args(int argc, char* argv[]) {
   vector<string_view> args(argv + 1, argv + argc);
   Options options;
   for (auto it = args.begin(); it != args.end(); it++) {
-    if (*it == "-size") { // Establecer el tamaño
+    if (*it == "-dim") { // Establecer la dimensión
+      it = next(it);
+      options.dim = stoi(string(*it));
+      assert (options.dim == 1 || options.dim == 2);
+    }
+    if (*it == "-size" && options.dim == 1) { // Establecer el tamaño unidimensional
+      it = next(it);
+      options.size = stoi(string(*it));
+      assert (options.size > 0);
+    }
+    else if (*it == "-size" && options.dim == 2) { // Establecer el tamaño bidimensional
       it = next(it);
       options.fila = stoi(string(*it));
       it = next(it);
       options.columna = stoi(string(*it));
-      assert(options.fila > 0 && options.columna > 0); // El número de las filas y columnas debe ser mayor que 0
+      assert (options.fila > 0 && options.columna > 0);
     }
-    if (*it == "-border") { // Establecer el tipo de frontera
+    if (*it == "-border" && options.dim == 1) { // Establecer el tipo de frontera unidimensional
       it = next(it);
-      // Frontera abierta
-      if (*it == "reflective") {
-        options.type_border = *it;
-      }
-      // Frontera periódica
-      else if (*it == "noborder") {
-        options.type_border = *it;
+      options.type_border = string(*it);
+      assert (options.type_border == "open" || options.type_border == "periodic");
+      if (stoi(string(*next(it))) == 0) { // Establecer el tipo de frontera
+        options.fria = true;
       }
     }
-    if (*it == "-init") { // Nombre del fichero
+    else if (*it == "-border" && options.dim == 2) { // Establecer el tipo de frontera bidimensional
       it = next(it);
-      options.filename = *it;
+      options.type_border = string(*it);
+      assert (options.type_border == "reflective" || options.type_border == "noborder" || options.type_border == "reflejada");
+    }
+    if (*it == "-init") { // Establecer el nombre del fichero
+      it = next(it);
+      options.filename = string(*it);
       options.has_file = true;
+    }
+    if (*it == "-border") {
+      it = next(it);
+      options.type_border = string(*it);
+      assert (options.type_border == "open" || options.type_border == "periodic" || options.type_border == "reflective" || options.type_border == "noborder");
+      if (options.type_border == "open" || options.type_border == "periodic") { // Establecer para el retículo unidimensional
+        if (stoi(string(*next(it))) == 0) {
+          options.fria = true;
+        }
+      }
     }
   }
   return options;
