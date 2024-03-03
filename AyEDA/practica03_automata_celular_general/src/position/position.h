@@ -16,5 +16,5 @@ class Position {
    inline int GetY() const { return position_[1]; }
 
   private:
-   int position_[2];
+   int position_[2] = {0};
 };

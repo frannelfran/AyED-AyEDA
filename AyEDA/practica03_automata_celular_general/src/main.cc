@@ -11,17 +11,13 @@ int main(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
+  Lattice1D latt1D;
+
   // Retículo unidimensional
   if (options.value().dim == 1) {
+    latt1D.Build(options);
+    cout << latt1D << endl;
     
-
-
-
-
-
-
-
-
   }
 
 

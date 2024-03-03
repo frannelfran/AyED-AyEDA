@@ -27,10 +27,12 @@ class Lattice {
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
    virtual void AgregarFrontera() const = 0; // Agregar frontera
    virtual size_t Population() const = 0; // Número de células vivas
+   virtual void Build(const optional<Options>&) = 0; 
 
    // Sobrecarga de operadores
-   friend ostream& operator<<(ostream& os, const Lattice& latt);
+   inline friend ostream& operator<<(ostream& os, const Lattice& latt) { return latt.Display(os); }
 
   protected:
+   virtual ostream& Display(ostream& os) const = 0;
    string frontera_;
 };
