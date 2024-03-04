@@ -10,5 +10,10 @@ void Lattice2D_Reflective::AgregarFrontera(const optional<Options>& opciones) {
   // Insertar una fila extra al principio y al final de la cuadrícula
   reticulo_.insert(reticulo_.begin(), reticulo_.front()); // Copiar la primera fila al principio
   reticulo_.push_back(reticulo_.back()); // Copiar la última fila al final
-  AjustarPosiciones();
+  // Actualizar las coordenadas de las células después de agregar la frontera
+  for (int i = 0; i < reticulo_.size(); i++) {
+    for (int j = 0; j < reticulo_[i].size(); j++) {
+      reticulo_[i][j]->SetPosition(Position({i, j}));
+    }
+  }
 }
