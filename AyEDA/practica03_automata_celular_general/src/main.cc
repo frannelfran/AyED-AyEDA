@@ -24,13 +24,13 @@ int main(int argc, char* argv[]) {
     assert (dim == 1 || dim == 2); // Comprobar que no se haya puesto otra dimensión
     if (dim == 1 && options->type_border == "open") {
       latt = new Lattice1D_Open(options->filename, options->cell_type);
-      latt->AgregarFrontera(options->cell_type, options->fria);
+      latt->AgregarFrontera(options);
     }
     else if (dim == 1 && options->type_border == "periodic") {
       latt = new Lattice1D_Periodic(options->filename, options->cell_type);
     }
     else if (dim == 2 && options->type_border == "reflective") {
-      //latt = new Lattice2D_Open(options->filename, options->cell_type);
+      //latt = new Lattice2D_Reflective(options->filename, options->cell_type);
       //latt->AgregarFrontera(options->cell_type, options->fria);
     }
     else if (dim == 2 && options->type_border == "noborder") {
@@ -42,10 +42,14 @@ int main(int argc, char* argv[]) {
     assert (options->dim == 1 || options->dim == 2); // Comprobar que no se haya puesto otra dimensión
     if (options->dim == 1 && options->type_border == "open") {
       latt = new Lattice1D_Open(options->size, options->cell_type);
-      latt->AgregarFrontera(options->cell_type, options->fria);
+      latt->AgregarFrontera(options);
     }
     else if (options->dim == 1 && options->type_border == "periodic") {
       latt = new Lattice1D_Periodic(options->size, options->cell_type);
+    }
+    else if (options->dim == 2 && options->type_border == "reflective") {
+      latt = new Lattice2D_Reflective(options->fila, options->columna, options->cell_type);
+      latt->AgregarFrontera(options);
     }
   }
 

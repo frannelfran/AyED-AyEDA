@@ -13,6 +13,6 @@ class Lattice1D_Open : public Lattice1D {
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AjustarPosiciones() override; // Ajustar las posiciones de las células
-   void AgregarFrontera(const string&, bool) override; // Agregar la frontera
+   void AgregarFrontera(const optional<Options>&) override; // Agregar la frontera
    inline const Cell& GetCell(const Position& pos) const override { return *reticulo_.at(pos.GetX()); } // Obtener una célula
 };

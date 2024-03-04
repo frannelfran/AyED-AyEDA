@@ -10,5 +10,5 @@ class Lattice2D_Reflective : public Lattice2D {
    Lattice2D_Reflective(const string& filename, const string& type_cell) : Lattice2D(filename, type_cell) {}
   
    // Funciones
-   void AgregarFrontera(const string&, bool) override; // Agregar la frontera
+   void AgregarFrontera(const optional<Options>&) override; // Agregar la frontera
 };

@@ -21,7 +21,7 @@ class Lattice {
    virtual void NextGeneration() const = 0; // Calcular la siguiente generación
    virtual void AjustarPosiciones() = 0; // Ajustar las posiciones del retículo
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
-   virtual void AgregarFrontera(const string&, bool) = 0; // Agregar frontera
+   virtual void AgregarFrontera(const optional<Options>&) = 0; // Agregar frontera
    virtual size_t Population() const = 0; // Número de células vivas
 
    // Sobrecarga de operadores

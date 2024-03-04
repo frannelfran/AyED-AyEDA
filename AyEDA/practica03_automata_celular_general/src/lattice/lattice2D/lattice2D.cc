@@ -11,15 +11,17 @@ Lattice2D::Lattice2D(int fila, int columna, const string& type_cell) {
   assert (fila > 0 && columna > 0); // Comprobar que las filas y columnas son mayores que 0
   assert (type_cell == "Life23_3" || type_cell == "Life51_343");
   reticulo_.resize(fila);
+  Cell* cell;
   for (int i = 0; i < fila; i++) {
     reticulo_[i].resize(columna);
     for (int j = 0; j < columna; j++) {
       if (type_cell == "Life23_3") {
-        reticulo_[i][j] == new CellLife23_3(Position({i, j}), State(0));
+        cell = new CellLife23_3(Position({i, j}), State(0));
       }
       else {
-        reticulo_[i][j] == new CellLife51_346(Position({i, j}), State(0));
+        cell = new CellLife51_346(Position({i, j}), State(0));
       }
+      reticulo_[i][j] = cell;
     }
   }
   SetViva();
@@ -63,6 +65,16 @@ size_t Lattice2D::Population() const {
  * @brief Método para calcular la siguiente generación
 */
 
+void Lattice2D::NextGeneration() const {
+  vector<int> vec_estados;
+  for (int i = 1; i < reticulo_.size() - 1; i++) {
+    for (int j = 1; j < reticulo_[i].size() - 1; j++) {
+      vec_estados.push_back(reticulo_[i][j]->NextState(*this));
+    }
+  }
+  ActualizarCelulas(vec_estados);
+}
+
 /**
  * @brief Método para actualizar los estados de las células
  * @param vec Vector con los estados de las células
@@ -95,9 +107,9 @@ void Lattice2D::AjustarPosiciones() {
 */
 
 ostream& Lattice2D::Display(ostream& os) const {
-  for (int i = 0; i < reticulo_.size(); i++) {
-    for (int j = 0; j < reticulo_[i].size(); j++) {
-      os << reticulo_[i][j];
+  for (auto fila : reticulo_) {
+    for (auto cell : fila) {
+      os << *cell;
     }
     os << endl;
   }

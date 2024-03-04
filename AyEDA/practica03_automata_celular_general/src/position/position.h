@@ -15,6 +15,11 @@ class Position {
    inline int GetX() const { return position_[0]; }
    inline int GetY() const { return position_[1]; }
 
+   // Setters
+   inline void SetX(int x) { position_[0] = x; }
+    inline void SetY(int y) { position_[1] = y; }
+
+
   private:
    int position_[2] = {0};
 };

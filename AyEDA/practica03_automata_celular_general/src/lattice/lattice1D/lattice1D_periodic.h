@@ -12,7 +12,7 @@ class Lattice1D_Periodic : public Lattice1D {
    // Funciones
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
-   void AgregarFrontera(const string&, bool) override {} // Agregar la frontera
+   void AgregarFrontera(const optional<Options>&) override {} // Agregar la frontera
    void AjustarPosiciones() override {} // Ajustar las posiciones de las células
    inline const Cell& GetCell(const Position& pos) const override; // Obtener una célula
 };

@@ -28,17 +28,18 @@ void Lattice1D_Open::ActualizarCelulas(const vector<int>& nuevos_estados) const 
 
 /**
  * @brief Método para agregar la frontera
+ * @param opciones Opciones del usuario
 */
 
-void Lattice1D_Open::AgregarFrontera(const string& cell_type, bool estado) {
-  assert (cell_type == "Ace110" || cell_type == "Ace30"); // Comprobar que el tipo de célula sea válido
+void Lattice1D_Open::AgregarFrontera(const optional<Options>& opciones) {
+  assert (opciones->cell_type == "Ace110" || opciones->cell_type == "Ace30"); // Comprobar que el tipo de célula sea válido
   Cell* cell_ini, *cell_fin;
-  State cell_state = estado ? State(0) : State(1);
-  if (cell_type == "Ace110") {
+  State cell_state = opciones->fria ? State(0) : State(1);
+  if (opciones->cell_type == "Ace110") {
     cell_ini = new CellAce110(Position({0}), State(cell_state));
     cell_fin = new CellAce110(Position({0}), State(cell_state));
   }
-  else if (cell_type == "Ace30") {
+  else if (opciones->cell_type == "Ace30") {
     cell_ini = new CellAce30(Position({0}), State(cell_state));
     cell_fin = new CellAce30(Position({0}), State(cell_state));
   }

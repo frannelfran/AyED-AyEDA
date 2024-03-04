@@ -1,5 +1,5 @@
 #pragma once
-#include "lattice.h"
+#include "lattice/lattice.h"
 #include "cellLife/cellLife.h"
 #include "cellLife/cellLife23_3.h"
 #include "cellLife/cellLife51_346.h"
@@ -23,7 +23,7 @@ class Lattice2D : public Lattice {
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AjustarPosiciones() override; // Ajustar las posiciones de las células
-
+   
    // Sobrecarga de operadores
    ostream& Display(ostream& os) const override;
 
