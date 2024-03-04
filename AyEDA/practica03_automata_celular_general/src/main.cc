@@ -2,6 +2,7 @@
 #include "../src/lattice/lattice.h"
 #include "lattice/lattice1D/lattice1D_open.h" // Fichero con la especificación de retículo con frontera abierta
 #include "lattice/lattice1D/lattice1D_periodic.h" // Fichero con la especificación de retículo con frontera periódica
+#include "lattice/lattice2D/lattice2D_reflective.h" // Fichero con la especificación de retículo con frontera reflectante
 #include "options/options.h"
 
 using namespace std;
@@ -14,7 +15,8 @@ int main(int argc, char* argv[]) {
 
   Lattice* latt; // Puntero a retículo
 
-  if (options->has_file) {
+  // Configuración del retñiculo según las opciones
+  if (options->has_file) { // Cuando hay un fichero de configuración
     int dim;
     ifstream file(options->filename);
     file >> dim;
@@ -27,8 +29,16 @@ int main(int argc, char* argv[]) {
     else if (dim == 1 && options->type_border == "periodic") {
       latt = new Lattice1D_Periodic(options->filename, options->cell_type);
     }
+    else if (dim == 2 && options->type_border == "reflective") {
+      //latt = new Lattice2D_Open(options->filename, options->cell_type);
+      //latt->AgregarFrontera(options->cell_type, options->fria);
+    }
+    else if (dim == 2 && options->type_border == "noborder") {
+      //latt = new Lattice2D_Periodic(options->filename, options->cell_type);
+    }
   }
-  else {
+
+  else { // sino no hay un fichero
     assert (options->dim == 1 || options->dim == 2); // Comprobar que no se haya puesto otra dimensión
     if (options->dim == 1 && options->type_border == "open") {
       latt = new Lattice1D_Open(options->size, options->cell_type);
