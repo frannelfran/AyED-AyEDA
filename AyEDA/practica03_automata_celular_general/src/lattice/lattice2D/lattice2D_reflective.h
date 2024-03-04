@@ -11,4 +11,5 @@ class Lattice2D_Reflective : public Lattice2D {
   
    // Funciones
    void AgregarFrontera(const optional<Options>&) override; // Agregar la frontera
+   Cell* FabricarNuevaCelda(Cell*) override; // Fabricar una nueva célula
 };

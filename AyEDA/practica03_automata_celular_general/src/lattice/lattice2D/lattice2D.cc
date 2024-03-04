@@ -28,6 +28,13 @@ Lattice2D::Lattice2D(int fila, int columna, const string& type_cell) {
 }
 
 /**
+ * @brief Constructor de la clase Lattice2D cuando se le introduce un fichero
+ * @param filename Nombre del fichero
+*/
+
+
+
+/**
  * @brief Método para establecer que células están vivas
 */
 

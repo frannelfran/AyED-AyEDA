@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
       latt = new Lattice1D_Periodic(options->filename, options->cell_type);
     }
     else if (dim == 2 && options->type_border == "reflective") {
-      //latt = new Lattice2D_Reflective(options->filename, options->cell_type);
-      //latt->AgregarFrontera(options->cell_type, options->fria);
+      latt = new Lattice2D_Reflective(options->filename, options->cell_type);
+      latt->AgregarFrontera(options);
     }
     else if (dim == 2 && options->type_border == "noborder") {
       //latt = new Lattice2D_Periodic(options->filename, options->cell_type);

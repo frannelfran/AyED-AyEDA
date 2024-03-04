@@ -3,7 +3,6 @@
 ostream& CellAce::Display(ostream& os) const {
   string estado = (estado_.GetData() == 1) ? "x" : " ";
   os << estado;
-  os << posicion_.GetX();
   return os;
 }
 

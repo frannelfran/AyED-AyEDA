@@ -23,6 +23,7 @@ class Lattice2D : public Lattice {
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AjustarPosiciones() override; // Ajustar las posiciones de las células
+   virtual Cell* FabricarNuevaCelda(Cell*) = 0;
    
    // Sobrecarga de operadores
    ostream& Display(ostream& os) const override;
