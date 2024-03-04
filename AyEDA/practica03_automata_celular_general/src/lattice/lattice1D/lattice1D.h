@@ -3,6 +3,7 @@
 #include "cellace/cellace.h"
 #include "cellace/cellace110.h"
 #include "cellace/cellace30.h"
+#include "factorycell/factorycell.h"
 #include <cassert>
 
 using namespace std;
@@ -10,7 +11,7 @@ using namespace std;
 class Lattice1D : public Lattice {
   public:
    inline Lattice1D() {}
-   Lattice1D(int, const string&); // Constructor por defecto
+   Lattice1D(int, const FactoryCell&); // Constructor por defecto
    Lattice1D(const string&, const string&); // Constructor cuando se le pasa el nombre de un fichero
 
    // Setters

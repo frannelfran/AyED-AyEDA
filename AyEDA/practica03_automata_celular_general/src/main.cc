@@ -3,6 +3,7 @@
 #include "lattice/lattice1D/lattice1D_open.h" // Fichero con la especificación de retículo con frontera abierta
 #include "lattice/lattice1D/lattice1D_periodic.h" // Fichero con la especificación de retículo con frontera periódica
 #include "lattice/lattice2D/lattice2D_reflective.h" // Fichero con la especificación de retículo con frontera reflectante
+#include "factorycell/factorycell.h" // Fichero con la especificación de la fábrica de células
 #include "options/options.h"
 
 using namespace std;
@@ -14,43 +15,52 @@ int main(int argc, char* argv[]) {
   }
 
   Lattice* latt; // Puntero a retículo
+  FactoryCell* factory;
 
-  // Configuración del retñiculo según las opciones
-  if (options->has_file) { // Cuando hay un fichero de configuración
-    int dim;
-    ifstream file(options->filename);
-    file >> dim;
-    file.close();
-    assert (dim == 1 || dim == 2); // Comprobar que no se haya puesto otra dimensión
-    if (dim == 1 && options->type_border == "open") {
-      latt = new Lattice1D_Open(options->filename, options->cell_type);
-      latt->AgregarFrontera(options);
-    }
-    else if (dim == 1 && options->type_border == "periodic") {
-      latt = new Lattice1D_Periodic(options->filename, options->cell_type);
-    }
-    else if (dim == 2 && options->type_border == "reflective") {
-      latt = new Lattice2D_Reflective(options->filename, options->cell_type);
-      latt->AgregarFrontera(options);
-    }
-    else if (dim == 2 && options->type_border == "noborder") {
-      //latt = new Lattice2D_Periodic(options->filename, options->cell_type);
-    }
+  // Configuración de la fábrica de células según las opciones
+  if (options->cell_type == "Ace110") {
+    factory = new FactoryCellAce110();
+  }
+  else if (options->cell_type == "Ace30") {
+    factory = new FactoryCellAce30();
+  }
+  else if (options->cell_type == "Life23_3") {
+    factory = new FactoryCellLife23_3();
+  }
+  else if (options->cell_type == "Life51_346") {
+    factory = new FactoryCellLife51_346();
   }
 
-  else { // sino no hay un fichero
-    assert (options->dim == 1 || options->dim == 2); // Comprobar que no se haya puesto otra dimensión
+  // Configuración del reticulo según las opciones
+  if (!options->has_file) { // si no se ha introducido un fichero
+    assert (options->dim == 1 || options->dim == 2);
     if (options->dim == 1 && options->type_border == "open") {
-      latt = new Lattice1D_Open(options->size, options->cell_type);
+      latt = new Lattice1D_Open(options->size, *factory);
       latt->AgregarFrontera(options);
     }
     else if (options->dim == 1 && options->type_border == "periodic") {
-      latt = new Lattice1D_Periodic(options->size, options->cell_type);
+      latt = new Lattice1D_Periodic(options->size, *factory);
     }
     else if (options->dim == 2 && options->type_border == "reflective") {
-      latt = new Lattice2D_Reflective(options->fila, options->columna, options->cell_type);
-      latt->AgregarFrontera(options);
+      latt = new Lattice2D_Reflective(options->fila, options->columna, *factory);
     }
+  }
+  else { // Cuando se introduce un fichero
+    ifstream file(options->filename);
+    int dim;
+    file >> dim;
+    if (dim == 1) {
+      
+
+
+
+
+
+
+
+    }
+
+
   }
 
   cout << "---Retículo introducido---\n";

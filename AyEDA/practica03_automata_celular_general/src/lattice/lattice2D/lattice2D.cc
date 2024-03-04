@@ -4,24 +4,16 @@
  * @brief Constructor por defecto de la clase Lattice2D
  * @param fila Fila del retículo
  * @param columna Columna del retículo
- * @param type_cell Tipo de célula
+ * @param factory Fábrica de células
 */
 
-Lattice2D::Lattice2D(int fila, int columna, const string& type_cell) {
+Lattice2D::Lattice2D(int fila, int columna, const FactoryCell& factory) {
   assert (fila > 0 && columna > 0); // Comprobar que las filas y columnas son mayores que 0
-  assert (type_cell == "Life23_3" || type_cell == "Life51_343");
   reticulo_.resize(fila);
-  Cell* cell;
   for (int i = 0; i < fila; i++) {
     reticulo_[i].resize(columna);
     for (int j = 0; j < columna; j++) {
-      if (type_cell == "Life23_3") {
-        cell = new CellLife23_3(Position({i, j}), State(0));
-      }
-      else {
-        cell = new CellLife51_346(Position({i, j}), State(0));
-      }
-      reticulo_[i][j] = cell;
+      reticulo_[i][j] = factory.createCell(Position({i, j}), State(0));
     }
   }
   SetViva();
@@ -31,8 +23,6 @@ Lattice2D::Lattice2D(int fila, int columna, const string& type_cell) {
  * @brief Constructor de la clase Lattice2D cuando se le introduce un fichero
  * @param filename Nombre del fichero
 */
-
-
 
 /**
  * @brief Método para establecer que células están vivas

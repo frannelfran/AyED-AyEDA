@@ -6,19 +6,13 @@
  * @param type_cell Tipo de célula
 */
 
-Lattice1D::Lattice1D(int size, const string& type_cell) {
+Lattice1D::Lattice1D(int size, const FactoryCell& factory) {
   assert (size > 0); // Comprobar que el tamaño sea mayor que 0
   reticulo_.resize(size);
   Cell* cell;
   for (int i = 0; i < size; i++) {
     Position pos({i});
-    if (type_cell == "Ace110") {
-      cell = new CellAce110(pos, State(0));
-    }
-    else {
-      cell = new CellAce30(pos, State(0));
-    }
-    reticulo_[i] = cell;
+    reticulo_[i] = factory.createCell(pos, State(0));
   }
   SetViva();
 }

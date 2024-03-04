@@ -3,13 +3,14 @@
 #include "cellLife/cellLife.h"
 #include "cellLife/cellLife23_3.h"
 #include "cellLife/cellLife51_346.h"
+#include "factorycell/factorycell.h"
 
 using namespace std;
 
 class Lattice2D : public Lattice {
   public:
    inline Lattice2D() {}
-   Lattice2D(int, int, const string&); // Constructor por defecto
+   Lattice2D(int, int, const FactoryCell&); // Constructor por defecto
    Lattice2D(const string&, const string&); // Constructor cuando se le pasa el nombre de un fichero
 
    // Getters

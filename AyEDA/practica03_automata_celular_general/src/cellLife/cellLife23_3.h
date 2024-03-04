@@ -1,3 +1,4 @@
+#pragma once
 #include "cellLife.h"
 
 class CellLife23_3 : public CellLife {
