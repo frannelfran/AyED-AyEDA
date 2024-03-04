@@ -5,6 +5,7 @@
 #include "cellace/cellace30.h"
 #include "factorycell/factorycell.h"
 #include <cassert>
+#include <fstream>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class Lattice1D : public Lattice {
   public:
    inline Lattice1D() {}
    Lattice1D(int, const FactoryCell&); // Constructor por defecto
-   Lattice1D(const string&, const string&); // Constructor cuando se le pasa el nombre de un fichero
+   Lattice1D(ifstream&, const FactoryCell&); // Constructor cuando se le pasa el nombre de un fichero
 
    // Setters
    void SetViva() override;

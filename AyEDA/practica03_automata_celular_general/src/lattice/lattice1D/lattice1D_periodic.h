@@ -7,7 +7,7 @@ class Lattice1D_Periodic : public Lattice1D {
   public:
    // Constructor de la clase
    Lattice1D_Periodic(int size, const FactoryCell& factory) : Lattice1D(size, factory) {}
-   Lattice1D_Periodic(const string& filename, const string& type_cell) : Lattice1D(filename, type_cell) {}
+   Lattice1D_Periodic(ifstream& file, const FactoryCell& factory) : Lattice1D(file, factory) {}
   
    // Funciones
    void NextGeneration() const override; // Calcular la siguiente generación

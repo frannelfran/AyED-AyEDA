@@ -49,18 +49,16 @@ int main(int argc, char* argv[]) {
     ifstream file(options->filename);
     int dim;
     file >> dim;
+    assert (dim == 1 || dim == 2); 
     if (dim == 1) {
-      
-
-
-
-
-
-
-
+      if (options->type_border == "open") { // Establecer cuando la frontera es abierta
+        latt = new Lattice1D_Open(file, *factory);
+        latt->AgregarFrontera(options);
+      }
+      else { // Establecer cuándo la frontera es periódica
+        latt = new Lattice1D_Periodic(file, *factory);
+      }
     }
-
-
   }
 
   cout << "---Retículo introducido---\n";

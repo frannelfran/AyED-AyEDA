@@ -7,7 +7,7 @@ class Lattice1D_Open : public Lattice1D {
   public:
    // Constructor de la clase
    Lattice1D_Open(int size, const FactoryCell& factory) : Lattice1D(size, factory) {}
-   Lattice1D_Open(const string& filename, const string& type_cell) : Lattice1D(filename, type_cell) {}
+   Lattice1D_Open(ifstream& file, const FactoryCell& factory) : Lattice1D(file, factory) {}
 
    // Funciones
    void NextGeneration() const override; // Calcular la siguiente generación

@@ -23,26 +23,19 @@ Lattice1D::Lattice1D(int size, const FactoryCell& factory) {
  * @param type_cell Tipo de célula
 */
 
-Lattice1D::Lattice1D(const string& filename, const string& type_cell) {
-  assert (type_cell == "Ace110" || type_cell == "Ace30"); // Comprobar que el tipo de célula sea válido
-  ifstream file(filename);
-  int size, dim;
+Lattice1D::Lattice1D(ifstream& file, const FactoryCell& factory) {
+  int size;
   char caracter;
-  Cell* cell;
-  file >> dim >> size; // Leo la dimensión que ya la había leído y el tamaño del retículo
-  assert (size > 0 && dim == 1); // comprobamos que el tamaño sea mayor que 0
-  reticulo_.resize(size); // Ajusto las posiciones del retículo
-  file.ignore(numeric_limits<streamsize>::max(), '\n'); // Ingnorar el salto de línea después de leer el tamaño
+  file >> size;
+  cout << size << endl;
+  assert (size > 0); // Comprobar que el tamaño sea mayor que 0
+  reticulo_.resize(size);
+  file.get(caracter); // Saltarse el salto de línea
   for (int i = 0; i < size; i++) {
     file.get(caracter);
     State estado = (caracter == 'x') ? State(1) : State(0);
-    if (type_cell == "Ace110") {
-      cell = new CellAce110(Position({i}), estado);
-    }
-    else {
-      cell = new CellAce30(Position({i}), estado);
-    }
-    reticulo_[i] = cell;
+    Position pos({i});
+    reticulo_[i] = factory.createCell(pos, State(estado));
   }
 }
 
