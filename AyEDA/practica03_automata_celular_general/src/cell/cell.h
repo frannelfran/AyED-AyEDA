@@ -23,7 +23,7 @@ class Cell {
    
    // Funciones
    virtual int NextState(const Lattice&) = 0;
-   virtual void UpdateState() = 0;
+   virtual int Rule(const State&, const State&) = 0;
 
    // Sobrecarga de operadores
    inline friend ostream& operator<<(ostream& os, const Cell& cell) { return cell.Display(os); }

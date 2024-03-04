@@ -10,7 +10,6 @@ class CellAce : public Cell {
 
    // Funciones
    int NextState(const Lattice&) override;
-   void UpdateState() override {}
    virtual int Rule(const State&, const State&) = 0;
    
    ostream& Display(ostream& os) const override;

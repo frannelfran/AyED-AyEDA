@@ -43,8 +43,10 @@ optional<Options> parse_args(int argc, char* argv[]) {
       it = next(it);
       options.type_border = string(*it);
       assert (options.type_border == "open" || options.type_border == "periodic");
-      if (stoi(string(*next(it))) == 0) { // Establecer el tipo de frontera
-        options.fria = true;
+      if (options.type_border == "open") { // Establecer el tipo de frontera
+        if (stoi(string(*next(it))) == 0) {
+          options.fria = true;
+        }
       }
     }
     else if (*it == "-border" && options.dim == 2) { // Establecer el tipo de frontera bidimensional
@@ -61,7 +63,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
       it = next(it);
       options.cell_type = string(*it);
       if (options.dim == 1) {
-        assert (options.cell_type == "Ace100" || options.cell_type == "Ace30");
+        assert (options.cell_type == "Ace110" || options.cell_type == "Ace30");
       }
       else if (options.dim == 2) {
         assert (options.cell_type == "Life23_3" || options.cell_type == "Life51_346");
@@ -71,7 +73,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
       it = next(it);
       options.type_border = string(*it);
       assert (options.type_border == "open" || options.type_border == "periodic" || options.type_border == "reflective" || options.type_border == "noborder");
-      if (options.type_border == "open" || options.type_border == "periodic") { // Establecer para el retículo unidimensional
+      if (options.type_border == "open") { // Establecer para el retículo unidimensional
         if (stoi(string(*next(it))) == 0) {
           options.fria = true;
         }
