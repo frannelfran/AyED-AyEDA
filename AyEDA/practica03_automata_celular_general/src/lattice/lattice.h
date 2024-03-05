@@ -20,7 +20,7 @@ class Lattice {
 
    // Funciones
    virtual void NextGeneration() const = 0; // Calcular la siguiente generación
-   virtual void AjustarPosiciones() = 0; // Ajustar las posiciones del retículo
+   virtual void AjustarPosiciones() const = 0; // Ajustar las posiciones del retículo
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
    virtual size_t Population() const = 0; // Número de células vivas
    virtual void SendToFile(ofstream&) = 0; // Método para enviar los datos del retñiculo a un fichero

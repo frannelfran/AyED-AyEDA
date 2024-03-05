@@ -182,7 +182,7 @@ void Lattice1D_Open::AgregarFrontera(bool fria, const FactoryCell& factory) {
  * @brief Ajustar posiciones del retículo
 */
 
-void Lattice1D_Open::AjustarPosiciones() {
+void Lattice1D_Open::AjustarPosiciones() const {
   for (int i = 0; i < reticulo_.size(); i++) {
     reticulo_[i]->SetPosition(Position({i}));
   }

@@ -19,9 +19,8 @@ class Lattice2D : public Lattice {
 
    // Funciones
    size_t Population() const override;
-   void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
-   void AjustarPosiciones() override; // Ajustar las posiciones de las células
+   void AjustarPosiciones() const override; // Ajustar las posiciones de las células
    virtual void AgregarFrontera(const FactoryCell& factory) = 0;
    void SendToFile(ofstream&) override; // Método para enviar los datos del retñiculo a un fichero
    
@@ -42,4 +41,15 @@ class Lattice2D_Reflective : public Lattice2D {
   
    // Funciones
    void AgregarFrontera(const FactoryCell&) override; // Agregar la frontera
+   void NextGeneration() const override; // Calcular la siguiente generación
+};
+
+class Lattice2D_Noborder : public Lattice2D {
+  public:
+   // Constructor de la clase
+   Lattice2D_Noborder(int fila, int columna, const FactoryCell& factory) : Lattice2D(fila, columna, factory) {}
+   Lattice2D_Noborder(ifstream& filename, const FactoryCell& factory) : Lattice2D(filename, factory) {}
+
+   void AgregarFrontera(const FactoryCell&) override {}
+   void NextGeneration() const override;
 };

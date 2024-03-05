@@ -40,7 +40,7 @@ class Lattice1D_Periodic : public Lattice1D {
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AgregarFrontera(bool, const FactoryCell&) override {} // Agregar la frontera
-   void AjustarPosiciones() override {}
+   void AjustarPosiciones() const override {}
    inline const Cell& GetCell(const Position& pos) const override; // Obtener una célula
 };
 
@@ -53,7 +53,7 @@ class Lattice1D_Open : public Lattice1D {
    // Funciones
    void NextGeneration() const override; // Calcular la siguiente generación
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
-   void AjustarPosiciones() override; // Ajustar las posiciones de las células
+   void AjustarPosiciones() const override; // Ajustar las posiciones de las células
    void AgregarFrontera(bool, const FactoryCell&) override; // Agregar la frontera
    inline const Cell& GetCell(const Position& pos) const override { return *reticulo_.at(pos.GetX()); } // Obtener una célula
 };

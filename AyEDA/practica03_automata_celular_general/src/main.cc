@@ -46,6 +46,11 @@ int main(int argc, char* argv[]) {
       latt2D_reflective->AgregarFrontera(*factory);
       latt = latt2D_reflective;
     }
+    else if (options->dim == 2 && options->type_border == "noborder") {
+      Lattice2D_Noborder* latt2D_noborder = new Lattice2D_Noborder(options->fila, options->columna, *factory);
+      latt2D_noborder->AgregarFrontera(*factory);
+      latt = latt2D_noborder;
+    }
   }
   else { // Cuando se introduce un fichero
     ifstream file(options->filename);

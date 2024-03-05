@@ -92,20 +92,6 @@ size_t Lattice2D::Population() const {
 }
 
 /**
- * @brief Método para calcular la siguiente generación
-*/
-
-void Lattice2D::NextGeneration() const {
-  vector<int> vec_estados;
-  for (int i = 1; i < reticulo_.size() - 1; i++) {
-    for (int j = 1; j < reticulo_[i].size() - 1; j++) {
-      vec_estados.push_back(reticulo_[i][j]->NextState(*this));
-    }
-  }
-  ActualizarCelulas(vec_estados);
-}
-
-/**
  * @brief Método para actualizar los estados de las células
  * @param vec Vector con los estados de las células
 */
@@ -124,7 +110,7 @@ void Lattice2D::ActualizarCelulas(const vector<int>& vec) const {
  * @brief Método para ajustar las posiciones de las células
 */
 
-void Lattice2D::AjustarPosiciones() {
+void Lattice2D::AjustarPosiciones() const {
   for (int i = 0; i < reticulo_.size(); i++) {
     for (int j = 0; j < reticulo_[i].size(); j++) {
       reticulo_[i][j]->SetPosition(Position({i, j}));
@@ -144,6 +130,20 @@ ostream& Lattice2D::Display(ostream& os) const {
     os << endl;
   }
   return os;
+}
+
+/**
+ * @brief Método para calcular la siguiente generación
+*/
+
+void Lattice2D_Reflective::NextGeneration() const {
+  vector<int> vec_estados;
+  for (int i = 1; i < reticulo_.size() - 1; i++) {
+    for (int j = 1; j < reticulo_[i].size() - 1; j++) {
+      vec_estados.push_back(reticulo_[i][j]->NextState(*this));
+    }
+  }
+  ActualizarCelulas(vec_estados);
 }
 
 void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& factory) {
@@ -177,4 +177,34 @@ void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& factory) {
   }
   reticulo_.push_back(nueva_fila_inferior);
   AjustarPosiciones();
+}
+
+/**
+ * @brief Método para calcular la siguiente generación cuando no hay frontera
+*/
+
+void Lattice2D_Noborder::NextGeneration() const {
+  vector<int> vec_estados;
+  for (int i = 1; i < reticulo_.size() - 1; i++) {
+    for (int j = 1; j < reticulo_[i].size() - 1; j++) {
+      vec_estados.push_back(reticulo_[i][j]->NextState(*this));
+
+    }
+  }
+  ActualizarCelulas(vec_estados);
+}
+
+/**
+ * @brief Método para agregar la frontera si no hay frontera
+ * @param factory Fábrica de células
+*/
+
+void Lattice2D::AgregarFrontera(const FactoryCell& factory) {
+  
+  
+
+
+
+
+
 }
