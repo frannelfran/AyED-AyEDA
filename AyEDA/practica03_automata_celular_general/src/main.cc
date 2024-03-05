@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
 
   Lattice* latt; // Puntero a retículo
   FactoryCell* factory;
+  Lattice2D_Noborder* latt2D_noborder;
 
   // Configuración de la fábrica de células según las opciones
   if (options->cell_type == "Ace110") {
@@ -56,6 +57,7 @@ int main(int argc, char* argv[]) {
     ifstream file(options->filename);
     int dim;
     file >> dim;
+    options->dim = dim;
     assert (dim == 1 || dim == 2); 
     if (dim == 1) {
       if (options->type_border == "open") { // Establecer cuando la frontera es abierta
@@ -72,6 +74,11 @@ int main(int argc, char* argv[]) {
         Lattice2D_Reflective* latt2D_reflective = new Lattice2D_Reflective(file, *factory);
         latt2D_reflective->AgregarFrontera(*factory);
         latt = latt2D_reflective;
+      }
+      else { // El borde es reflectivo
+        latt2D_noborder = new Lattice2D_Noborder(file, *factory);
+        latt2D_noborder->AgregarFrontera(*factory);
+        latt = latt2D_noborder;
       }
     }
   }
@@ -92,14 +99,28 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
       break;
       case 'n': // Calcular la siguiente generación
-        latt->NextGeneration();
+        if (options->type_border == "noborder") { // Verificar si el borde es "noborder"
+          latt2D_noborder->NextGeneration();
+          latt2D_noborder->AgregarFrontera(*factory);
+          cout << *latt2D_noborder;
+        }
+        else {
+          latt->NextGeneration();
+        }
         cout << "---Generación " << ++generacion << "---\n";
         cout << *latt;
         cout << "--------------------------\n";
       break;
       case 'L': // Calcular las siguientes 5 generación
         for (int i = 0; i < 5; i++) {
+          if (options->type_border == "noborder") { // Verificar si el borde es "noborder"
+          latt2D_noborder->NextGeneration();
+          latt2D_noborder->AgregarFrontera(*factory);
+          latt = latt2D_noborder;
+        }
+        else {
           latt->NextGeneration();
+        }
           cout << "---Generación " << ++generacion << "---\n";
           cout << *latt;
           cout << "--------------------------\n";

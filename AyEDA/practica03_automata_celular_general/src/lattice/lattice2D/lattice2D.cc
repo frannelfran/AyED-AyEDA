@@ -136,7 +136,7 @@ ostream& Lattice2D::Display(ostream& os) const {
  * @brief Método para calcular la siguiente generación
 */
 
-void Lattice2D_Reflective::NextGeneration() const {
+void Lattice2D::NextGeneration() const {
   vector<int> vec_estados;
   for (int i = 1; i < reticulo_.size() - 1; i++) {
     for (int j = 1; j < reticulo_[i].size() - 1; j++) {
@@ -180,31 +180,63 @@ void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& factory) {
 }
 
 /**
- * @brief Método para calcular la siguiente generación cuando no hay frontera
-*/
-
-void Lattice2D_Noborder::NextGeneration() const {
-  vector<int> vec_estados;
-  for (int i = 1; i < reticulo_.size() - 1; i++) {
-    for (int j = 1; j < reticulo_[i].size() - 1; j++) {
-      vec_estados.push_back(reticulo_[i][j]->NextState(*this));
-
-    }
-  }
-  ActualizarCelulas(vec_estados);
-}
-
-/**
  * @brief Método para agregar la frontera si no hay frontera
  * @param factory Fábrica de células
 */
 
-void Lattice2D::AgregarFrontera(const FactoryCell& factory) {
-  
-  
+void Lattice2D_Noborder::AgregarFrontera(const FactoryCell& factory) {
+  int num_fila = reticulo_.size();
+  int num_columna = reticulo_[0].size();
 
+  bool necesitaFrontera = false;
 
+  // Verificar si es necesario agregar una fila al inicio o al final
+  for (int i = 0; i < num_fila; ++i) {
+    if (reticulo_[i][0]->GetState().GetData() == 1 || reticulo_[i][num_columna - 1]->GetState().GetData() == 1) {
+      necesitaFrontera = true;
+      break;
+    }
+  }
 
+  // Verificar si es necesario agregar una columna al inicio o al final
+  for (int j = 0; j < num_columna; ++j) {
+    if (reticulo_[0][j]->GetState().GetData() == 1 || reticulo_[num_fila - 1][j]->GetState().GetData() == 1) {
+      necesitaFrontera = true;
+      break;
+    }
+  }
 
+  // Agregar una fila al inicio o al final si es necesario
+  if (necesitaFrontera) {
+      // Agregar fila al inicio
+    if (reticulo_[0][0]->GetState().GetData() != 0 || reticulo_[0][num_columna - 1]->GetState().GetData() != 0) {
+      vector<Cell*> nueva_fila(num_columna, nullptr);  // Crear una fila vacía
+      for (int j = 0; j < num_columna; ++j) {
+        nueva_fila[j] = factory.createCell(Position({-1, j}), State(0));  // Crear una nueva celda para la frontera superior
+      }
+      reticulo_.insert(reticulo_.begin(), nueva_fila);  // Insertar la nueva fila al inicio
+    }
+    // Agregar fila al final
+    if (reticulo_[num_fila - 1][0]->GetState().GetData() != 0 || reticulo_[num_fila - 1][num_columna - 1]->GetState().GetData() != 0) {
+      vector<Cell*> nueva_fila(num_columna, nullptr);  // Crear una fila vacía
+      for (int j = 0; j < num_columna; ++j) {
+        nueva_fila[j] = factory.createCell(Position({num_fila, j}), State(0));  // Crear una nueva celda para la frontera inferior
+      }
+      reticulo_.push_back(nueva_fila);  // Insertar la nueva fila al final
+    }
 
+    // Agregar columna al inicio
+    for (int i = 0; i < num_fila; ++i) {
+      if (reticulo_[i][0]->GetState().GetData() != 0) {
+        reticulo_[i].insert(reticulo_[i].begin(), factory.createCell(Position({i, -1}), State(0)));  // Crear una nueva celda para la frontera izquierda
+      }
+    }
+    // Agregar columna al final
+    for (int i = 0; i < num_fila; ++i) {
+      if (reticulo_[i][num_columna - 1]->GetState().GetData() != 0) {
+        reticulo_[i].push_back(factory.createCell(Position({i, num_columna}), State(0)));  // Crear una nueva celda para la frontera derecha
+      }
+    }
+  }
+  AjustarPosiciones();
 }
