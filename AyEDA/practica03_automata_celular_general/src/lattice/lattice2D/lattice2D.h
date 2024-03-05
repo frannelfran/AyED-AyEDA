@@ -23,6 +23,7 @@ class Lattice2D : public Lattice {
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AjustarPosiciones() override; // Ajustar las posiciones de las células
    virtual void AgregarFrontera(const FactoryCell& factory) = 0;
+   void SendToFile(ofstream&) override; // Método para enviar los datos del retñiculo a un fichero
    
    // Sobrecarga de operadores
    ostream& Display(ostream& os) const override;

@@ -60,6 +60,21 @@ void Lattice2D::SetViva() {
 }
 
 /**
+ * @brief Método para enviar los datos del retículo a un fichero
+ * @param file Fichero
+*/
+
+void Lattice2D::SendToFile(ofstream& file) {
+  file << reticulo_.size() << " " << reticulo_[0].size() << endl;
+  for (auto fila : reticulo_) {
+    for (auto cell : fila) {
+      file << *cell;
+    }
+    file << endl;
+  }
+}
+
+/**
  * @brief Método para calcular la población de células vivas
  * @return Número de células vivas
 */

@@ -22,6 +22,7 @@ class Lattice1D : public Lattice {
    // Sobrecarga de operadores
    ostream& Display(ostream& os) const override;
    virtual void AgregarFrontera(bool, const FactoryCell&) = 0;
+   void SendToFile(ofstream&) override;
 
   protected:
    vector<Cell*> reticulo_;

@@ -23,6 +23,7 @@ class Lattice {
    virtual void AjustarPosiciones() = 0; // Ajustar las posiciones del retículo
    virtual void ActualizarCelulas(const vector<int>&) const = 0; // Actulizar los estados de las células
    virtual size_t Population() const = 0; // Número de células vivas
+   virtual void SendToFile(ofstream&) = 0; // Método para enviar los datos del retñiculo a un fichero
 
    // Sobrecarga de operadores
    inline friend ostream& operator<<(ostream& os, const Lattice& latt) { return latt.Display(os); }

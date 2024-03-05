@@ -107,9 +107,10 @@ int main(int argc, char* argv[]) {
         string filename;
         cout << "Indicar nombre de fichero: ";
         cin >> filename;
-        
-
-
+        ofstream fileout(filename);
+        fileout << options->dim << endl;
+        latt->SendToFile(fileout);
+        fileout.close();
       break;
     }
   }

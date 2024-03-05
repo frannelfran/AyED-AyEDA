@@ -57,6 +57,18 @@ void Lattice1D::SetViva() {
 }
 
 /**
+ * @brief Método para enviar los datos del retículo a un fichero
+ * @param file Fichero
+*/
+
+void Lattice1D::SendToFile(ofstream& file) {
+  file << reticulo_.size() << endl;
+  for (auto& cell : reticulo_) {
+    file << *cell;
+  }
+}
+
+/**
  * @brief Método para calcular la población
  * @return Población
 */
