@@ -113,7 +113,7 @@ ostream& Lattice2D::Display(ostream& os) const {
   return os;
 }
 
-void Lattice2D_Reflective::AgregarFrontera(const optional<Options>& opciones) {
+void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& opciones) {
   // Copiar el estado de las células en los bordes a las células adicionales
   Cell* cell;
   // Insertar nuevas células en el borde izquierdo y derecho

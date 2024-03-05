@@ -34,8 +34,9 @@ int main(int argc, char* argv[]) {
   if (!options->has_file) { // si no se ha introducido un fichero
     assert (options->dim == 1 || options->dim == 2);
     if (options->dim == 1 && options->type_border == "open") {
-      latt = new Lattice1D_Open(options->size, *factory);
-      latt->AgregarFrontera(options);
+      Lattice1D_Open* latt1D_open = new Lattice1D_Open(options->size, *factory);
+      latt1D_open->AgregarFrontera(options->fria, *factory);
+      latt = latt1D_open;
     }
     else if (options->dim == 1 && options->type_border == "periodic") {
       latt = new Lattice1D_Periodic(options->size, *factory);
@@ -51,8 +52,9 @@ int main(int argc, char* argv[]) {
     assert (dim == 1 || dim == 2); 
     if (dim == 1) {
       if (options->type_border == "open") { // Establecer cuando la frontera es abierta
-        latt = new Lattice1D_Open(file, *factory);
-        latt->AgregarFrontera(options);
+        Lattice1D_Open* latt1D_open = new Lattice1D_Open(file, *factory);
+        latt1D_open->AgregarFrontera(options->fria, *factory);
+        latt = latt1D_open;
       }
       else { // Establecer cuándo la frontera es periódica
         latt = new Lattice1D_Periodic(file, *factory);

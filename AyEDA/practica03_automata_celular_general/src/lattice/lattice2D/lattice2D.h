@@ -23,6 +23,7 @@ class Lattice2D : public Lattice {
    void ActualizarCelulas(const vector<int>&) const override; // Actulizar los estados de las células
    void AjustarPosiciones() override; // Ajustar las posiciones de las células
    virtual Cell* FabricarNuevaCelda(Cell*) = 0;
+   virtual void AgregarFrontera(const FactoryCell& factory) = 0;
    
    // Sobrecarga de operadores
    ostream& Display(ostream& os) const override;
@@ -40,6 +41,6 @@ class Lattice2D_Reflective : public Lattice2D {
    Lattice2D_Reflective(const string& filename, const string& type_cell) : Lattice2D(filename, type_cell) {}
   
    // Funciones
-   void AgregarFrontera(const optional<Options>&) override; // Agregar la frontera
+   void AgregarFrontera(const FactoryCell&) override; // Agregar la frontera
    Cell* FabricarNuevaCelda(Cell*) override; // Fabricar una nueva célula
 };
