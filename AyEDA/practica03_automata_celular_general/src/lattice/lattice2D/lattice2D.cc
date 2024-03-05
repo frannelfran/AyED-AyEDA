@@ -24,6 +24,24 @@ Lattice2D::Lattice2D(int fila, int columna, const FactoryCell& factory) {
  * @param filename Nombre del fichero
 */
 
+Lattice2D::Lattice2D(ifstream& file, const FactoryCell& factory) {
+  int fila, columna;
+  char caracter;
+  file >> fila >> columna;
+  assert (fila > 0 && columna > 0); // Comprobar que las filas y columnas son mayores que 0
+  reticulo_.resize(fila);
+  file.get(caracter); // Saltarse el salto de línea
+  for (int i = 0; i < fila; i++) {
+    reticulo_[i].resize(columna);
+    for (int j = 0; j < reticulo_[i].size(); j++) {
+      file.get(caracter); // Leer el caracter
+      State estado = (caracter == 'x') ? State(1) : State(0);
+      reticulo_[i][j] = factory.createCell(Position({i, j}), estado);
+    }
+    file.get(caracter); // Saltarse el salto de línea
+  }
+}
+
 /**
  * @brief Método para establecer que células están vivas
 */
@@ -113,17 +131,17 @@ ostream& Lattice2D::Display(ostream& os) const {
   return os;
 }
 
-void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& opciones) {
+void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& factory) {
   // Copiar el estado de las células en los bordes a las células adicionales
   Cell* cell;
   // Insertar nuevas células en el borde izquierdo y derecho
   for (int i = 0; i < reticulo_.size(); i++) {
     // Crear nuevas células para el borde izquierdo
-    Cell* nueva_celula_izquierda = FabricarNuevaCelda(reticulo_[i][0]);
+    Cell* nueva_celula_izquierda = factory.createCell(Position({0, 0}), reticulo_[i][0]->GetState());
     reticulo_[i].insert(reticulo_[i].begin(), nueva_celula_izquierda);
 
     // Crear nuevas células para el borde derecho
-    Cell* nueva_celula_derecha = FabricarNuevaCelda(reticulo_[i].back());
+    Cell* nueva_celula_derecha = factory.createCell(Position({0, 0}), reticulo_[i].back()->GetState());
     reticulo_[i].push_back(nueva_celula_derecha);
   }
 
@@ -131,7 +149,7 @@ void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& opciones) {
   // Crear nuevas celdas para el borde superior
   vector<Cell*> nueva_fila_superior;
   for (int j = 0; j < reticulo_[0].size(); j++) {
-    Cell* nueva_celula = FabricarNuevaCelda(reticulo_[0][j]);
+    Cell* nueva_celula = factory.createCell(Position({0, 0}), reticulo_[0][j]->GetState());
     nueva_fila_superior.push_back(nueva_celula);
   }
   reticulo_.insert(reticulo_.begin(), nueva_fila_superior);
@@ -139,21 +157,9 @@ void Lattice2D_Reflective::AgregarFrontera(const FactoryCell& opciones) {
   // Crear nuevas celdas para el borde inferior
   vector<Cell*> nueva_fila_inferior;
   for (int j = 0; j < reticulo_[0].size(); j++) {
-    Cell* nueva_celula = FabricarNuevaCelda(reticulo_.back()[j]);
+    Cell* nueva_celula = factory.createCell(Position({0, 0}), reticulo_.back()[j]->GetState());
     nueva_fila_inferior.push_back(nueva_celula);
   }
   reticulo_.push_back(nueva_fila_inferior);
   AjustarPosiciones();
-}
-
-Cell* Lattice2D_Reflective::FabricarNuevaCelda(Cell* original) {
-  if (dynamic_cast<CellLife23_3*>(original)) {
-    return new CellLife23_3(original->GetPosition(), original->GetState());
-  }
-  else if (dynamic_cast<CellLife51_346*>(original)) {
-    return new CellLife51_346(original->GetPosition(), original->GetState());
-  }
-  else {
-    return nullptr;
-  }
 }

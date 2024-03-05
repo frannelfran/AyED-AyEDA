@@ -42,7 +42,9 @@ int main(int argc, char* argv[]) {
       latt = new Lattice1D_Periodic(options->size, *factory);
     }
     else if (options->dim == 2 && options->type_border == "reflective") {
-      latt = new Lattice2D_Reflective(options->fila, options->columna, *factory);
+      Lattice2D_Reflective* latt2D_reflective = new Lattice2D_Reflective(options->fila, options->columna, *factory);
+      latt2D_reflective->AgregarFrontera(*factory);
+      latt = latt2D_reflective;
     }
   }
   else { // Cuando se introduce un fichero
@@ -58,6 +60,13 @@ int main(int argc, char* argv[]) {
       }
       else { // Establecer cuándo la frontera es periódica
         latt = new Lattice1D_Periodic(file, *factory);
+      }
+    }
+    else if (dim == 2) {
+      if (options->type_border == "reflective") { // Establecer cuando la frontera es reflectante
+        Lattice2D_Reflective* latt2D_reflective = new Lattice2D_Reflective(file, *factory);
+        latt2D_reflective->AgregarFrontera(*factory);
+        latt = latt2D_reflective;
       }
     }
   }
