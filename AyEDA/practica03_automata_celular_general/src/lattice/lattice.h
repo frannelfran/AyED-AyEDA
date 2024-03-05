@@ -12,6 +12,7 @@ using namespace std;
 class Lattice {
   public:
    inline Lattice() {}
+   inline virtual ~Lattice() {}
    // Getters
    virtual const Cell& GetCell(const Position& pos) const = 0; // Obtener la célula según su posición
 

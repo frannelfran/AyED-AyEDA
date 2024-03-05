@@ -1,12 +1,10 @@
 #pragma once
 #include <iostream>
-#include "position/position.h"
-#include "state/state.h"
-#include "cell/cell.h"
-#include "cellace/cellace110.h"
-#include "cellace/cellace30.h"
-#include "cellLife/cellLife23_3.h"
-#include "cellLife/cellLife51_346.h"
+#include "../position/position.h"
+#include "../state/state.h"
+#include "../cell/cell.h"
+#include "../cell/cellace/cellace.h"
+#include "../cell/cellLife/cellLife.h"
 
 using namespace std;
 

@@ -1,8 +1,7 @@
 #include <iostream>
-#include "../src/lattice/lattice.h"
-#include "lattice/lattice1D/lattice1D_open.h" // Fichero con la especificación de retículo con frontera abierta
-#include "lattice/lattice1D/lattice1D_periodic.h" // Fichero con la especificación de retículo con frontera periódica
-#include "lattice/lattice2D/lattice2D_reflective.h" // Fichero con la especificación de retículo con frontera reflectante
+#include "lattice/lattice.h"
+#include "lattice/lattice1D/lattice1D.h"
+#include "lattice/lattice2D/lattice2D.h"
 #include "factorycell/factorycell.h" // Fichero con la especificación de la fábrica de células
 #include "options/options.h"
 
@@ -94,7 +93,11 @@ int main(int argc, char* argv[]) {
         cout << "Número de células vivas: " << latt->Population() << endl;
       break;
       case 's': // Guardar el retículo en un fichero
+        string filename;
         cout << "Indicar nombre de fichero: ";
+        cin >> filename;
+        
+
 
       break;
     }

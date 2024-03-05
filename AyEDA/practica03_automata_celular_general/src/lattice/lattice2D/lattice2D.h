@@ -1,9 +1,7 @@
 #pragma once
-#include "lattice/lattice.h"
-#include "cellLife/cellLife.h"
-#include "cellLife/cellLife23_3.h"
-#include "cellLife/cellLife51_346.h"
-#include "factorycell/factorycell.h"
+#include "../lattice.h"
+#include "../../cell/cellLife/cellLife.h"
+#include "../../factorycell/factorycell.h"
 
 using namespace std;
 
@@ -31,4 +29,17 @@ class Lattice2D : public Lattice {
 
   protected:
    vector<vector<Cell*>> reticulo_;
+};
+
+// Herencia de la clase Lattice2D
+
+class Lattice2D_Reflective : public Lattice2D {
+  public:
+   // Constructor de la clase
+   Lattice2D_Reflective(int fila, int columna, const FactoryCell& factory) : Lattice2D(fila, columna, factory) {}
+   Lattice2D_Reflective(const string& filename, const string& type_cell) : Lattice2D(filename, type_cell) {}
+  
+   // Funciones
+   void AgregarFrontera(const optional<Options>&) override; // Agregar la frontera
+   Cell* FabricarNuevaCelda(Cell*) override; // Fabricar una nueva célula
 };
