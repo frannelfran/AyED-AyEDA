@@ -1,5 +1,10 @@
 #include "cellace.h"
 
+/**
+ * @brief Mostrar la célula por pantalla
+ * @param os Stream de salida
+*/
+
 ostream& CellAce::Display(ostream& os) const {
   string estado = (estado_.GetData() == 1) ? "x" : " ";
   os << estado;
