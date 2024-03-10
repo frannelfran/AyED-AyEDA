@@ -15,31 +15,31 @@ class DispersionFunction {
     int size_;
 };
 
-class DispersionFuctionMod : public DispersionFunction {
+class DispersionFunctionMod : public DispersionFunction {
   public:
     // Constructores
-    inline DispersionFuctionMod() {}
-    inline DispersionFuctionMod(int size) : DispersionFunction(size) {}
+    inline DispersionFunctionMod() {}
+    inline DispersionFunctionMod(int size) : DispersionFunction(size) {}
 
     // Métodos
     unsigned operator() (const Nif&) const override;
 };
 
-class DispersionFuctionSum : public DispersionFunction {
+class DispersionFunctionSum : public DispersionFunction {
   public:
     // Constructores
-    inline DispersionFuctionSum() {}
-    inline DispersionFuctionSum(int size) : DispersionFunction(size) {}
+    inline DispersionFunctionSum() {}
+    inline DispersionFunctionSum(int size) : DispersionFunction(size) {}
 
     // Métodos
     unsigned operator() (const Nif&) const override;
 };
 
-class DispersionFuctionRandom : public DispersionFunction {
+class DispersionFunctionRandom : public DispersionFunction {
   public:
     // Constructores
-    inline DispersionFuctionRandom() {}
-    inline DispersionFuctionRandom(int size) : DispersionFunction(size) {}
+    inline DispersionFunctionRandom() {}
+    inline DispersionFunctionRandom(int size) : DispersionFunction(size) {}
 
     // Métodos
     unsigned operator() (const Nif&) const override;

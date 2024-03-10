@@ -1,4 +1,4 @@
-#include "dispersion_fuction.h"
+#include "dispersion_function.h"
 
 /**
  * @brief Sobeecarga del operador de módulo
@@ -6,7 +6,7 @@
  * @return Número dispersado
 */
 
-unsigned DispersionFuctionMod::operator() (const Nif& nif) const {
+unsigned DispersionFunctionMod::operator() (const Nif& nif) const {
   return nif.GetNumber() % size_;
 }
 
@@ -16,7 +16,7 @@ unsigned DispersionFuctionMod::operator() (const Nif& nif) const {
  * @return Número dispersado
 */
 
-unsigned DispersionFuctionSum::operator() (const Nif& nif) const {
+unsigned DispersionFunctionSum::operator() (const Nif& nif) const {
   int number = nif.GetNumber(), sum = 0;
   while (number > 0) {
     sum += number % 10;
@@ -31,7 +31,7 @@ unsigned DispersionFuctionSum::operator() (const Nif& nif) const {
  * @return Número dispersado
 */
 
-unsigned DispersionFuctionRandom::operator() (const Nif& nif) const {
+unsigned DispersionFunctionRandom::operator() (const Nif& nif) const {
   srand(nif.GetNumber());
   return rand() % size_;
 }

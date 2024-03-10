@@ -1,6 +1,6 @@
 #include "options/options.h"
 #include "nif/nif.h"
-#include "dispersion_fuction/dispersion_fuction.h"
+#include "dispersion_function/dispersion_function.h"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
   srand(time(nullptr));
 
   DispersionFunction* sopa;
-  sopa = new DispersionFuctionRandom(10);
+  sopa = new DispersionFunctionRandom(10);
   Nif nif(12345678);
 
   unsigned nif_disp = (*sopa)(nif);
