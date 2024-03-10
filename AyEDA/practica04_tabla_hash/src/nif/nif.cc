@@ -24,5 +24,5 @@ Nif::Nif(long int number) {
 */
 
 bool Nif::operator==(const Nif& nif) {
-  return this->number_ = nif.number_;
+  return this->number_ == nif.number_;
 }

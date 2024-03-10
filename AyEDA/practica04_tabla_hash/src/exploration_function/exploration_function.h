@@ -9,12 +9,14 @@ class ExplorationFunction {
   public:
     // Constructores
     inline ExplorationFunction() {}
-    ExplorationFunction(const DispersionFunction&);
+    inline ExplorationFunction(const Nif& clave, unsigned intento) : clave_(clave), intento_(intento) {}
 
     // Métodos
     virtual unsigned operator() (const Nif&, unsigned) const = 0;
+    
   protected:
-    const DispersionFunction* dispersion_;
+    Nif clave_;
+    unsigned intento_;
 };
 
 // Clase de exploración lineal
@@ -23,6 +25,7 @@ class ExplorationLinear : public ExplorationFunction {
   public:
     // Constructores
     inline ExplorationLinear() {}
+    inline ExplorationLinear(const Nif& clave, unsigned intento) : ExplorationFunction(clave, intento) {}
 
     // Métodos
     unsigned operator() (const Nif&, unsigned) const override;
@@ -34,6 +37,7 @@ class ExplorationQuadratic : public ExplorationFunction {
   public:
     // Constructores
     inline ExplorationQuadratic() {}
+    inline ExplorationQuadratic(const Nif& clave, unsigned intento) : ExplorationFunction(clave, intento) {}
 
     // Métodos
     unsigned operator() (const Nif&, unsigned) const override;
@@ -43,12 +47,13 @@ class ExplorationQuadratic : public ExplorationFunction {
 
 class ExplorationDouble : public ExplorationFunction {
   public:
-    // Constructores
-    inline ExplorationDouble() {}
-    inline ExplorationDouble(const DispersionFunction& dispersion) : ExplorationFunction(dispersion) {}
+    inline ExplorationDouble(const DispersionFunction* dispersion) : dispersion_(dispersion) {}
 
     // Métodos
     unsigned operator() (const Nif&, unsigned) const override;
+
+  private:
+    const DispersionFunction* dispersion_;
 };
 
 // Clase de exploración por re-dispersión
@@ -57,7 +62,7 @@ class ExplorationReDispersion : public ExplorationFunction {
   public:
     // Constructores
     inline ExplorationReDispersion() {}
-    inline ExplorationReDispersion(const DispersionFunction& dispersion) : ExplorationFunction(dispersion) {}
+    inline ExplorationReDispersion(const Nif& clave, unsigned intento) : ExplorationFunction(clave, intento) {}
 
     // Métodos
     unsigned operator() (const Nif&, unsigned) const override;

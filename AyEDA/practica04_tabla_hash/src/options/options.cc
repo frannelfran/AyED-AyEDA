@@ -22,6 +22,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
     }
     if (*it == "-fd") { // Establecer el código de dispersión
       options.codigo_dispersion = string (*next(it));
+      assert (options.codigo_dispersion == "mod" || options.codigo_dispersion == "sum" || options.codigo_dispersion == "random"); // Verificar que el código de dispersión sea válido
     }
     if (*it == "-hash") { // Técnica de dispersión a utilizar
       options.tecnica = string(*next(it));
