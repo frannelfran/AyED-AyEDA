@@ -14,6 +14,9 @@ class Nif {
     // Getters
     inline int GetNumber () const { return number_; }
 
+    // Sobrecarga de operadores
+    bool operator==(const Nif&);
+
   private:
     int number_;
 };

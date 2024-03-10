@@ -17,3 +17,12 @@ Nif::Nif(long int number) {
   assert(number >= 10000000 && number <= 99999999);
   number_ = static_cast<int>(number);
 }
+
+/**
+ * @brief Sobrecarga del operador de igualdad
+ * @param nif Nif a comparar
+*/
+
+bool Nif::operator==(const Nif& nif) {
+  return this->number_ = nif.number_;
+}
