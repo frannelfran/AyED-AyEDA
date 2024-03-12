@@ -38,6 +38,8 @@ int main(int argc, char* argv[]) {
       exploracion = new ExplorationReDispersion();
     }
   }
+
+  
   
   
 
