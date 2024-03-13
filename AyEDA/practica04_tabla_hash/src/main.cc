@@ -1,7 +1,7 @@
 #include "options/options.h"
-#include "nif/nif.h"
+#include "key/key.h"
 #include "dispersion_function/dispersion_function.h"
-#include "exploration_function/exploration_function.h"
+#include "sequence/sequence.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
   srand(time(nullptr));
 
   DispersionFunction* dispersion;
-  ExplorationFunction* exploracion;
+  Sequence* sequence;
 
   // Establecer el código de dispersión
   if (options->codigo_dispersion == "mod") {
@@ -23,24 +23,14 @@ int main(int argc, char* argv[]) {
     dispersion = new DispersionFunctionRandom(options->size);
   }
 
-  // Según la técnica de dispersión
-  if (options->tecnica == "close") {
-    if (options->codigo_exploraracion == "lineal") {
-      exploracion = new ExplorationLinear();
-    }
-    else if (options->codigo_exploraracion == "cuadratica") {
-      exploracion = new ExplorationQuadratic();
-    }
-    else if (options->codigo_exploraracion == "doble") {
-      exploracion = new ExplorationDouble(dispersion);
-    }
-    else {
-      exploracion = new ExplorationReDispersion();
-    }
+  // Establecer la secuencia
+  if (options->tecnica == "open") {
+    sequence = new DinamicSequence(options->size);
   }
 
   
-  
+
+
   
 
 

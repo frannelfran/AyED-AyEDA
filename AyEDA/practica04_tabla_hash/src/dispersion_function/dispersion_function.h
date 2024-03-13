@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "../nif/nif.h"
+#include "../key/key.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ class DispersionFunction {
     inline DispersionFunction(int size) : size_(size) {}
 
     // Métodos
-    virtual unsigned operator() (const Nif&) const = 0;
+    virtual unsigned operator() (const Key&) const = 0;
   protected:
     int size_;
 };
@@ -25,7 +25,7 @@ class DispersionFunctionMod : public DispersionFunction {
     inline DispersionFunctionMod(int size) : DispersionFunction(size) {}
 
     // Métodos
-    unsigned operator() (const Nif&) const override;
+    unsigned operator() (const Key&) const override;
 };
 
 // Clase de dispersión por suma
@@ -37,7 +37,7 @@ class DispersionFunctionSum : public DispersionFunction {
     inline DispersionFunctionSum(int size) : DispersionFunction(size) {}
 
     // Métodos
-    unsigned operator() (const Nif&) const override;
+    unsigned operator() (const Key&) const override;
 };
 
 // Clase de dispersión aleatoria
@@ -49,5 +49,5 @@ class DispersionFunctionRandom : public DispersionFunction {
     inline DispersionFunctionRandom(int size) : DispersionFunction(size) {}
 
     // Métodos
-    unsigned operator() (const Nif&) const override;
+    unsigned operator() (const Key&) const override;
 };
