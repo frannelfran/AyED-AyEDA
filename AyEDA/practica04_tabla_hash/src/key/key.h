@@ -9,7 +9,7 @@ using namespace std;
  
 class Key {
   public:
-    Key(); // Generar un número aleatorio
+    inline Key() {}
     Key(long int); // Convertir un número en clave
 
     // Getters

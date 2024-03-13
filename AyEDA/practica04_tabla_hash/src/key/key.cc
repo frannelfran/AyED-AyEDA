@@ -1,14 +1,6 @@
 #include "key.h"
 
 /**
- * @brief Constructor por defecto de la clase Key
-*/
-
-Key::Key() {
-  this->key_ = rand() % 100000000;
-}
-
-/**
  * @brief Constructor de la clase Key
  * @param number Número de Key
 */
