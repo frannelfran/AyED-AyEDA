@@ -29,7 +29,6 @@ bool DinamicSequence::Search(const Key& key) const {
  * @param key Llave a insertar
 */
 
-
 bool DinamicSequence::Insert(const Key& key) {
   if (Search(key)) { // Insertar si se encuentra un sinónimo
     auto posicion = find(sequence_.begin(), sequence_.end(), key); // Buscar la posición de la llave
