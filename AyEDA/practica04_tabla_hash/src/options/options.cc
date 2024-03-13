@@ -33,6 +33,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
       assert (options.bloq_size > 0); // Verificar que el tamaño del bloque sea mayor a 0
       if (*next(next(it)) == "-fe") { // Código de exploración a utilizar
         options.codigo_exploraracion = string(*next(next(next(it))));
+        assert (options.codigo_exploraracion == "linear" || options.codigo_exploraracion == "quadratic" || options.codigo_exploraracion == "double" || options.codigo_exploraracion == "re"); // Verificar que el código de exploración sea válido
       }
     }
   }
