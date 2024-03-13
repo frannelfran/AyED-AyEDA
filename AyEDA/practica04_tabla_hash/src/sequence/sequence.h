@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <list>
 #include "../key/key.h"
 
 using namespace std;
@@ -29,5 +30,5 @@ class DinamicSequence : public Sequence {
     ostream& Print(ostream&) const override;
 
   private:
-    vector<Key> sequence_;
+    list<Key> sequence_;
 };

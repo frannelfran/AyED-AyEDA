@@ -35,9 +35,6 @@ bool DinamicSequence::Insert(const Key& key) {
     sequence_.insert(posicion, key);
     return true;
   }
-  else if (!Search(key) && sequence_.size() == sequence_.capacity()) { // Verificar si la secuencia ya está llena
-    return false;
-  }
   sequence_.push_back(key);
   return true;
 }
