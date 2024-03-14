@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     exploracion = new DoubleDispersionExploration(dispersion);
   }
   else {
-    exploracion = new ReDispersionExploration;
+    exploracion = new ReDispersionExploration(options->size);
   }
 
   // Establecer la tabla hash

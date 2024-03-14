@@ -39,5 +39,9 @@ class DoubleDispersionExploration : public ExplorationFunction {
 
 class ReDispersionExploration : public ExplorationFunction {
   public:
+    inline ReDispersionExploration(int table_size) : table_size_(table_size) {}
+    
     unsigned operator()(const Key&, unsigned) const override;
+  private:
+    int table_size_;
 };

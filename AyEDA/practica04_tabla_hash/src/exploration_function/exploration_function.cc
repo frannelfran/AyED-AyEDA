@@ -41,5 +41,5 @@ unsigned ReDispersionExploration::operator()(const Key& key, unsigned i) const {
   for (int j = 0; j < i; j++) {
     rand();
   }
-  return rand();
+  return rand() % table_size_;
 }

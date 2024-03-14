@@ -18,7 +18,7 @@ optional<Options> parse_args(int argc, char* argv[]) {
     exit(EXIT_SUCCESS);
   }
 
-  if (argc < 7 || argc > 11) {
+  if (argc < 6 || argc > 11) {
     cerr << "Pruebe " << argv[0] << " -h o --help para más información" << endl;
     exit(EXIT_FAILURE);
   }
