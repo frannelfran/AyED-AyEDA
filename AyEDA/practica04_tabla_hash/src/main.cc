@@ -64,7 +64,12 @@ int main(int argc, char* argv[]) {
       cout << "Introduce la clave: ";
       cin >> clave;
       Key key(clave);
-      hash_table->Insert(key);
+      if (hash_table->Insert(key)) {
+        cout << "La clave se ha insertado" << endl;
+      }
+      else {
+        cout << "La clave no se ha insertado" << endl;
+      }
     }
     else if (opcion == 2) {
       cout << "Introduce la clave: ";

@@ -74,7 +74,29 @@ ClosedHashTable::ClosedHashTable(unsigned size, DispersionFunction* dispersion_f
 */
 
 bool ClosedHashTable::Search(const Key& key) const {
-  
+  int index = dispersion_function_->operator()(key);
+  int i = 0;
+  while (i < size_ && !table_[index]->IsFull() && table_[index]->Search(key)) {
+    index = exploration_function_->operator()(key, i);
+    i++;
+  }
+  return i < size_;
+}
+
+/**
+ * @brief Método que inserta una clave en la tabla
+ * @param key Clave a insertar
+ * @return true si la clave se ha insertado, false en caso contrario
+*/
+
+bool ClosedHashTable::Insert(const Key& key) const {
+  int index = dispersion_function_->operator()(key);
+  int i = 0;
+  while (i < size_ && !table_[index]->IsFull() && !table_[index]->Insert(key)) {
+    index = exploration_function_->operator()(key, i);
+    i++;
+  }
+  return i < size_;
 }
 
 /**

@@ -43,7 +43,7 @@ class ClosedHashTable : public HashTable {
 
     // Métodos de la clase
     bool Search(const Key&) const override;
-    bool Insert(const Key&) const override {}
+    bool Insert(const Key&) const override;
 
   private:
     int bloq_size_;
