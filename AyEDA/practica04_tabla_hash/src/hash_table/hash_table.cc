@@ -49,6 +49,25 @@ bool OpenHashTable::Insert(const Key& key) const {
 }
 
 /**
+ * @brief Constructor de la clase ClosedHashTable
+ * @param size Tamaño de la tabla
+ * @param dispersion_function Función de dispersión
+ * @param exploration_function Función de exploración
+ * @param bloq_size Tamaño del bloque
+*/
+
+ClosedHashTable::ClosedHashTable(unsigned size, DispersionFunction* dispersion_function, ExplorationFunction* exploration_function, unsigned bloq_size) {
+  size_ = size;
+  dispersion_function_ = dispersion_function;
+  exploration_function_ = exploration_function;
+  bloq_size_ = bloq_size;
+  table_.resize(size);
+  for (int i = 0; i < size; i++) {
+    table_[i] = new StaticSequence(bloq_size);
+  }
+}
+
+/**
  * @brief Sobrecarga del operador de salida
  * @param os Stream de salida
  * @param hash_table Tabla hash

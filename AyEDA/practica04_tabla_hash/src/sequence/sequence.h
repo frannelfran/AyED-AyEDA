@@ -34,3 +34,24 @@ class DinamicSequence : public Sequence {
   private:
     list<Key> sequence_;
 };
+
+// Secuencia para dispersión cerrada
+
+class StaticSequence : public Sequence {
+  public:
+    // Constructores
+    inline StaticSequence() {}
+    inline StaticSequence(int bloq_size) : bloq_size_(bloq_size) {}
+    
+    // Métodos de la clase
+    bool Search(const Key&) const override;
+    bool Insert(const Key&) override;
+    bool IsFull();
+
+    // Sobrecarga de operadores
+    ostream& Print(ostream&) const override;
+
+  private:
+    int bloq_size_;
+    vector<Key> sequence_;
+};

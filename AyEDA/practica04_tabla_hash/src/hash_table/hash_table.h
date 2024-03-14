@@ -35,3 +35,17 @@ class OpenHashTable : public HashTable {
     bool Search(const Key&) const override;
     bool Insert(const Key&) const override;
 };
+
+class ClosedHashTable : public HashTable {
+  public:
+    // Constructores
+    ClosedHashTable(unsigned, DispersionFunction*, ExplorationFunction*, unsigned);
+
+    // Métodos de la clase
+    bool Search(const Key&) const override {}
+    bool Insert(const Key&) const override {}
+
+  private:
+    int bloq_size_;
+    ExplorationFunction* exploration_function_;
+};
