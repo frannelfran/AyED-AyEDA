@@ -61,10 +61,7 @@ bool StaticSequence::Search(const Key& key) const {
 */
 
 bool StaticSequence::Insert(const Key& key) {
-  if (Search(key)) {
-    return false;
-  }
-  else if (IsFull()) {
+  if (Search(key) || IsFull()) {
     return false;
   }
   sequence_.push_back(key);
