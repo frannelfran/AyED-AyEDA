@@ -8,6 +8,9 @@ using namespace std;
 
 class Sequence {
   public:
+    // Destructor
+    virtual ~Sequence() {}
+
     // Métodos de la clase
     virtual bool Search(const Key&) const = 0;
     virtual bool Insert(const Key&) = 0;
@@ -20,8 +23,7 @@ class DinamicSequence : public Sequence {
   public:
     // Constructores
     inline DinamicSequence() {}
-    DinamicSequence(int);
-
+    
     // Métodos de la clase
     bool Search(const Key&) const override;
     bool Insert(const Key&) override;

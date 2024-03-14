@@ -3,6 +3,7 @@
 #include "dispersion_function/dispersion_function.h"
 #include "exploration_function/exploration_function.h"
 #include "sequence/sequence.h"
+#include "hash_table/hash_table.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ int main(int argc, char* argv[]) {
   DispersionFunction* dispersion;
   ExplorationFunction* exploracion;
   Sequence* sequence;
+  HashTable* hash_table;
 
   // Establecer el código de dispersión
   if (options->codigo_dispersion == "mod") {
@@ -27,44 +29,56 @@ int main(int argc, char* argv[]) {
 
   // Establecer la función de exploración
   if (options->codigo_exploraracion == "linear") {
-    exploracion = new LinearExploration();
+    exploracion = new LinearExploration;
   }
   else if (options->codigo_exploraracion == "quadratic") {
-    exploracion = new QuadraticExploration();
+    exploracion = new QuadraticExploration;
   }
   else if (options->codigo_exploraracion == "double") {
     exploracion = new DoubleDispersionExploration(dispersion);
   }
   else {
-    exploracion = new ReDispersionExploration();
+    exploracion = new ReDispersionExploration;
   }
 
-  // Establecer la secuencia
+  // Establecer la secuencia y la tabla hash
   if (options->tecnica == "open") {
-    sequence = new DinamicSequence(options->size);
+    hash_table = new OpenHashTable(options->size, dispersion);
   }
 
-  
+  // Menú del programa
+  int opcion, clave;
+  do {
+    cout << *hash_table << endl;
+    cout << "--- Menú ---\n";
+    cout << "1. Insertar clave" << endl;
+    cout << "2. Buscar clave" << endl;
+    cout << "3. Salir" << endl;
+    cout << "------------\n";
+    cout << "Opción: ";
+    cin >> opcion;
 
+    if (opcion == 1) {
+      cout << "Introduce la clave: ";
+      cin >> clave;
+      Key key(clave);
+      hash_table->Insert(key);
+    }
+    else if (opcion == 2) {
+      cout << "Introduce la clave: ";
+      cin >> clave;
+      Key key(clave);
+      if (hash_table->Search(key)) {
+        cout << "La clave está en la tabla" << endl;
+      }
+      else {
+        cout << "La clave no está en la tabla" << endl;
+      }
+    }
+    assert (opcion == 1 || opcion == 2 || opcion == 3);
+  } while (opcion != 3);
 
-  
-
-  
-
-
-  
-
-
-
-
-
-  
-
-  
-
-
-
-
-
+  // Eliminar objetos
+  delete hash_table;
   return 0;
 }

@@ -1,15 +1,6 @@
 #include "sequence.h"
 
 /**
- * @brief Constructor de la clase DinamicSequence
- * @param size Tamaño de la secuencia
-*/
-
-DinamicSequence::DinamicSequence(int size) {
-  sequence_.resize(size);
-}
-
-/**
  * @brief Método para buscar una llave
  * @param key Llave a buscar
  * @return 1 si la llave se encuentra, 0 en caso contrario
@@ -30,10 +21,8 @@ bool DinamicSequence::Search(const Key& key) const {
 */
 
 bool DinamicSequence::Insert(const Key& key) {
-  if (Search(key)) { // Insertar si se encuentra un sinónimo
-    auto posicion = find(sequence_.begin(), sequence_.end(), key); // Buscar la posición de la llave
-    sequence_.insert(posicion, key);
-    return true;
+  if (Search(key)) {
+    return false;
   }
   sequence_.push_back(key);
   return true;
@@ -45,7 +34,7 @@ bool DinamicSequence::Insert(const Key& key) {
 */
 
 ostream& DinamicSequence::Print(ostream& os) const {
-  for (auto k : sequence_) {
+  for (const auto& k : sequence_) {
     os << k << " ";
   }
   return os;

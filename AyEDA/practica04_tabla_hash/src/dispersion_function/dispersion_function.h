@@ -10,6 +10,9 @@ class DispersionFunction {
     inline DispersionFunction() {}
     inline DispersionFunction(int size) : size_(size) {}
 
+    // Destructor
+    virtual ~DispersionFunction() {}
+
     // Métodos
     virtual unsigned operator() (const Key&) const = 0;
   protected:
