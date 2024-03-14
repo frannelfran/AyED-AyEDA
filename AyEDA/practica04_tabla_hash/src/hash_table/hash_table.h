@@ -42,7 +42,7 @@ class ClosedHashTable : public HashTable {
     ClosedHashTable(unsigned, DispersionFunction*, ExplorationFunction*, unsigned);
 
     // Métodos de la clase
-    bool Search(const Key&) const override {}
+    bool Search(const Key&) const override;
     bool Insert(const Key&) const override {}
 
   private:

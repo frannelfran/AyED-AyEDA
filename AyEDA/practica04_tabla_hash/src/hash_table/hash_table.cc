@@ -68,6 +68,16 @@ ClosedHashTable::ClosedHashTable(unsigned size, DispersionFunction* dispersion_f
 }
 
 /**
+ * @brief Método que busca una clave en la tabla
+ * @param key Clave a buscar
+ * @return true si la clave está en la tabla, false en caso contrario
+*/
+
+bool ClosedHashTable::Search(const Key& key) const {
+  
+}
+
+/**
  * @brief Sobrecarga del operador de salida
  * @param os Stream de salida
  * @param hash_table Tabla hash

@@ -13,7 +13,6 @@ int main(int argc, char* argv[]) {
 
   DispersionFunction* dispersion;
   ExplorationFunction* exploracion;
-  Sequence* sequence;
   HashTable* hash_table;
 
   // Establecer el código de dispersión
@@ -41,9 +40,12 @@ int main(int argc, char* argv[]) {
     exploracion = new ReDispersionExploration;
   }
 
-  // Establecer la secuencia y la tabla hash
+  // Establecer la tabla hash
   if (options->tecnica == "open") {
     hash_table = new OpenHashTable(options->size, dispersion);
+  }
+  else {
+    hash_table = new ClosedHashTable(options->size, dispersion, exploracion, options->bloq_size);
   }
 
   // Menú del programa
