@@ -8,9 +8,19 @@
 */
 
 optional<Options> parse_args(int argc, char* argv[]) {
-  if (argc < 3 || argc > 11) {
-    cerr << "Uso: " << argv[0] << " -ts <tamaño> -fd <código> -hash <técnica> [-bs <tamaño> -fe <código>]" << endl;
+  if (string(argv[1]) == "-h" || string(argv[1]) == "--help") { // Mostrar la ayuda
+    cerr << "Uso: " << argv[0] << " -ts <table_size> -fd <código> -hash <técnica> [-bs <bloq_size> -fe <código>]" << endl;
+    cerr << "<table_size> Tamaño de la tabla hash" << endl;
+    cerr << "<código> Código de dispersión (mod, sum, random)" << endl;
+    cerr << "<técnica> Técnica de dispersión (open, close)" << endl;
+    cerr << "<bloq_size> Tamaño de los bloques" << endl;
+    cerr << "<código> Código de exploración (linear, quadratic, double, re)" << endl;
     exit(EXIT_SUCCESS);
+  }
+
+  if (argc < 7 || argc > 11) {
+    cerr << "Pruebe " << argv[0] << " -h o --help para más información" << endl;
+    exit(EXIT_FAILURE);
   }
 
   vector<string_view> args(argv + 1, argv + argc);
