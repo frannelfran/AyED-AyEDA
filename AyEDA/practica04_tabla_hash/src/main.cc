@@ -9,7 +9,6 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
   auto options = parse_args(argc, argv);
-  srand(time(nullptr));
 
   DispersionFunction* dispersion;
   ExplorationFunction* exploracion;

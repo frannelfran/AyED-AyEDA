@@ -18,7 +18,6 @@ class HashTable {
     friend ostream& operator<<(ostream&, const HashTable&);
 
   protected:
-    // Atributos de la clase
     int size_;
     DispersionFunction* dispersion_function_;
     vector<Sequence*> table_;
