@@ -76,11 +76,14 @@ ClosedHashTable::ClosedHashTable(unsigned size, DispersionFunction* dispersion_f
 bool ClosedHashTable::Search(const Key& key) const {
   int index = dispersion_function_->operator()(key);
   int i = 0;
-  while (i < size_ && !table_[index]->IsFull() && table_[index]->Search(key)) {
+  while (i < size_) {
+    if (table_[index]->Search(key)) {
+      return true;
+    }
     index = exploration_function_->operator()(key, i);
     i++;
   }
-  return i < size_;
+  return false;
 }
 
 /**
@@ -92,11 +95,17 @@ bool ClosedHashTable::Search(const Key& key) const {
 bool ClosedHashTable::Insert(const Key& key) const {
   int index = dispersion_function_->operator()(key);
   int i = 0;
-  while (i < size_ && !table_[index]->IsFull() && !table_[index]->Insert(key)) {
+  while (i < size_) {
+    if (table_[index]->Insert(key)) {
+      return true;
+    }
+    else if (table_[index]->Search(key)) {
+      return false;
+    }
     index = exploration_function_->operator()(key, i);
     i++;
   }
-  return i < size_;
+  return false;
 }
 
 /**

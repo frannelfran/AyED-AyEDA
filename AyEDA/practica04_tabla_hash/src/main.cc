@@ -58,7 +58,6 @@ int main(int argc, char* argv[]) {
     cout << "------------\n";
     cout << "Opción: ";
     cin >> opcion;
-
     if (opcion == 1) {
       cout << "Introduce la clave: ";
       cin >> clave;
