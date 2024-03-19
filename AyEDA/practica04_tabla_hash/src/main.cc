@@ -80,10 +80,14 @@ int main(int argc, char* argv[]) {
         cout << "La clave no está en la tabla" << endl;
       }
     }
-    assert (opcion == 1 || opcion == 2 || opcion == 3);
+    if (opcion != 1 && opcion != 2 && opcion != 3) {
+      cout << "Opción no válida" << endl;
+      hash_table->Delete();
+      return 1;
+    }
   } while (opcion != 3);
 
   // Eliminar objetos
-  delete hash_table;
+  hash_table->Delete();
   return 0;
 }

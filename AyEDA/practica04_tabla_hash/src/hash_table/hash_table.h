@@ -9,7 +9,7 @@ using namespace std;
 class HashTable {
   public:
     // Desctructor
-    virtual ~HashTable();
+    virtual void Delete() = 0;
 
     // Métodos de la clase
     virtual bool Search(const Key&) const = 0;
@@ -30,6 +30,9 @@ class OpenHashTable : public HashTable {
     // Constructores
     OpenHashTable(unsigned, DispersionFunction*);
 
+    // Destructor
+    void Delete() override;
+
     // Métodos de la clase
     bool Search(const Key&) const override;
     bool Insert(const Key&) const override;
@@ -39,6 +42,9 @@ class ClosedHashTable : public HashTable {
   public:
     // Constructores
     ClosedHashTable(unsigned, DispersionFunction*, ExplorationFunction*, unsigned);
+
+    // Destructor
+    void Delete() override;
 
     // Métodos de la clase
     bool Search(const Key&) const override;

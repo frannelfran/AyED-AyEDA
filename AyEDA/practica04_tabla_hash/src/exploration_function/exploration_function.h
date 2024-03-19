@@ -6,6 +6,7 @@ using namespace std;
 
 class ExplorationFunction {
   public:
+    inline virtual ~ExplorationFunction() {}
     virtual unsigned operator()(const Key&, unsigned) const = 0;
 };
 

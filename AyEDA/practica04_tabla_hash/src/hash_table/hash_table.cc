@@ -1,17 +1,6 @@
 #include "hash_table.h"
 
 /**
- * @brief Destructor de la clase HashTable
-*/
-
-HashTable::~HashTable() {
-  for (int i = 0; i < size_; i++) {
-    delete table_[i];
-  }
-  delete dispersion_function_;
-}
-
-/**
  * @brief Constructor de la clase OpenHashTable
  * @param size Tamaño de la tabla
  * @param dispersion_function Función de dispersión
@@ -24,6 +13,17 @@ OpenHashTable::OpenHashTable(unsigned size, DispersionFunction* dispersion_funct
   for (int i = 0; i < size; i++) {
     table_[i] = new DinamicSequence;
   }
+}
+
+/**
+ * @brief Destructor de la clase OpenHashTable
+*/
+
+void OpenHashTable::Delete() {
+  for (int i = 0; i < size_; i++) {
+    delete table_[i];
+  }
+  delete dispersion_function_;
 }
 
 /**
@@ -65,6 +65,18 @@ ClosedHashTable::ClosedHashTable(unsigned size, DispersionFunction* dispersion_f
   for (int i = 0; i < size; i++) {
     table_[i] = new StaticSequence(bloq_size);
   }
+}
+
+/**
+ * @brief Destructor de la clase ClosedHashTable
+*/
+
+void ClosedHashTable::Delete() {
+  for (int i = 0; i < size_; i++) {
+    delete table_[i];
+  }
+  delete dispersion_function_;
+  delete exploration_function_;
 }
 
 /**
