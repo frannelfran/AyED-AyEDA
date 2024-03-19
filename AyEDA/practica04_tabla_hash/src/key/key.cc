@@ -14,7 +14,7 @@ Key::Key(long int key) {
  * @param Key Key a comparar
 */
 
-bool Key::operator==(const Key& key){
+bool Key::operator==(const Key& key) {
   return this->key_ == key.key_;
 }
 
