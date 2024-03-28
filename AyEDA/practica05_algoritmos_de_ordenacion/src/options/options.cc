@@ -26,27 +26,28 @@ optional<Options> parse_args(int argc, char* argv[]) {
   Options options;
   for (auto it = args.begin(); it != args.end(); it++) {
     if (*it == "-size") { // Tamaño de la secuencia
-      options.size = stoi(string(*(++it)));
+      options.size = stoi(string(*(next(it))));
       assert (options.size > 0);
     }
     if (*it == "-ord") { // Algoritmo de ordenación
-      options.ordenacion = string(*(++it));
+      options.ordenacion = string(*next(it));
       assert (options.ordenacion == "seleccion" || options.ordenacion == "quicksort" || options.ordenacion == "heapsort" || options.ordenacion == "shellsort" || options.ordenacion == "radixsort");
     }
     if (*it == "-init") {
-      options.introduce_data = string(*(next(it++)));
+      options.introduce_data = string(*(next(it)));
       assert (options.introduce_data == "manual" || options.introduce_data == "random" || options.introduce_data == "file");
       if (options.introduce_data == "file") {
-        options.fichero = string(*(next(it++)));
+        options.fichero = string(*(next(next(it))));
       }
     }
     if (*it == "-trace") {
-      if (string(*(++it)) == "y") {
+      if (string(*next(it)) == "y") {
         options.traza = true;
       }
       else {
         options.traza = false;
       }
+      assert (*next(it) == "y" || *next(it) == "n");
     }
   }
   return options;
