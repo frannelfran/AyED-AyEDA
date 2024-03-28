@@ -44,9 +44,6 @@ optional<Options> parse_args(int argc, char* argv[]) {
       if (string(*next(it)) == "y") {
         options.traza = true;
       }
-      else {
-        options.traza = false;
-      }
       assert (*next(it) == "y" || *next(it) == "n");
     }
   }
