@@ -67,17 +67,19 @@ void QuickSort::QSort(Sequence* secuencia, int ini, int fin) const {
 
 void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
   while (2 * i <= n) {
-    Position h1(2 * i), h2(h1.GetData() + 1), h;
-    if (h2.GetData() <= n && secuencia->operator[](h1) < secuencia->operator[](h2)) {
+    int h1 = 2 * i, h2 = h1 + 1, h;
+    if (h2 <= n && secuencia->operator[](Position(h2)) > secuencia->operator[](Position(h1))) {
       h = h2;
-    } else {
+    }
+    else {
       h = h1;
     }
-    if (secuencia->operator[](h) <= secuencia->operator[](Position(i))) {
+    if (secuencia->operator[](Position(h)) <= secuencia->operator[](Position(i))) {
       break;
-    } else {
-      secuencia->Swap(Position(i), h);
-      i = h.GetData();
+    }
+    else {
+      secuencia->Swap(Position(i), Position(h));
+      i = h;
     }
   }
 }
@@ -88,13 +90,16 @@ void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
 
 void HeapSort::Sort() const {
   int n = sequence_->GetSize();
-  for (int i = n / 2; i > 0; i--) {
-    Baja(i, sequence_, n);
+  // Construir el heap (reorganizar el arreglo)
+  for (int i = n / 2 - 1; i >= 0; i--) {
+    Baja(i, sequence_, n - 1);
   }
-
-  for (int i = n; i > 1; i--) {
-    sequence_->Swap(Position(1), Position(i));
-    Baja(1, sequence_, i - 1);
+  // Extraer elementos del heap uno por uno
+  for (int i = n - 1; i > 0; i--) {
+    // Mover la raíz actual al final del arreglo
+    sequence_->Swap(Position(0), Position(i));
+    // Llamar a Baja en el montículo reducido
+    Baja(0, sequence_, i - 1);
   }
 }
 

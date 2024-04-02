@@ -48,6 +48,9 @@ void StaticSequence::Swap(const Position& pos1, const Position& pos2) {
   // Asigno las posiciones
   sequence_[pos1.GetData()].SetPosition(pos1);
   sequence_[pos2.GetData()].SetPosition(pos2);
+  if (show_) {
+    Print(cout);
+  }
 }
 
 /**

@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  Sequence* secuencia = new StaticSequence(options->size);
+  Sequence* secuencia = new StaticSequence(options->size, options->traza);
   SortMethod* metodo;
 
   // Como introducir los datos
@@ -47,26 +47,26 @@ int main(int argc, char* argv[]) {
 
   // Método de ordenación elegido
   if (options->ordenacion == "seleccion") {
-    metodo = new SelectionSort(secuencia);
+    metodo = new SelectionSort(secuencia, options->traza);
   }
   else if (options->ordenacion == "quicksort") {
-    metodo = new QuickSort(secuencia);
+    metodo = new QuickSort(secuencia, options->traza);
   }
   else if (options->ordenacion == "heapsort") {
-    metodo = new HeapSort(secuencia);
+    metodo = new HeapSort(secuencia, options->traza);
   }
   else if (options->ordenacion == "shellsort") {
-    metodo = new ShellSort(secuencia);
+    metodo = new ShellSort(secuencia, options->traza);
   }
   else if (options->ordenacion == "radixsort") {
-    metodo = new RadixSort(secuencia);
+    metodo = new RadixSort(secuencia, options->traza);
   }
 
-
-
-
-  metodo->Sort();
+  cout << "Secuencia introducida: ";
   secuencia->Print(cout);
+  cout << "---Traza de la ordenación---" << endl;
+  metodo->Sort();
+  cout << "----------------------------" << endl;
   delete secuencia;
   
   return 0;

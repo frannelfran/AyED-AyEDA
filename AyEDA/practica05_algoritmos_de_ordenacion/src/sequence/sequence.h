@@ -9,6 +9,9 @@ using namespace std;
 
 class Sequence {
   public:
+    // Constructores
+    Sequence() {}
+    Sequence(bool show) : show_(show) {}
     // Destructor
     virtual ~Sequence() {}
 
@@ -22,6 +25,9 @@ class Sequence {
     // Sobrecarga de operadores
     virtual ostream& Print(ostream&) const = 0;
     virtual Key operator[](const Position&) const = 0;
+
+  protected:
+    bool show_;
 };
 
 // Secuencia para dispersión cerrada
@@ -30,7 +36,7 @@ class StaticSequence : public Sequence {
   public:
     // Constructores
     inline StaticSequence() {}
-    inline StaticSequence(int bloq_size) : bloq_size_(bloq_size) {}
+    inline StaticSequence(int bloq_size, bool show) : bloq_size_(bloq_size), Sequence(show) {}
     
     // Métodos de la clase
     bool Search(const Key&) const override;
