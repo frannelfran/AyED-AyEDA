@@ -7,7 +7,7 @@ class SortMethod {
   public:
     // Constructores
     SortMethod() {}
-    SortMethod(Sequence* sequence, bool show) : sequence_(sequence), show_(show) {}
+    SortMethod(Sequence* sequence) : sequence_(sequence) {}
 
     // Métodos
     virtual void Sort() const = 0;
@@ -23,7 +23,7 @@ class SelectionSort : public SortMethod {
   public:
     // Constructores
     SelectionSort() {}
-    SelectionSort(Sequence* sequence, bool show) : SortMethod(sequence, show) {}
+    SelectionSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
     void Sort() const override;
@@ -35,7 +35,7 @@ class QuickSort : public SortMethod {
   public:
     // Constructores
     QuickSort() {}
-    QuickSort(Sequence* sequence, bool show) : SortMethod(sequence, show) {}
+    QuickSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
     void Sort() const override;
@@ -48,7 +48,7 @@ class HeapSort : public SortMethod {
   public:
     // Constructores
     HeapSort() {}
-    HeapSort(Sequence* sequence, bool show) : SortMethod(sequence, show) {}
+    HeapSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
     void Sort() const override;
@@ -61,7 +61,7 @@ class ShellSort : public SortMethod {
   public:
     // Constructores
     ShellSort() {}
-    ShellSort(Sequence* sequence, bool show) : SortMethod(sequence, show) {}
+    ShellSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
     void Sort() const override;
@@ -74,8 +74,8 @@ class RadixSort : public SortMethod {
   public:
     // Constructores
     RadixSort() {}
-    RadixSort(Sequence* sequence, bool show) : SortMethod(sequence, show) {}
+    RadixSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
-    void Sort() const override {}
+    void Sort() const override;
 };

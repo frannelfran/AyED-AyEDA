@@ -47,19 +47,19 @@ int main(int argc, char* argv[]) {
 
   // Método de ordenación elegido
   if (options->ordenacion == "seleccion") {
-    metodo = new SelectionSort(secuencia, options->traza);
+    metodo = new SelectionSort(secuencia);
   }
   else if (options->ordenacion == "quicksort") {
-    metodo = new QuickSort(secuencia, options->traza);
+    metodo = new QuickSort(secuencia);
   }
   else if (options->ordenacion == "heapsort") {
-    metodo = new HeapSort(secuencia, options->traza);
+    metodo = new HeapSort(secuencia);
   }
   else if (options->ordenacion == "shellsort") {
-    metodo = new ShellSort(secuencia, options->traza);
+    metodo = new ShellSort(secuencia);
   }
   else if (options->ordenacion == "radixsort") {
-    metodo = new RadixSort(secuencia, options->traza);
+    metodo = new RadixSort(secuencia);
   }
 
   cout << "Secuencia introducida: ";

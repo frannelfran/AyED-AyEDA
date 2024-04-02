@@ -132,3 +132,31 @@ void ShellSort::DeltaSort(int delta, Sequence* secuencia, int n) const {
     }
   }
 }
+
+void RadixSort::Sort() const {
+  int i, j, m = 0, exp = 1;
+  Sequence* secuencia = new StaticSequence(sequence_->GetSize(), false);
+  for (i = 0; i < sequence_->GetSize(); i++) {
+    if (sequence_->operator[](Position(i)).GetKey() > m) {
+      m = sequence_->operator[](Position(i)).GetKey();
+    }
+  }
+  while (m / exp > 0) {
+    int bucket[10] = {0};
+    for (i = 0; i < sequence_->GetSize(); i++) {
+      bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10]++;
+    }
+    for (i = 1; i < 10; i++) {
+      bucket[i] += bucket[i - 1];
+    }
+    for (i = sequence_->GetSize() - 1; i >= 0; i--) {
+      secuencia->operator[](Position(--bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10])) = sequence_->operator[](Position(i));
+      bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10]--;
+    }
+    for (i = 0; i < sequence_->GetSize(); i++) {
+      sequence_->operator[](Position(i)) = secuencia->operator[](Position(i));
+    }
+    exp *= 10;
+  }
+  delete secuencia;
+}
