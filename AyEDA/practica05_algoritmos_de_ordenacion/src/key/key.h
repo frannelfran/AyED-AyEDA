@@ -19,6 +19,7 @@ class Key {
 
     // Sobrecarga de operadores
     bool operator==(const Key&);
+    bool operator<(const Key&);
     friend ostream& operator<<(ostream& os, const Key& key);
 
   private:

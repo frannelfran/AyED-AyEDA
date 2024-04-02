@@ -11,6 +11,16 @@ Key::Key(long int key, const Position& pos) {
 }
 
 /**
+ * @brief Sobrecarga del operador de menor que
+ * @param Key Key a comparar
+ * @return true si la Key es menor que la Key a comparar
+*/
+
+bool Key::operator<(const Key& key) {
+  return this->key_ < key.key_;
+}
+
+/**
  * @brief Sobrecarga del operador de igualdad
  * @param Key Key a comparar
 */
