@@ -5,17 +5,15 @@
 */
 
 void SelectionSort::Sort() const {
-  int i, j, min;
-  for (i = 0; i < sequence_->GetSize() - 1; i++) {
-    min = i;
-    for (j = i + 1; j < sequence_->GetSize(); j++) {
+  int n = sequence_->GetSize();
+  for (int i = 0; i < n - 1; i++) {
+    int min = i;
+    for (int j = i + 1; j < n; j++) {
       if (sequence_->operator[](Position(j)) < sequence_->operator[](Position(min))) {
         min = j;
       }
     }
-    if (min != i) {
-      sequence_->Swap(Position(i), Position(min));
-    }
+    sequence_->Swap(Position(i), Position(min));
   }
 }
 
@@ -35,23 +33,23 @@ void QuickSort::Sort() const {
 */
 
 void QuickSort::QSort(Sequence* secuencia, int ini, int fin) const {
-  int i = ini, j = fin;
-  Key p = secuencia->operator[](Position((i + j) / 2));
-  while (i <= j) {
+  int i = ini, f = fin;
+  Key p = secuencia->operator[](Position((i + f) / 2));
+  while (i <= f) {
     while (secuencia->operator[](Position(i)) < p) {
       i++;
     }
-    while (secuencia->operator[](Position(j)) > p) {
-      j--;
+    while (secuencia->operator[](Position(f)) > p) {
+      f--;
     }
-    if (i <= j) {
-      secuencia->Swap(Position(i), Position(j));
+    if (i <= f) {
+      secuencia->Swap(Position(i), Position(f));
       i++;
-      j--;
+      f--;
     }
   }
-  if (ini < j) {
-    QSort(secuencia, ini, j);
+  if (ini < f) {
+    QSort(secuencia, ini, f);
   }
   if (i < fin) {
     QSort(secuencia, i, fin);
@@ -66,13 +64,15 @@ void QuickSort::QSort(Sequence* secuencia, int ini, int fin) const {
 */
 
 void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
-  while (2 * i <= n) {
-    int h1 = 2 * i, h2 = h1 + 1, h;
-    if (h2 <= n && secuencia->operator[](Position(h2)) > secuencia->operator[](Position(h1))) {
-      h = h2;
+  int h, h1, h2;
+  while (2 * i + 1 < n) {
+    h1 = 2 * i + 1;
+    h2 = 2 * i + 2;
+    if (h2 == n || secuencia->operator[](Position(h1)) > secuencia->operator[](Position(h2))) {
+      h = h1;
     }
     else {
-      h = h1;
+      h = h2;
     }
     if (secuencia->operator[](Position(h)) <= secuencia->operator[](Position(i))) {
       break;
@@ -90,16 +90,12 @@ void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
 
 void HeapSort::Sort() const {
   int n = sequence_->GetSize();
-  // Construir el heap (reorganizar el arreglo)
   for (int i = n / 2 - 1; i >= 0; i--) {
-    Baja(i, sequence_, n - 1);
+    Baja(i, sequence_, n);
   }
-  // Extraer elementos del heap uno por uno
   for (int i = n - 1; i > 0; i--) {
-    // Mover la raíz actual al final del arreglo
     sequence_->Swap(Position(0), Position(i));
-    // Llamar a Baja en el montículo reducido
-    Baja(0, sequence_, i - 1);
+    Baja(0, sequence_, i);
   }
 }
 
