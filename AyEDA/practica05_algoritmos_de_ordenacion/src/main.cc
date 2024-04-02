@@ -68,6 +68,5 @@ int main(int argc, char* argv[]) {
   metodo->Sort();
   cout << "----------------------------" << endl;
   delete secuencia;
-  
   return 0;
 }
