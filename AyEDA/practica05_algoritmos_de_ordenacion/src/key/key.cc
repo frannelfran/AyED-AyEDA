@@ -35,6 +35,6 @@ bool Key::operator==(const Key& key) {
 */
 
 ostream& operator<<(ostream& os, const Key& key) {
-  os << key.key_;
+  os << key.key_ << key.pos_.GetData();
   return os;
 }

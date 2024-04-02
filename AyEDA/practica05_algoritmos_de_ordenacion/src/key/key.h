@@ -17,6 +17,9 @@ class Key {
     inline int GetKey() const { return key_; }
     inline Position GetPosition() const { return pos_; }
 
+    // Setters
+    void SetPosition(const Position& pos) { pos_.SetData(pos.GetData()); }
+
     // Sobrecarga de operadores
     bool operator==(const Key&);
     bool operator<(const Key&);

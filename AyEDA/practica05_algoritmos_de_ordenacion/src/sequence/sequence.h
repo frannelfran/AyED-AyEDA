@@ -17,7 +17,8 @@ class Sequence {
     virtual bool Insert(const Key&) = 0;
     virtual bool IsFull() = 0;
     virtual int GetSize() const = 0;
-    
+    virtual void Swap(const Position&, const Position&) = 0;
+
     // Sobrecarga de operadores
     virtual ostream& Print(ostream&) const = 0;
     virtual Key operator[](const Position&) const = 0;
@@ -35,6 +36,9 @@ class StaticSequence : public Sequence {
     bool Search(const Key&) const override;
     bool Insert(const Key&) override;
     bool IsFull() override;
+    void Swap(const Position&, const Position&) override;
+
+    // Getters
     inline int GetSize() const override { return sequence_.size(); }
 
     // Sobrecarga de operadores

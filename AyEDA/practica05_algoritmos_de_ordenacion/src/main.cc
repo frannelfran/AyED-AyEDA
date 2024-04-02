@@ -11,15 +11,26 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  Key key(12345, Position(0));
-  Sequence* secuencia;
-  secuencia = new StaticSequence(5);
-  secuencia->Insert(key);
-  Key ke1 = secuencia->operator[](Position(1));
-  cout << ke1 << endl;
+  Sequence* secuencia = new StaticSequence(options->size);
+  SortMethod* metodo;
+
+  if (options->introduce_data == "manual") {
+    for (int i = 0; i < options->size; i++) {
+      int clave;
+      cout << "Introduzca la clave " << i + 1 << ": ";
+      cin >> clave;
+      secuencia->Insert(Key(clave, Position(i)));
+    }
+  }
+
+  // Método de ordenación elegido
+  if (options->ordenacion == "seleccion") {
+    metodo = new SelectionSort(secuencia);
+  }
+
+  metodo->Sort();
+  secuencia->Print(cout);
+  delete secuencia;
   
-  
-
-
-
+  return 0;
 }

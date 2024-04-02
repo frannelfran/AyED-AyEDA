@@ -38,6 +38,19 @@ bool StaticSequence::IsFull() {
 }
 
 /**
+ * @brief Método para intercambiar dos llaves
+ * @param pos1 Posición de la primera llave
+ * @param pos2 Posición de la segunda llave
+*/
+
+void StaticSequence::Swap(const Position& pos1, const Position& pos2) {
+  swap(sequence_[pos1.GetData()], sequence_[pos2.GetData()]);
+  // Asigno las posiciones
+  sequence_[pos1.GetData()].SetPosition(pos1);
+  sequence_[pos2.GetData()].SetPosition(pos2);
+}
+
+/**
  * @brief Métdodo para obtener una llave
  * @param pos Posición de la llave
  * @return Llave en la posición pos
