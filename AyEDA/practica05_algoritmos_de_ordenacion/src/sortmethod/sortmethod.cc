@@ -129,30 +129,45 @@ void ShellSort::DeltaSort(int delta, Sequence* secuencia, int n) const {
   }
 }
 
+/**
+ * @brief Método de ordenación RadixSort
+*/
+
 void RadixSort::Sort() const {
-  int i, j, m = 0, exp = 1;
-  Sequence* secuencia = new StaticSequence(sequence_->GetSize(), false);
-  for (i = 0; i < sequence_->GetSize(); i++) {
+  int n = sequence_->GetSize();
+  int m = sequence_->operator[](Position(0)).GetKey();
+  for (int i = 1; i < n; i++) {
     if (sequence_->operator[](Position(i)).GetKey() > m) {
       m = sequence_->operator[](Position(i)).GetKey();
     }
   }
-  while (m / exp > 0) {
-    int bucket[10] = {0};
-    for (i = 0; i < sequence_->GetSize(); i++) {
-      bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10]++;
-    }
-    for (i = 1; i < 10; i++) {
-      bucket[i] += bucket[i - 1];
-    }
-    for (i = sequence_->GetSize() - 1; i >= 0; i--) {
-      secuencia->operator[](Position(--bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10])) = sequence_->operator[](Position(i));
-      bucket[sequence_->operator[](Position(i)).GetKey() / exp % 10]--;
-    }
-    for (i = 0; i < sequence_->GetSize(); i++) {
-      sequence_->operator[](Position(i)) = secuencia->operator[](Position(i));
-    }
-    exp *= 10;
+  for (int exp = 1; m / exp > 0; exp *= 10) {
+    CountSort(sequence_, n, exp);
   }
-  delete secuencia;
+}
+
+/**
+ * @brief Método de ordenación CountSort
+ * @param secuencia Secuencia de claves
+ * @param n Tamaño de la secuencia
+ * @param exp Exponente
+*/
+
+void RadixSort::CountSort(Sequence* secuencia, int n, int exp) const {
+  Sequence* output = new StaticSequence(secuencia->GetSize(), false);
+  int count[10] = {0};
+  for (int i = 0; i < n; i++) {
+    count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]++;
+  }
+  for (int i = 1; i < 10; i++) {
+    count[i] += count[i - 1];
+  }
+  for (int i = n - 1; i >= 0; i--) {
+    output->operator[](Position(count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1)) = secuencia->operator[](Position(i));
+    count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]--;
+  }
+  for (int i = 0; i < n; i++) {
+    secuencia->operator[](Position(i)) = output->operator[](Position(i));
+  }
+  delete output;
 }

@@ -78,4 +78,5 @@ class RadixSort : public SortMethod {
 
     // Métodos
     void Sort() const override;
+    void CountSort(Sequence*, int, int) const;
 };
