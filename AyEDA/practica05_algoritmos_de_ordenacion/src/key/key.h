@@ -1,9 +1,5 @@
 #pragma once
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <random>
-#include <cassert>
 #include "../position/position.h"
 
 using namespace std;

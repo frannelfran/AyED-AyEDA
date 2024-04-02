@@ -1,3 +1,6 @@
+#include <random>
+#include <ctime>
+#include <fstream>
 #include "options/options.h"
 #include "sequence/sequence.h"
 #include "key/key.h"
@@ -14,12 +17,31 @@ int main(int argc, char* argv[]) {
   Sequence* secuencia = new StaticSequence(options->size);
   SortMethod* metodo;
 
+  // Como introducir los datos
   if (options->introduce_data == "manual") {
     for (int i = 0; i < options->size; i++) {
       int clave;
       cout << "Introduzca la clave " << i + 1 << ": ";
       cin >> clave;
       secuencia->Insert(Key(clave, Position(i)));
+    }
+  }
+  else if (options->introduce_data == "random") {
+    mt19937 generator(time(nullptr));
+    uniform_int_distribution<int> distribution(10000000, 99999999);
+    for (int i = 0; i < options->size; i++) {
+      secuencia->Insert(Key(distribution(generator), Position(i)));
+    }
+  }
+  else if (options->introduce_data == "file") {
+    ifstream file(options->fichero);
+    long int llave, pos = 0;
+    while (file >> llave) {
+      secuencia->Insert(Key(llave, Position(pos)));
+      pos++;
+      if (secuencia->IsFull()) {
+        break;
+      }
     }
   }
 
