@@ -27,6 +27,21 @@ int main(int argc, char* argv[]) {
   if (options->ordenacion == "seleccion") {
     metodo = new SelectionSort(secuencia);
   }
+  else if (options->ordenacion == "quicksort") {
+    metodo = new QuickSort(secuencia);
+  }
+  else if (options->ordenacion == "heapsort") {
+    metodo = new HeapSort(secuencia);
+  }
+  else if (options->ordenacion == "shellsort") {
+    metodo = new ShellSort(secuencia);
+  }
+  else if (options->ordenacion == "radixsort") {
+    metodo = new RadixSort(secuencia);
+  }
+
+
+
 
   metodo->Sort();
   secuencia->Print(cout);

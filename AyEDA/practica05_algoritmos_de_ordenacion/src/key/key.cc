@@ -21,6 +21,26 @@ bool Key::operator<(const Key& key) {
 }
 
 /**
+ * @brief Sobrecarga del operador de menor o igual que
+ * @param Key Key a comparar
+ * @return true si la Key es menor o igual que la Key a comparar
+*/
+
+bool Key::operator<=(const Key& key) {
+  return this->key_ <= key.key_;
+}
+
+/**
+ * @brief Sobrecarga del operador de mayor que
+ * @param Key Key a comparar
+ * @return true si la Key es mayor que la Key a comparar
+*/
+
+bool Key::operator>(const Key& key) {
+  return this->key_ > key.key_;
+}
+
+/**
  * @brief Sobrecarga del operador de igualdad
  * @param Key Key a comparar
 */
@@ -35,6 +55,6 @@ bool Key::operator==(const Key& key) {
 */
 
 ostream& operator<<(ostream& os, const Key& key) {
-  os << key.key_ << key.pos_.GetData();
+  os << key.key_;
   return os;
 }

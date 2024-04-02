@@ -38,6 +38,7 @@ class QuickSort : public SortMethod {
 
     // Métodos
     void Sort() const override;
+    void QSort(Sequence*, int, int) const;
 };
 
 // HeapSort
@@ -50,6 +51,7 @@ class HeapSort : public SortMethod {
 
     // Métodos
     void Sort() const override;
+    void Baja(int, Sequence*, int) const;
 };
 
 // ShellSort
@@ -62,6 +64,7 @@ class ShellSort : public SortMethod {
 
     // Métodos
     void Sort() const override;
+    void DeltaSort(int, Sequence*, int) const;
 };
 
 // RadixSort
@@ -73,5 +76,5 @@ class RadixSort : public SortMethod {
     RadixSort(Sequence* sequence) : SortMethod(sequence) {}
 
     // Métodos
-    void Sort() const override;
+    void Sort() const override {}
 };
