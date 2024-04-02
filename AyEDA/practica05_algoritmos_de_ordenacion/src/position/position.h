@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -5,14 +6,14 @@ using namespace std;
 class Position {
   public:
     // Constructores
-    Position();
+    Position() {}
     Position(int posicion) : posicion_(posicion) {}
     
     // Getters
-    int GetPosition() const { return this->posicion_; }
+    int GetData() const { return this->posicion_; }
 
     // Setters
-    void SetPosition(int posicion) { this->posicion_ = posicion; }
+    void SetData(int posicion) { this->posicion_ = posicion; }
 
   private:
     int posicion_;
