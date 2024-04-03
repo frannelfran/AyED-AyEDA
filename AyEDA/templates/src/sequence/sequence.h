@@ -37,7 +37,7 @@ class StaticSequence : public Sequence<Key> {
   public:
     // Constructores
     inline StaticSequence() {}
-    inline StaticSequence(int bloq_size, bool show) : bloq_size_(bloq_size), Sequence(show) {}
+    inline StaticSequence(int bloq_size, bool show) : bloq_size_(bloq_size), Sequence<Key>(show) {}
     
     // Métodos de la clase
     bool Search(const Key&) const override;
@@ -105,7 +105,7 @@ template<typename Key> void StaticSequence<Key>::Swap(const Position& pos1, cons
   // Asigno las posiciones
   sequence_[pos1.GetData()].SetPosition(pos1);
   sequence_[pos2.GetData()].SetPosition(pos2);
-  if (show_) {
+  if (this->show_) {
     Print(cout);
   }
 }

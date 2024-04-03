@@ -1,6 +1,6 @@
 main:
 	@echo "Compilando ficheros..."
-	g++ -std=c++20 -I src src/main.cc -o ordenacion
+	g++ -std=c++20 -I src src/main.cc src/options/options.cc -o ordenacion
 
 .PHONY: clean
 
