@@ -91,16 +91,16 @@ class RadixSort : public SortMethod<Key> {
  * @brief Método de ordenación por selección
 */
 
-void SelectionSort::Sort() const {
-  int n = sequence_->GetSize();
+template<typename Key> void SelectionSort<Key>::Sort() const {
+  int n = this->sequence_->GetSize();
   for (int i = 0; i < n - 1; i++) {
     int min = i;
     for (int j = i + 1; j < n; j++) {
-      if (sequence_->operator[](Position(j)) < sequence_->operator[](Position(min))) {
+      if (this->sequence_->operator[](Position(j)) < this->sequence_->operator[](Position(min))) {
         min = j;
       }
     }
-    sequence_->Swap(Position(i), Position(min));
+    this->sequence_->Swap(Position(i), Position(min));
   }
 }
 
@@ -108,8 +108,8 @@ void SelectionSort::Sort() const {
  * @brief Método de ordenación QuickSort
 */
 
-void QuickSort::Sort() const {
-  QSort(sequence_, 0, sequence_->GetSize() - 1);
+template<typename Key> void QuickSort<Key>::Sort() const {
+  QSort(sequence_, 0, this->sequence_->GetSize() - 1);
 }
 
 /**
@@ -119,7 +119,7 @@ void QuickSort::Sort() const {
  * @param der Límite derecho
 */
 
-void QuickSort::QSort(Sequence* secuencia, int ini, int fin) const {
+template<typename Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int ini, int fin) const {
   int i = ini, f = fin;
   Key p = secuencia->operator[](Position((i + f) / 2));
   while (i <= f) {
@@ -150,7 +150,7 @@ void QuickSort::QSort(Sequence* secuencia, int ini, int fin) const {
  * @param n Tamaño de la secuencia
 */
 
-void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
+template<typename Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia, int n) const {
   int h, h1, h2;
   while (2 * i + 1 < n) {
     h1 = 2 * i + 1;
@@ -175,14 +175,14 @@ void HeapSort::Baja(int i, Sequence* secuencia, int n) const {
  * @brief Método de ordenación HeapSort
 */
 
-void HeapSort::Sort() const {
+template<typename Key> void HeapSort<Key>::Sort() const {
   int n = sequence_->GetSize();
   for (int i = n / 2 - 1; i >= 0; i--) {
-    Baja(i, sequence_, n);
+    Baja(i, this->sequence_, n);
   }
   for (int i = n - 1; i > 0; i--) {
     sequence_->Swap(Position(0), Position(i));
-    Baja(0, sequence_, i);
+    Baja(0, this->sequence_, i);
   }
 }
 
@@ -190,11 +190,11 @@ void HeapSort::Sort() const {
  * @brief Método de ordenación ShellSort
 */
 
-void ShellSort::Sort() const {
-  int delta = sequence_->GetSize();
+template<typename Key> void ShellSort<Key>::Sort() const {
+  int delta = this->sequence_->GetSize();
   while (delta > 1) {
     delta = delta / 2;
-    DeltaSort(delta, sequence_, sequence_->GetSize());
+    DeltaSort(delta, sequence_, this->sequence_->GetSize());
   }
 }
 
@@ -205,7 +205,7 @@ void ShellSort::Sort() const {
  * @param n Tamaño de la secuencia
 */
 
-void ShellSort::DeltaSort(int delta, Sequence* secuencia, int n) const {
+template<typename Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* secuencia, int n) const {
   for (int i = delta; i < n; i++) {
     Key x = secuencia->operator[](Position(i));
     int j = i;
@@ -213,22 +213,5 @@ void ShellSort::DeltaSort(int delta, Sequence* secuencia, int n) const {
       secuencia->Swap(Position(j), Position(j - delta));
       j = j - delta;
     }
-  }
-}
-
-/**
- * @brief Método de ordenación RadixSort
-*/
-
-void RadixSort::Sort() const {
-  int n = sequence_->GetSize();
-  int m = sequence_->operator[](Position(0)).GetKey();
-  for (int i = 1; i < n; i++) {
-    if (sequence_->operator[](Position(i)).GetKey() > m) {
-      m = sequence_->operator[](Position(i)).GetKey();
-    }
-  }
-  for (int exp = 1; m / exp > 0; exp *= 10) {
-    CountSort(sequence_, n, exp);
   }
 }
