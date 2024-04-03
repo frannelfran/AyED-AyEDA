@@ -11,12 +11,11 @@ class Sequence {
  public:
   // Constructores
   Sequence() {}
-  Sequence(bool show) : show_(show) {}
+
   // Destructor
   virtual ~Sequence() {}
 
   // Métodos de la clase
-  virtual bool Search(const Key&) const = 0;
   virtual bool Insert(const Key&) = 0;
   virtual bool IsFull() = 0;
   virtual int GetSize() const = 0;
@@ -25,9 +24,6 @@ class Sequence {
   // Sobrecarga de operadores
   virtual ostream& Print(ostream&) const = 0;
   virtual Key operator[](const Position&) const = 0;
-
- protected:
-  bool show_;
 };
 
 // Secuencia para dispersión cerrada
@@ -37,10 +33,9 @@ class StaticSequence : public Sequence<Key> {
   public:
     // Constructores
     inline StaticSequence() {}
-    inline StaticSequence(int bloq_size, bool show) : bloq_size_(bloq_size), Sequence<Key>(show) {}
+    inline StaticSequence(int bloq_size) : bloq_size_(bloq_size) {}
     
     // Métodos de la clase
-    bool Search(const Key&) const override;
     bool Insert(const Key&) override;
     bool IsFull() override;
     void Swap(const Position&, const Position&) override;
@@ -58,27 +53,12 @@ class StaticSequence : public Sequence<Key> {
 };
 
 /**
- * @brief Método para buscar una llave
- * @param key Llave a buscar
- * @return 1 si la llave se encuentra, 0 en caso contrario
-*/
-
-template<typename Key> bool StaticSequence<Key>::Search(const Key& key) const {
-  for (auto k : sequence_) {
-    if (k == key) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
  * @brief Método para insertar una llave
  * @param key Llave a insertar
 */
 
 template<typename Key> bool StaticSequence<Key>::Insert(const Key& key) {
-  if (Search(key) || IsFull()) {
+  if (IsFull()) {
     return false;
   }
   sequence_.push_back(key);
@@ -102,9 +82,6 @@ template<typename Key> bool StaticSequence<Key>::IsFull() {
 
 template<typename Key> void StaticSequence<Key>::Swap(const Position& pos1, const Position& pos2) {
   swap(sequence_[pos1.GetData()], sequence_[pos2.GetData()]);
-  if (this->show_) {
-    Print(cout);
-  }
 }
 
 /**

@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  Sequence<Key<long int>>* secuencia = new StaticSequence<Key<long int>>(options->size, options->traza);
+  Sequence<Key<long int>>* secuencia = new StaticSequence<Key<long int>>(options->size);
   SortMethod<Key<long int>>* metodo;
 
   // Como introducir los datos
@@ -23,22 +23,21 @@ int main(int argc, char* argv[]) {
       long int clave;
       cout << "Introduzca la clave " << i + 1 << ": ";
       cin >> clave;
-      secuencia->Insert(Key<long int>(clave, Position(i)));
+      secuencia->Insert(Key<long int>(clave));
     }
   }
   else if (options->introduce_data == "random") {
     mt19937 generator(time(nullptr));
     uniform_int_distribution<int> distribution(10000000, 99999999);
     for (int i = 0; i < options->size; i++) {
-      secuencia->Insert(Key<long int>(distribution(generator), Position(i)));
+      secuencia->Insert(Key<long int>(distribution(generator)));
     }
   }
   else if (options->introduce_data == "file") {
     ifstream file(options->fichero);
-    long int llave, pos = 0;
+    long int llave;
     while (file >> llave) {
-      secuencia->Insert(Key<long int>(llave, Position(pos)));
-      pos++;
+      secuencia->Insert(Key<long int>(llave));
       if (secuencia->IsFull()) {
         break;
       }
@@ -47,19 +46,19 @@ int main(int argc, char* argv[]) {
 
   // Método de ordenación elegido
   if (options->ordenacion == "seleccion") {
-    metodo = new SelectionSort<Key<long int>>(secuencia);
+    metodo = new SelectionSort<Key<long int>>(secuencia, options->traza);
   }
   else if (options->ordenacion == "quicksort") {
-    metodo = new QuickSort<Key<long int>>(secuencia);
+    metodo = new QuickSort<Key<long int>>(secuencia, options->traza);
   }
   else if (options->ordenacion == "heapsort") {
-    metodo = new HeapSort<Key<long int>>(secuencia);
+    metodo = new HeapSort<Key<long int>>(secuencia, options->traza);
   }
   else if (options->ordenacion == "shellsort") {
-    metodo = new ShellSort<Key<long int>>(secuencia);
+    metodo = new ShellSort<Key<long int>>(secuencia, options->traza);
   }
   else if (options->ordenacion == "radixsort") {
-    metodo = new RadixSort<Key<long int>>(secuencia);
+    metodo = new RadixSort<Key<long int>>(secuencia, options->traza);
   }
 
   cout << "Secuencia introducida: ";

@@ -8,14 +8,14 @@ class SortMethod {
  public:
   // Constructores
   SortMethod() {}
-  SortMethod(Sequence<Key>* sequence) : sequence_(sequence) {}
+  SortMethod(Sequence<Key>* sequence, bool show) : sequence_(sequence), show_(show) {}
 
   // Métodos
   virtual void Sort() const = 0;
 
  protected:
   Sequence<Key>* sequence_;
-  bool show_ = false;
+  bool show_;
 };
 
 // Ordenación por selección
@@ -25,7 +25,7 @@ class SelectionSort : public SortMethod<Key> {
  public:
   // Constructores
   SelectionSort() {}
-  SelectionSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+  SelectionSort(Sequence<Key>* sequence, bool show) : SortMethod<Key>(sequence, show) {}
 
   // Métodos
   void Sort() const override;
@@ -38,7 +38,7 @@ class QuickSort : public SortMethod<Key> {
  public:
   // Constructores
   QuickSort() {}
-  QuickSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+  QuickSort(Sequence<Key>* sequence, bool show) : SortMethod<Key>(sequence, show) {}
 
   // Métodos
   void Sort() const override;
@@ -52,7 +52,7 @@ class HeapSort : public SortMethod<Key> {
  public:
   // Constructores
   HeapSort() {}
-  HeapSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+  HeapSort(Sequence<Key>* sequence, bool show) : SortMethod<Key>(sequence, show) {}
 
   // Métodos
   void Sort() const override;
@@ -66,7 +66,7 @@ class ShellSort : public SortMethod<Key> {
  public:
   // Constructores
   ShellSort() {}
-  ShellSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+  ShellSort(Sequence<Key>* sequence, bool show) : SortMethod<Key>(sequence, show) {}
 
   // Métodos
   void Sort() const override;
@@ -80,7 +80,7 @@ class RadixSort : public SortMethod<Key> {
  public:
   // Constructores
   RadixSort() {}
-  RadixSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+  RadixSort(Sequence<Key>* sequence, bool show) : SortMethod<Key>(sequence, show) {}
 
   // Métodos
   void Sort() const override;
@@ -102,6 +102,7 @@ template<typename Key> void SelectionSort<Key>::Sort() const {
       }
     }
     this->sequence_->Swap(Position(i), Position(min));
+    if (this->show_) this->sequence_->Print(cout);
   }
 }
 
@@ -132,6 +133,7 @@ template<typename Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int 
     }
     if (i <= f) {
       secuencia->Swap(Position(i), Position(f));
+      if (this->show_) secuencia->Print(cout);
       i++;
       f--;
     }
@@ -167,6 +169,7 @@ template<typename Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia,
     }
     else {
       secuencia->Swap(Position(i), Position(h));
+      if (this->show_) secuencia->Print(cout);
       i = h;
     }
   }
@@ -183,6 +186,7 @@ template<typename Key> void HeapSort<Key>::Sort() const {
   }
   for (int i = n - 1; i > 0; i--) {
     this->sequence_->Swap(Position(0), Position(i));
+    if (this->show_) this->sequence_->Print(cout);
     Baja(0, this->sequence_, i);
   }
 }
@@ -212,6 +216,7 @@ template<typename Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* 
     int j = i;
     while ((j >= delta) && (x < secuencia->operator[](Position(j - delta)))) {
       secuencia->Swap(Position(j), Position(j - delta));
+      if (this->show_) secuencia->Print(cout);
       j = j - delta;
     }
   }
@@ -225,6 +230,7 @@ template<typename Key> void RadixSort<Key>::Sort() const {
   int max = GetMax(this->sequence_);
   for (int exp = 1; max / exp > 0; exp *= 10) {
     CountSort(this->sequence_, exp);
+    if (this->show_) this->sequence_->Print(cout);
   }
 }
 
@@ -269,5 +275,6 @@ template<typename Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, 
 
   for (int i = 0; i < secuencia->GetSize(); i++) {
     secuencia->operator[](Position(i)) = output[i];
+    
   }
 }

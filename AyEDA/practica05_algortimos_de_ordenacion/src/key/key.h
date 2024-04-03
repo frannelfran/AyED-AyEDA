@@ -9,7 +9,7 @@ class Key {
  public:
   // Constructores
   Key() {}
-  Key(T key, const Position& pos) : key_(key), pos_(pos) {}
+  Key(T key) : key_(key) {}
 
   // Destructor
   ~Key() {}
@@ -30,5 +30,4 @@ class Key {
 
  private:
   T key_;
-  Position pos_;
 };
