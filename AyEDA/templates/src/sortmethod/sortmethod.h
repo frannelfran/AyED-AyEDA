@@ -109,7 +109,7 @@ template<typename Key> void SelectionSort<Key>::Sort() const {
 */
 
 template<typename Key> void QuickSort<Key>::Sort() const {
-  QSort(sequence_, 0, this->sequence_->GetSize() - 1);
+  QSort(this->sequence_, 0, this->sequence_->GetSize() - 1);
 }
 
 /**
@@ -181,7 +181,7 @@ template<typename Key> void HeapSort<Key>::Sort() const {
     Baja(i, this->sequence_, n);
   }
   for (int i = n - 1; i > 0; i--) {
-    sequence_->Swap(Position(0), Position(i));
+    this->sequence_->Swap(Position(0), Position(i));
     Baja(0, this->sequence_, i);
   }
 }
