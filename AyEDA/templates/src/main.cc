@@ -5,7 +5,7 @@
 #include "sequence/sequence.h"
 #include "key/key.h"
 #include "position/position.h"
-//#include "sortmethod/sortmethod.h"
+#include "sortmethod/sortmethod.h"
 
 int main(int argc, char* argv[]) {
   auto options = parse_args(argc, argv);
