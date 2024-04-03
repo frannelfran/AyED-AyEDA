@@ -84,7 +84,8 @@ class RadixSort : public SortMethod<Key> {
 
   // Métodos
   void Sort() const override;
-  void CountSort(Sequence<Key>*, int, int) const;
+  void CountSort(Sequence<Key>*, int) const;
+  int GetMax(Sequence<Key>*) const;
 };
 
 /**
@@ -213,5 +214,60 @@ template<typename Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* 
       secuencia->Swap(Position(j), Position(j - delta));
       j = j - delta;
     }
+  }
+}
+
+/**
+ * @brief Método de ordenación RadixSort
+*/
+
+template<typename Key> void RadixSort<Key>::Sort() const {
+  int max = GetMax(this->sequence_);
+  for (int exp = 1; max / exp > 0; exp *= 10) {
+    CountSort(this->sequence_, exp);
+  }
+}
+
+/**
+ * @brief Función para obtener el máximo valor de la secuencia
+ * @param secuencia Secuencia de claves
+ * @return Máximo valor de la secuencia
+*/
+
+template<typename Key> int RadixSort<Key>::GetMax(Sequence<Key>* secuencia) const {
+  int max = secuencia->operator[](Position(0)).GetKey();
+  for (int i = 1; i < secuencia->GetSize(); i++) {
+    if (secuencia->operator[](Position(i)).GetKey() > max) {
+      max = secuencia->operator[](Position(i)).GetKey();
+    }
+  }
+  return max;
+}
+
+/**
+ * @brief Función para hacer el conteo de los elementos en la posición d
+ * @param secuencia Secuencia de claves
+ * @param exp Exponente
+*/
+
+template<typename Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int exp) const {
+  vector<Key> output(secuencia->GetSize());
+  vector<int> count(10, 0);
+
+  for (int i = 0; i < secuencia->GetSize(); i++) {
+    count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]++;
+  }
+
+  for (int i = 1; i < 10; i++) {
+    count[i] += count[i - 1];
+  }
+
+  for (int i = secuencia->GetSize() - 1; i >= 0; i--) {
+    output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1] = secuencia->operator[](Position(i));
+    count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]--;
+  }
+
+  for (int i = 0; i < secuencia->GetSize(); i++) {
+    secuencia->operator[](Position(i)) = output[i];
   }
 }

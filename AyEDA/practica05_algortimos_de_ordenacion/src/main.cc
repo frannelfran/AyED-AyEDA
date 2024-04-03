@@ -58,15 +58,22 @@ int main(int argc, char* argv[]) {
   else if (options->ordenacion == "shellsort") {
     metodo = new ShellSort<Key<long int>>(secuencia);
   }
-  /*else if (options->ordenacion == "radixsort") {
+  else if (options->ordenacion == "radixsort") {
     metodo = new RadixSort<Key<long int>>(secuencia);
-  }*/
+  }
 
   cout << "Secuencia introducida: ";
   secuencia->Print(cout);
-  cout << "---Traza de la ordenación---" << endl;
-  metodo->Sort();
-  cout << "----------------------------" << endl;
+  if (options->traza) {
+    cout << "---Traza de la ordenación---" << endl;
+    metodo->Sort();
+    cout << "----------------------------" << endl;
+  }
+  else {
+    metodo->Sort();
+    cout << "Secuencia ordenada: ";
+    secuencia->Print(cout);
+  }
 
   delete secuencia;
   return 0;
