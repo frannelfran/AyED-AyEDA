@@ -257,24 +257,20 @@ template<typename Key> int RadixSort<Key>::GetMax(Sequence<Key>* secuencia) cons
 */
 
 template<typename Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int exp) const {
-  vector<Key> output(secuencia->GetSize());
-  vector<int> count(10, 0);
-
-  for (int i = 0; i < secuencia->GetSize(); i++) {
+  int n = secuencia->GetSize();
+  vector<Key> output(n);
+  int count[10] = {0};
+  for (int i = 0; i < n; i++) {
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]++;
   }
-
   for (int i = 1; i < 10; i++) {
     count[i] += count[i - 1];
   }
-
-  for (int i = secuencia->GetSize() - 1; i >= 0; i--) {
-    output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1] = secuencia->operator[](Position(i));
+  for (int i = n - 1; i >= 0; i--) {
+    secuencia->operator[](Position(i)).SetKey(output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1].GetKey());
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]--;
   }
-
-  for (int i = 0; i < secuencia->GetSize(); i++) {
-    secuencia->operator[](Position(i)) = output[i];
-    
+  for (int i = 0; i < n; i++) {
+    secuencia->operator[](Position(i)).SetKey(output[i].GetKey());
   }
 }
