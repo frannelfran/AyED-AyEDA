@@ -33,7 +33,7 @@ class Sequence {
 // Secuencia para dispersión cerrada
 
 template <typename Key>
-class StaticSequence : public Sequence {
+class StaticSequence : public Sequence<Key> {
   public:
     // Constructores
     inline StaticSequence() {}
