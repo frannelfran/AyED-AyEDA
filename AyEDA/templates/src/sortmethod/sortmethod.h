@@ -5,86 +5,86 @@ using namespace std;
 
 template<typename Key>
 class SortMethod {
-  public:
-    // Constructores
-    SortMethod() {}
-    SortMethod(Sequence<Key>* sequence) : sequence_(sequence) {}
+ public:
+  // Constructores
+  SortMethod() {}
+  SortMethod(Sequence<Key>* sequence) : sequence_(sequence) {}
 
-    // Métodos
-    virtual void Sort() const = 0;
+  // Métodos
+  virtual void Sort() const = 0;
 
-  protected:
-    Sequence<Key>* sequence_;
-    bool show_ = false;
+ protected:
+  Sequence<Key>* sequence_;
+  bool show_ = false;
 };
 
 // Ordenación por selección
 
 template<typename Key>
 class SelectionSort : public SortMethod<Key> {
-  public:
-    // Constructores
-    SelectionSort() {}
-    SelectionSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+ public:
+  // Constructores
+  SelectionSort() {}
+  SelectionSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
 
-    // Métodos
-    void Sort() const override;
+  // Métodos
+  void Sort() const override;
 };
 
 // QuickSort
 
 template<typename Key>
 class QuickSort : public SortMethod<Key> {
-  public:
-    // Constructores
-    QuickSort() {}
-    QuickSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+ public:
+  // Constructores
+  QuickSort() {}
+  QuickSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
 
-    // Métodos
-    void Sort() const override;
-    void QSort(Sequence<Key>*, int, int) const;
+  // Métodos
+  void Sort() const override;
+  void QSort(Sequence<Key>*, int, int) const;
 };
 
 // HeapSort
 
 template<typename Key>
 class HeapSort : public SortMethod<Key> {
-  public:
-    // Constructores
-    HeapSort() {}
-    HeapSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+ public:
+  // Constructores
+  HeapSort() {}
+  HeapSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
 
-    // Métodos
-    void Sort() const override;
-    void Baja(int, Sequence<Key>*, int) const;
+  // Métodos
+  void Sort() const override;
+  void Baja(int, Sequence<Key>*, int) const;
 };
 
 // ShellSort
 
 template<typename Key>
 class ShellSort : public SortMethod<Key> {
-  public:
-    // Constructores
-    ShellSort() {}
-    ShellSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+ public:
+  // Constructores
+  ShellSort() {}
+  ShellSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
 
-    // Métodos
-    void Sort() const override;
-    void DeltaSort(int, Sequence<Key>*, int) const;
+  // Métodos
+  void Sort() const override;
+  void DeltaSort(int, Sequence<Key>*, int) const;
 };
 
 // RadixSort
 
 template<typename Key>
 class RadixSort : public SortMethod<Key> {
-  public:
-    // Constructores
-    RadixSort() {}
-    RadixSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
+ public:
+  // Constructores
+  RadixSort() {}
+  RadixSort(Sequence<Key>* sequence) : SortMethod<Key>(sequence) {}
 
-    // Métodos
-    void Sort() const override;
-    void CountSort(Sequence<Key>*, int, int) const;
+  // Métodos
+  void Sort() const override;
+  void CountSort(Sequence<Key>*, int, int) const;
 };
 
 /**

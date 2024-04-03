@@ -8,26 +8,26 @@ using namespace std;
 
 template <typename Key>
 class Sequence {
-  public:
-    // Constructores
-    Sequence() {}
-    Sequence(bool show) : show_(show) {}
-    // Destructor
-    virtual ~Sequence() {}
+ public:
+  // Constructores
+  Sequence() {}
+  Sequence(bool show) : show_(show) {}
+  // Destructor
+  virtual ~Sequence() {}
 
-    // Métodos de la clase
-    virtual bool Search(const Key&) const = 0;
-    virtual bool Insert(const Key&) = 0;
-    virtual bool IsFull() = 0;
-    virtual int GetSize() const = 0;
-    virtual void Swap(const Position&, const Position&) = 0;
+  // Métodos de la clase
+  virtual bool Search(const Key&) const = 0;
+  virtual bool Insert(const Key&) = 0;
+  virtual bool IsFull() = 0;
+  virtual int GetSize() const = 0;
+  virtual void Swap(const Position&, const Position&) = 0;
 
-    // Sobrecarga de operadores
-    virtual ostream& Print(ostream&) const = 0;
-    virtual Key operator[](const Position&) const = 0;
+  // Sobrecarga de operadores
+  virtual ostream& Print(ostream&) const = 0;
+  virtual Key operator[](const Position&) const = 0;
 
-  protected:
-    bool show_;
+ protected:
+  bool show_;
 };
 
 // Secuencia para dispersión cerrada
@@ -102,9 +102,6 @@ template<typename Key> bool StaticSequence<Key>::IsFull() {
 
 template<typename Key> void StaticSequence<Key>::Swap(const Position& pos1, const Position& pos2) {
   swap(sequence_[pos1.GetData()], sequence_[pos2.GetData()]);
-  // Asigno las posiciones
-  sequence_[pos1.GetData()].SetPosition(pos1);
-  sequence_[pos2.GetData()].SetPosition(pos2);
   if (this->show_) {
     Print(cout);
   }
