@@ -176,7 +176,7 @@ template<typename Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia,
 */
 
 template<typename Key> void HeapSort<Key>::Sort() const {
-  int n = sequence_->GetSize();
+  int n = this->sequence_->GetSize();
   for (int i = n / 2 - 1; i >= 0; i--) {
     Baja(i, this->sequence_, n);
   }
@@ -194,7 +194,7 @@ template<typename Key> void ShellSort<Key>::Sort() const {
   int delta = this->sequence_->GetSize();
   while (delta > 1) {
     delta = delta / 2;
-    DeltaSort(delta, sequence_, this->sequence_->GetSize());
+    DeltaSort(delta, this->sequence_, this->sequence_->GetSize());
   }
 }
 

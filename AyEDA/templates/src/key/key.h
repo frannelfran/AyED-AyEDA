@@ -27,6 +27,10 @@ class Key {
     return os;
   }
   bool operator==(const Key& key) { return key_ == key.key_; }
+  bool operator<(const Key& key) { return key_ < key.key_;}
+  bool operator>(const Key& key) { return key_ > key.key_;}
+  bool operator<=(const Key& key) { return key_ <= key.key_;}
+  bool operator>=(const Key& key) { return key_ >= key.key_;}
 
  private:
   T key_;
