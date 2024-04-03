@@ -12,7 +12,7 @@ class Key {
   Key(T key, const Position& pos) : key_(key), pos_(pos) {}
 
   // Destructor
-  ~Key() = default;
+  ~Key() {}
 
   // Getters
   inline T GetKey() const { return key_; }
