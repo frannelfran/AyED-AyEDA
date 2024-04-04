@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
   }
   else if (options->introduce_data == "random") {
     mt19937 generator(time(nullptr));
-    uniform_int_distribution<int> distribution(10000000, 99999999);
+    uniform_int_distribution<long int> distribution(10000000, 99999999);
     for (int i = 0; i < options->size; i++) {
       secuencia->Insert(Key<long int>(distribution(generator)));
     }
