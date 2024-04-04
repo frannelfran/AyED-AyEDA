@@ -17,9 +17,6 @@ class Key {
   // Getters
   inline T GetKey() const { return key_; }
 
-  // Setters
-  inline void SetKey(const T key) { this->key_ = key; }
-
   // Sobrecarga de operadores
   friend ostream& operator<<(ostream& os, const Key& key) {
     os << key.key_;
