@@ -3,27 +3,34 @@
 #include "../position/position.h"
 
 using namespace std;
- 
+
+template<class T>
 class Key {
-  public:
-    inline Key() {}
-    Key(long int, const Position&); // Convertir un número en clave
+ public:
+  // Constructores
+  Key() {}
+  Key(const T key) : key_(key) {}
 
-    // Getters
-    inline int GetKey() const { return key_; }
-    inline Position GetPosition() const { return pos_; }
+  // Destructor
+  ~Key() {}
 
-    // Setters
-    void SetPosition(const Position& pos) { pos_.SetData(pos.GetData()); }
+  // Getters
+  inline T GetKey() const { return key_; }
 
-    // Sobrecarga de operadores
-    bool operator==(const Key&);
-    bool operator<(const Key&);
-    bool operator<=(const Key&);
-    bool operator>(const Key&);
-    friend ostream& operator<<(ostream& os, const Key& key);
+  // Setters
+  inline void SetKey(const T key) { this->key_ = key; }
 
-  private:
-    int key_;
-    Position pos_;
+  // Sobrecarga de operadores
+  friend ostream& operator<<(ostream& os, const Key& key) {
+    os << key.key_;
+    return os;
+  }
+  bool operator==(const Key& key) { return key_ == key.key_; }
+  bool operator<(const Key& key) { return key_ < key.key_;}
+  bool operator>(const Key& key) { return key_ > key.key_;}
+  bool operator<=(const Key& key) { return key_ <= key.key_;}
+  bool operator>=(const Key& key) { return key_ >= key.key_;}
+
+ private:
+  T key_;
 };

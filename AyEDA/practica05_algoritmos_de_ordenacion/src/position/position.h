@@ -4,17 +4,14 @@
 using namespace std;
 
 class Position {
-  public:
-    // Constructores
-    Position() {}
-    Position(int posicion) : posicion_(posicion) {}
+ public:
+  // Constructores
+  Position() {}
+  Position(int posicion) : posicion_(posicion) {}
     
-    // Getters
-    int GetData() const { return this->posicion_; }
+  // Getters
+  int GetData() const { return this->posicion_; }
 
-    // Setters
-    void SetData(int posicion) { this->posicion_ = posicion; }
-
-  private:
-    int posicion_;
+ private:
+  int posicion_;
 };
