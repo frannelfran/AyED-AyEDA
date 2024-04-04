@@ -247,6 +247,7 @@ template <class Key> void RadixSort<Key>::Sort() const {
 template<class Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int exp) const {
   int size = secuencia->GetSize();
   vector<Key> output(size);
+  Sequence<Key>* aux = new StaticSequence<Key>(size);
   int count[10] = {0};
   for (int i = 0; i < size; i++) {
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]++;
@@ -262,7 +263,7 @@ template<class Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int
   }
 
   for (int i = 0; i < size; i++) {
-    secuencia->operator[](Position(i)) = output[i];
+    secuencia->SetKey(output[i], Position(i));
   }
 
   if (this->show_) secuencia->Print(cout);

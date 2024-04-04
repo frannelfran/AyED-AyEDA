@@ -36,11 +36,15 @@ int main(int argc, char* argv[]) {
   else if (options->introduce_data == "file") {
     ifstream file(options->fichero);
     long int llave;
-    while (file >> llave) {
+    while (!file.eof()) {
+      file >> llave;
       secuencia->Insert(Key<long int>(llave));
-      if (secuencia->IsFull()) {
-        break;
-      }
+    }
+    if (!secuencia->IsFull()) {
+      delete secuencia;
+      delete metodo;
+      cerr << "El fichero de entrada debe contener " << options->size << " claves" << endl;
+      exit(EXIT_FAILURE);
     }
   }
 
@@ -73,7 +77,7 @@ int main(int argc, char* argv[]) {
     cout << "Secuencia ordenada: ";
     secuencia->Print(cout);
   }
-
   delete secuencia;
+  delete metodo;
   return 0;
 }

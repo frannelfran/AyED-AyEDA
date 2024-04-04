@@ -20,6 +20,7 @@ class Sequence {
   virtual bool IsFull() = 0;
   virtual int GetSize() const = 0;
   virtual void Swap(const Position&, const Position&) = 0;
+  virtual void SetKey(const Key&, const Position&) = 0;
 
   // Sobrecarga de operadores
   virtual ostream& Print(ostream&) const = 0;
@@ -42,6 +43,9 @@ class StaticSequence : public Sequence<Key> {
 
     // Getters
     inline int GetSize() const override { return sequence_.size(); }
+
+    // Setters
+    inline void SetKey(const Key& key, const Position& pos) override { sequence_[pos.GetData()] = key; }
 
     // Sobrecarga de operadores
     ostream& Print(ostream&) const override;
