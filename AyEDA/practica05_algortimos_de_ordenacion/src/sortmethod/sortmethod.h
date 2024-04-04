@@ -3,7 +3,7 @@
 
 using namespace std;
 
-template<typename Key>
+template<class Key>
 class SortMethod {
  public:
   // Constructores
@@ -20,7 +20,7 @@ class SortMethod {
 
 // Ordenación por selección
 
-template<typename Key>
+template<class Key>
 class SelectionSort : public SortMethod<Key> {
  public:
   // Constructores
@@ -33,7 +33,7 @@ class SelectionSort : public SortMethod<Key> {
 
 // QuickSort
 
-template<typename Key>
+template<class Key>
 class QuickSort : public SortMethod<Key> {
  public:
   // Constructores
@@ -47,7 +47,7 @@ class QuickSort : public SortMethod<Key> {
 
 // HeapSort
 
-template<typename Key>
+template<class Key>
 class HeapSort : public SortMethod<Key> {
  public:
   // Constructores
@@ -61,7 +61,7 @@ class HeapSort : public SortMethod<Key> {
 
 // ShellSort
 
-template<typename Key>
+template<class Key>
 class ShellSort : public SortMethod<Key> {
  public:
   // Constructores
@@ -75,7 +75,7 @@ class ShellSort : public SortMethod<Key> {
 
 // RadixSort
 
-template<typename Key>
+template<class Key>
 class RadixSort : public SortMethod<Key> {
  public:
   // Constructores
@@ -92,7 +92,7 @@ class RadixSort : public SortMethod<Key> {
  * @brief Método de ordenación por selección
 */
 
-template<typename Key> void SelectionSort<Key>::Sort() const {
+template<class Key> void SelectionSort<Key>::Sort() const {
   int n = this->sequence_->GetSize();
   for (int i = 0; i < n - 1; i++) {
     int min = i;
@@ -110,7 +110,7 @@ template<typename Key> void SelectionSort<Key>::Sort() const {
  * @brief Método de ordenación QuickSort
 */
 
-template<typename Key> void QuickSort<Key>::Sort() const {
+template<class Key> void QuickSort<Key>::Sort() const {
   QSort(this->sequence_, 0, this->sequence_->GetSize() - 1);
 }
 
@@ -121,7 +121,7 @@ template<typename Key> void QuickSort<Key>::Sort() const {
  * @param der Límite derecho
 */
 
-template<typename Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int ini, int fin) const {
+template<class Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int ini, int fin) const {
   int i = ini, f = fin;
   Key p = secuencia->operator[](Position((i + f) / 2));
   while (i <= f) {
@@ -153,7 +153,7 @@ template<typename Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int 
  * @param n Tamaño de la secuencia
 */
 
-template<typename Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia, int n) const {
+template<class Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia, int n) const {
   int h, h1, h2;
   while (2 * i + 1 < n) {
     h1 = 2 * i + 1;
@@ -179,7 +179,7 @@ template<typename Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia,
  * @brief Método de ordenación HeapSort
 */
 
-template<typename Key> void HeapSort<Key>::Sort() const {
+template<class Key> void HeapSort<Key>::Sort() const {
   int n = this->sequence_->GetSize();
   for (int i = n / 2 - 1; i >= 0; i--) {
     Baja(i, this->sequence_, n);
@@ -195,7 +195,7 @@ template<typename Key> void HeapSort<Key>::Sort() const {
  * @brief Método de ordenación ShellSort
 */
 
-template<typename Key> void ShellSort<Key>::Sort() const {
+template<class Key> void ShellSort<Key>::Sort() const {
   int delta = this->sequence_->GetSize();
   while (delta > 1) {
     delta = delta / 2;
@@ -210,7 +210,7 @@ template<typename Key> void ShellSort<Key>::Sort() const {
  * @param n Tamaño de la secuencia
 */
 
-template<typename Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* secuencia, int n) const {
+template<class Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* secuencia, int n) const {
   for (int i = delta; i < n; i++) {
     Key x = secuencia->operator[](Position(i));
     int j = i;
@@ -226,51 +226,44 @@ template<typename Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* 
  * @brief Método de ordenación RadixSort
 */
 
-template<typename Key> void RadixSort<Key>::Sort() const {
-  int max = GetMax(this->sequence_);
-  for (int exp = 1; max / exp > 0; exp *= 10) {
-    CountSort(this->sequence_, exp);
-    if (this->show_) this->sequence_->Print(cout);
-  }
-}
-
-/**
- * @brief Función para obtener el máximo valor de la secuencia
- * @param secuencia Secuencia de claves
- * @return Máximo valor de la secuencia
-*/
-
-template<typename Key> int RadixSort<Key>::GetMax(Sequence<Key>* secuencia) const {
-  int max = secuencia->operator[](Position(0)).GetKey();
-  for (int i = 1; i < secuencia->GetSize(); i++) {
-    if (secuencia->operator[](Position(i)).GetKey() > max) {
-      max = secuencia->operator[](Position(i)).GetKey();
+template <class Key> void RadixSort<Key>::Sort() const {
+  Key max = this->sequence_->operator[](Position(0));
+  for (int i = 0; i < this->sequence_->GetSize(); i++) {
+    if (this->sequence_->operator[](Position(i)) > max) {
+      max = this->sequence_->operator[](Position(i));
     }
   }
-  return max;
+  for (int exp = 1; max.GetKey() / exp > 0; exp *= 10) {
+    CountSort(this->sequence_, exp);
+  }
 }
 
 /**
- * @brief Función para hacer el conteo de los elementos en la posición d
+ * @brief Método de ordenación CountSort
  * @param secuencia Secuencia de claves
  * @param exp Exponente
 */
 
-template<typename Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int exp) const {
-  int n = secuencia->GetSize();
-  vector<Key> output(n);
+template<class Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int exp) const {
+  int size = secuencia->GetSize();
+  vector<Key> output(size);
   int count[10] = {0};
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < size; i++) {
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]++;
   }
+
   for (int i = 1; i < 10; i++) {
     count[i] += count[i - 1];
   }
-  for (int i = n - 1; i >= 0; i--) {
-    secuencia->operator[](Position(i)).SetKey(output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1].GetKey());
+
+  for (int i = size - 1; i >= 0; i--) {
+    output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1] = secuencia->operator[](Position(i));
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]--;
   }
-  for (int i = 0; i < n; i++) {
-    secuencia->operator[](Position(i)).SetKey(output[i].GetKey());
+
+  for (int i = 0; i < size; i++) {
+    secuencia->operator[](Position(i)) = output[i];
   }
+
+  if (this->show_) secuencia->Print(cout);
 }

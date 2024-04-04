@@ -4,12 +4,12 @@
 
 using namespace std;
 
-template <typename T>
+template<class T>
 class Key {
  public:
   // Constructores
   Key() {}
-  Key(T key) : key_(key) {}
+  Key(const T key) : key_(key) {}
 
   // Destructor
   ~Key() {}
@@ -18,7 +18,7 @@ class Key {
   inline T GetKey() const { return key_; }
 
   // Setters
-  inline void SetKey(T key) { key_ = key; }
+  inline void SetKey(const T key) { this->key_ = key; }
 
   // Sobrecarga de operadores
   friend ostream& operator<<(ostream& os, const Key& key) {

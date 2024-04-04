@@ -6,7 +6,7 @@
 
 using namespace std;
 
-template <typename Key>
+template<class Key>
 class Sequence {
  public:
   // Constructores
@@ -28,7 +28,7 @@ class Sequence {
 
 // Secuencia para dispersión cerrada
 
-template <typename Key>
+template<class Key>
 class StaticSequence : public Sequence<Key> {
   public:
     // Constructores
@@ -57,7 +57,7 @@ class StaticSequence : public Sequence<Key> {
  * @param key Llave a insertar
 */
 
-template<typename Key> bool StaticSequence<Key>::Insert(const Key& key) {
+template<class Key> bool StaticSequence<Key>::Insert(const Key& key) {
   if (IsFull()) {
     return false;
   }
@@ -70,7 +70,7 @@ template<typename Key> bool StaticSequence<Key>::Insert(const Key& key) {
  * @return 1 si la secuencia está llena, 0 en caso contrario
 */
 
-template<typename Key> bool StaticSequence<Key>::IsFull() {
+template<class Key> bool StaticSequence<Key>::IsFull() {
   return sequence_.size() == bloq_size_;
 }
 
@@ -80,7 +80,7 @@ template<typename Key> bool StaticSequence<Key>::IsFull() {
  * @param pos2 Posición de la segunda llave
 */
 
-template<typename Key> void StaticSequence<Key>::Swap(const Position& pos1, const Position& pos2) {
+template<class Key> void StaticSequence<Key>::Swap(const Position& pos1, const Position& pos2) {
   swap(sequence_[pos1.GetData()], sequence_[pos2.GetData()]);
 }
 
@@ -90,7 +90,7 @@ template<typename Key> void StaticSequence<Key>::Swap(const Position& pos1, cons
  * @return Llave en la posición pos
 */
 
-template<typename Key> Key StaticSequence<Key>::operator[](const Position& pos) const {
+template<class Key> Key StaticSequence<Key>::operator[](const Position& pos) const {
   return sequence_[pos.GetData()];
 }
 
@@ -99,7 +99,7 @@ template<typename Key> Key StaticSequence<Key>::operator[](const Position& pos) 
  * @param os Stream de salida
 */
 
-template<typename Key> ostream& StaticSequence<Key>::Print(ostream& os) const {
+template<class Key> ostream& StaticSequence<Key>::Print(ostream& os) const {
   for (const auto& k : sequence_) {
     os << k << " ";
   }
