@@ -85,7 +85,6 @@ class RadixSort : public SortMethod<Key> {
   // Métodos
   void Sort() const override;
   void CountSort(Sequence<Key>*, int) const;
-  int GetMax(Sequence<Key>*) const;
 };
 
 /**
