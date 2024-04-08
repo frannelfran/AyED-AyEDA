@@ -31,29 +31,29 @@ class Sequence {
 
 template<class Key>
 class StaticSequence : public Sequence<Key> {
-  public:
-    // Constructores
-    inline StaticSequence() {}
-    inline StaticSequence(int bloq_size) : bloq_size_(bloq_size) {}
+ public:
+  // Constructores
+  inline StaticSequence() {}
+  inline StaticSequence(int bloq_size) : bloq_size_(bloq_size) {}
     
-    // Métodos de la clase
-    bool Insert(const Key&) override;
-    bool IsFull() override;
-    void Swap(const Position&, const Position&) override;
+  // Métodos de la clase
+  bool Insert(const Key&) override;
+  bool IsFull() override;
+  void Swap(const Position&, const Position&) override;
 
-    // Getters
-    inline int GetSize() const override { return sequence_.size(); }
+  // Getters
+  inline int GetSize() const override { return sequence_.size(); }
 
-    // Setters
-    inline void SetKey(const Key& key, const Position& pos) override { sequence_[pos.GetData()] = key; }
+  // Setters
+  inline void SetKey(const Key& key, const Position& pos) override { sequence_[pos.GetData()] = key; }
 
-    // Sobrecarga de operadores
-    ostream& Print(ostream&) const override;
-    Key operator[](const Position&) const override;
+  // Sobrecarga de operadores
+  ostream& Print(ostream&) const override;
+  Key operator[](const Position&) const override;
 
-  private:
-    int bloq_size_;
-    vector<Key> sequence_;
+ private:
+  int bloq_size_;
+  vector<Key> sequence_;
 };
 
 /**
