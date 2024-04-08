@@ -104,8 +104,7 @@ template<class Key> void SelectionSort<Key>::Sort() const {
     }
     this->sequence_->Swap(Position(i), Position(min));
     if (this->show_) {
-      this->sequence_->Print(cout);
-      cout << "i=" << this->iterations_ << endl;
+      this->sequence_->Print(cout) << "i=" << this->iterations_ << endl;
       this->iterations_++;
     }
     else {
@@ -142,8 +141,7 @@ template<class Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int ini
     if (i <= f) {
       secuencia->Swap(Position(i), Position(f));
       if (this->show_) {
-        secuencia->Print(cout);
-        cout << "i=" << this->iterations_ << endl;
+        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
         this->iterations_++;
       }
       else {
@@ -185,8 +183,7 @@ template<class Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia, in
     else {
       secuencia->Swap(Position(i), Position(h));
       if (this->show_) {
-        secuencia->Print(cout);
-        cout << "i=" << this->iterations_ << endl;
+        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
         this->iterations_++;
       }
       else {
@@ -209,8 +206,7 @@ template<class Key> void HeapSort<Key>::Sort() const {
   for (int i = n - 1; i > 0; i--) {
     this->sequence_->Swap(Position(0), Position(i));
     if (this->show_) {
-      this->sequence_->Print(cout);
-      cout << "i=" << this->iterations_ << endl;
+      this->sequence_->Print(cout) << "i=" << this->iterations_ << endl;
       this->iterations_++;
     }
     else {
@@ -246,8 +242,7 @@ template<class Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* sec
     while ((j >= delta) && (x < secuencia->operator[](Position(j - delta)))) {
       secuencia->Swap(Position(j), Position(j - delta));
       if (this->show_) {
-        secuencia->Print(cout);
-        cout << "i=" << this->iterations_ << endl;
+        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
         this->iterations_++;
       }
       else {
@@ -302,8 +297,7 @@ template<class Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int
   }
 
   if (this->show_) {
-    secuencia->Print(cout);
-    cout << "i=" << this->iterations_ << endl;
+    secuencia->Print(cout) << "i=" << this->iterations_ << endl;
     this->iterations_++;
   }
   else {
