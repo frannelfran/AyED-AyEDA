@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
   }
 
   cout << "Secuencia introducida: ";
-  secuencia->Print(cout);
+  secuencia->Print(cout) << endl;
   if (options->traza) {
     cout << "---Traza de la ordenación---" << endl;
     metodo->Sort();
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
   else {
     metodo->Sort();
     cout << "Secuencia ordenada: ";
-    secuencia->Print(cout);
+    secuencia->Print(cout) << "\nNúmero de iteracciones = " << metodo->GetIterations() << endl;
   }
   delete secuencia;
   delete metodo;

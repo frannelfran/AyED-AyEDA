@@ -107,6 +107,5 @@ template<class Key> ostream& StaticSequence<Key>::Print(ostream& os) const {
   for (const auto& k : sequence_) {
     os << k << " ";
   }
-  os << endl;
   return os;
 }
