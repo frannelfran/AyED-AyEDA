@@ -17,7 +17,7 @@ class SortMethod {
  protected:
   Sequence<Key>* sequence_;
   bool show_;
-  mutable int iterations_ = 0;
+  mutable unsigned int iterations_ = 0;
 };
 
 // Ordenación por selección
