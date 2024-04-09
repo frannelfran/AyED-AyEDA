@@ -13,11 +13,13 @@ class SortMethod {
   // Métodos
   virtual void Sort() const = 0;
   int GetIterations() const { return iterations_; }
-
+  int GetComparisons() const { return comparisons_; }
+  
  protected:
   Sequence<Key>* sequence_;
   bool show_;
   mutable unsigned int iterations_ = 0;
+  mutable unsigned int comparisons_ = 0;
 };
 
 // Ordenación por selección
@@ -99,17 +101,12 @@ template<class Key> void SelectionSort<Key>::Sort() const {
     int min = i;
     for (int j = i + 1; j < n; j++) {
       if (this->sequence_->operator[](Position(j)) < this->sequence_->operator[](Position(min))) {
+        this->comparisons_++;
         min = j;
       }
     }
     this->sequence_->Swap(Position(i), Position(min));
-    if (this->show_) {
-      this->sequence_->Print(cout) << "i=" << this->iterations_ << endl;
-      this->iterations_++;
-    }
-    else {
-      this->iterations_++;
-    }
+    if (this->show_) this->sequence_->Print(cout);
   }
 }
 
@@ -133,20 +130,16 @@ template<class Key> void QuickSort<Key>::QSort(Sequence<Key>* secuencia, int ini
   Key p = secuencia->operator[](Position((i + f) / 2));
   while (i <= f) {
     while (secuencia->operator[](Position(i)) < p) {
+      this->comparisons_++;
       i++;
     }
     while (secuencia->operator[](Position(f)) > p) {
+      this->comparisons_++;
       f--;
     }
     if (i <= f) {
       secuencia->Swap(Position(i), Position(f));
-      if (this->show_) {
-        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
-        this->iterations_++;
-      }
-      else {
-        this->iterations_++;
-      }
+      if (this->show_) secuencia->Print(cout);
       i++;
       f--;
     }
@@ -172,23 +165,20 @@ template<class Key> void HeapSort<Key>::Baja(int i, Sequence<Key>* secuencia, in
     h1 = 2 * i + 1;
     h2 = 2 * i + 2;
     if (h2 == n || secuencia->operator[](Position(h1)) > secuencia->operator[](Position(h2))) {
+      this->comparisons_++;
       h = h1;
     }
     else {
+      this->comparisons_++;
       h = h2;
     }
     if (secuencia->operator[](Position(h)) <= secuencia->operator[](Position(i))) {
+      this->comparisons_++;
       break;
     }
     else {
       secuencia->Swap(Position(i), Position(h));
-      if (this->show_) {
-        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
-        this->iterations_++;
-      }
-      else {
-        this->iterations_++;
-      }
+      if (this->show_) secuencia->Print(cout);
       i = h;
     }
   }
@@ -205,13 +195,7 @@ template<class Key> void HeapSort<Key>::Sort() const {
   }
   for (int i = n - 1; i > 0; i--) {
     this->sequence_->Swap(Position(0), Position(i));
-    if (this->show_) {
-      this->sequence_->Print(cout) << "i=" << this->iterations_ << endl;
-      this->iterations_++;
-    }
-    else {
-      this->iterations_++;
-    }
+    if (this->show_) this->sequence_->Print(cout);
     Baja(0, this->sequence_, i);
   }
 }
@@ -240,14 +224,9 @@ template<class Key> void ShellSort<Key>::DeltaSort(int delta, Sequence<Key>* sec
     Key x = secuencia->operator[](Position(i));
     int j = i;
     while ((j >= delta) && (x < secuencia->operator[](Position(j - delta)))) {
+      this->comparisons_++;
       secuencia->Swap(Position(j), Position(j - delta));
-      if (this->show_) {
-        secuencia->Print(cout) << "i=" << this->iterations_ << endl;
-        this->iterations_++;
-      }
-      else {
-        this->iterations_++;
-      }
+      if (this->show_) secuencia->Print(cout);
       j = j - delta;
     }
   }
@@ -261,6 +240,7 @@ template <class Key> void RadixSort<Key>::Sort() const {
   Key max = this->sequence_->operator[](Position(0));
   for (int i = 0; i < this->sequence_->GetSize(); i++) {
     if (this->sequence_->operator[](Position(i)) > max) {
+      this->comparisons_++;
       max = this->sequence_->operator[](Position(i));
     }
   }
@@ -290,17 +270,12 @@ template<class Key> void RadixSort<Key>::CountSort(Sequence<Key>* secuencia, int
   for (int i = size - 1; i >= 0; i--) {
     output[count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10] - 1] = secuencia->operator[](Position(i));
     count[(secuencia->operator[](Position(i)).GetKey() / exp) % 10]--;
+    this->comparisons_++;
   }
 
   for (int i = 0; i < size; i++) {
     secuencia->SetKey(output[i], Position(i));
   }
 
-  if (this->show_) {
-    secuencia->Print(cout) << "i=" << this->iterations_ << endl;
-    this->iterations_++;
-  }
-  else {
-    this->iterations_++;
-  }
+  if (this->show_) secuencia->Print(cout);
 }

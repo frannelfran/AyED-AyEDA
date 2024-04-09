@@ -75,7 +75,8 @@ int main(int argc, char* argv[]) {
   else {
     metodo->Sort();
     cout << "Secuencia ordenada: ";
-    secuencia->Print(cout) << "\nNúmero de iteracciones = " << metodo->GetIterations() << endl;
+    secuencia->Print(cout) << "\nNúmero de intercambios = " << secuencia->GetSwaps() << endl;
+    cout << "Número de comparaciones = " << metodo->GetComparisons() << endl;
   }
   delete secuencia;
   delete metodo;

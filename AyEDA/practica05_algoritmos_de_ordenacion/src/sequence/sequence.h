@@ -21,10 +21,13 @@ class Sequence {
   virtual int GetSize() const = 0;
   virtual void Swap(const Position&, const Position&) = 0;
   virtual void SetKey(const Key&, const Position&) = 0;
+  int GetSwaps() const { return swaps_; }
 
   // Sobrecarga de operadores
   virtual ostream& Print(ostream&) const = 0;
   virtual Key operator[](const Position&) const = 0;
+ protected:
+  mutable unsigned int swaps_ = 0;
 };
 
 // Secuencia para dispersión cerrada
@@ -45,7 +48,10 @@ class StaticSequence : public Sequence<Key> {
   inline int GetSize() const override { return sequence_.size(); }
 
   // Setters
-  inline void SetKey(const Key& key, const Position& pos) override { sequence_[pos.GetData()] = key; }
+  inline void SetKey(const Key& key, const Position& pos) override { 
+    sequence_[pos.GetData()] = key; 
+    this->swaps_++;
+  }
 
   // Sobrecarga de operadores
   ostream& Print(ostream&) const override;
@@ -86,6 +92,7 @@ template<class Key> bool StaticSequence<Key>::IsFull() {
 
 template<class Key> void StaticSequence<Key>::Swap(const Position& pos1, const Position& pos2) {
   swap(sequence_[pos1.GetData()], sequence_[pos2.GetData()]);
+  this->swaps_++;
 }
 
 /**
@@ -107,5 +114,6 @@ template<class Key> ostream& StaticSequence<Key>::Print(ostream& os) const {
   for (const auto& k : sequence_) {
     os << k << " ";
   }
+  os << endl;
   return os;
 }
