@@ -49,21 +49,11 @@ int main(int argc, char* argv[]) {
   }
 
   // Método de ordenación elegido
-  if (options->ordenacion == "seleccion") {
-    metodo = new SelectionSort<Key<long int>>(secuencia, options->traza);
-  }
-  else if (options->ordenacion == "quicksort") {
-    metodo = new QuickSort<Key<long int>>(secuencia, options->traza);
-  }
-  else if (options->ordenacion == "heapsort") {
-    metodo = new HeapSort<Key<long int>>(secuencia, options->traza);
-  }
-  else if (options->ordenacion == "shellsort") {
-    metodo = new ShellSort<Key<long int>>(secuencia, options->traza);
-  }
-  else if (options->ordenacion == "radixsort") {
-    metodo = new RadixSort<Key<long int>>(secuencia, options->traza);
-  }
+  if (options->ordenacion == "seleccion") metodo = new SelectionSort<Key<long int>>(secuencia, options->traza);
+  else if (options->ordenacion == "quicksort") metodo = new QuickSort<Key<long int>>(secuencia, options->traza);
+  else if (options->ordenacion == "heapsort") metodo = new HeapSort<Key<long int>>(secuencia, options->traza);
+  else if (options->ordenacion == "shellsort") metodo = new ShellSort<Key<long int>>(secuencia, options->traza);
+  else if (options->ordenacion == "radixsort") metodo = new RadixSort<Key<long int>>(secuencia, options->traza);
 
   cout << "Secuencia introducida: ";
   secuencia->Print(cout) << endl;
