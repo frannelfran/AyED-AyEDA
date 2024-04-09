@@ -12,13 +12,11 @@ class SortMethod {
 
   // Métodos
   virtual void Sort() const = 0;
-  int GetIterations() const { return iterations_; }
   int GetComparisons() const { return comparisons_; }
   
  protected:
   Sequence<Key>* sequence_;
   bool show_;
-  mutable unsigned int iterations_ = 0;
   mutable unsigned int comparisons_ = 0;
 };
 
