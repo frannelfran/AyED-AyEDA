@@ -7,7 +7,7 @@ using namespace std;
 // Clase abstracta para representar un árbol binario
 
 template <class Key>
-class AB {
+class Ab {
  public:
   // Métodos
   virtual bool Insertar(const Key& k) = 0;
@@ -15,10 +15,7 @@ class AB {
   virtual void Inorder() const = 0;
 
   // Sobrecarga de operadores
-  friend ostream& operator<<(ostream& os, const AB<Key>& ab) {
-    ab.Inorder();
-    return os;
-  }
+  friend ostream& operator<<(ostream& os, const Ab<Key>& ab);
 
  protected:
   NodoB<Key>* raiz_;
@@ -27,7 +24,7 @@ class AB {
 // Clase ABE<Key> para representar un árbol binario equilibrado
 
 template <class Key>
-class ABE : public AB<Key> {
+class Abe : public Ab<Key> {
  public:
   // Métodos
   bool Insertar(const Key& k) override;
@@ -38,10 +35,11 @@ class ABE : public AB<Key> {
 // Clase ABB<Key> para representar un árbol binario de búsqueda
 
 template <class Key>
-class ABB : public AB<Key> {
+class Abb : public Ab<Key> {
  public:
   // Métodos
   bool Insertar(const Key& k) override;
   bool Buscar(const Key& k) const override;
   void Inorder() const override;
 };
+
