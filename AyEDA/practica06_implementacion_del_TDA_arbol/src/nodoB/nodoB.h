@@ -13,6 +13,7 @@ class NodoB {
   // Getters
   inline NodoB* GetIzdo() const { return izdo_; }
   inline NodoB* Getdcho() const { return dcho_; }
+  inline Key GetDato() const { return dato_;}  
 
   // Setters
   inline void SetDato(const Key& dato) { dato_ = dato; }
