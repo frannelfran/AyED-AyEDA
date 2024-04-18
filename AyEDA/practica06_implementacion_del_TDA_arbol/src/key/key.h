@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "../position/position.h"
 
 using namespace std;
 

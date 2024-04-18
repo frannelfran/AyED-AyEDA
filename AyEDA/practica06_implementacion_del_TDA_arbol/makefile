@@ -1,10 +1,10 @@
 main:
 	@echo "Compilando ficheros..."
-	g++ -std=c++20 -I src src/main.cc src/options/options.cc -o ordenacion
+	g++ -std=c++20 -I src src/main.cc src/options/options.cc -o tda_arbol
 
 .PHONY: clean
 
 # Eliminar archivos
 clean:
 	@echo "Eliminando ficheros compilados..."
-	rm -f ordenacion
+	rm -f tda_arbol
