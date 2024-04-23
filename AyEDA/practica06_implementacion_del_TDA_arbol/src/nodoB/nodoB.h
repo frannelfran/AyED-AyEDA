@@ -9,7 +9,7 @@ template <class Key>
 class NodoB {
  public:
   NodoB(const Key& dato, NodoB<Key>* izdo, NodoB<Key>* dcho) : dato_(dato), izdo_(izdo), dcho_(dcho) {}
-  NodoB(const Key& dato) : dato_(dato), izdo_(NULL), dcho_(NULL) {}
+  NodoB(const Key& dato) : dato_(dato), izdo_(nullptr), dcho_(nullptr) {}
 
   // Getters
   inline NodoB<Key>*& GetIzdo() { return izdo_; }
