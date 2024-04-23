@@ -9,7 +9,13 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  
+  Ab<int>* ab = new Abb<int>();
+  if (ab->Insertar(5)) {
+    cout << "Nodo insertado" << endl;
+  }
+  else {
+    cout << "Nodo no insertado" << endl;
+  }
   
   return 0;
 }
