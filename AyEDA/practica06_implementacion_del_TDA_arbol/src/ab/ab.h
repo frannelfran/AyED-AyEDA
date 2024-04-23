@@ -63,11 +63,13 @@ class ABE : public AB<Key> {
   
   // Métodos
   bool Insertar(const Key& k) override;
-  bool Buscar(const Key& k) const override {}
-  void Inorder() const override {}
+  bool Buscar(const Key& k) const override;
+  void Inorder() const override;
   
   // Métodos de la propia clase
   bool InsertarEquilRama(NodoB<Key>*& nodo, const Key& k);
+  bool BuscarRama(NodoB<Key>* nodo, const Key& k) const;
+  void InorderRama(NodoB<Key>* nodo) const;
   const int Tam() { return TamRama(this->raiz_); }
   const int TamRama(NodoB<Key>* nodo);
 };
@@ -127,10 +129,10 @@ template<class Key> bool ABB<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) co
     return true;
   } else if (k < nodo->GetDato()) {
     return BuscarRama(nodo->GetIzdo(), k);
-  } else {
+  } else if (k > nodo->GetDato()) {
     return BuscarRama(nodo->GetDcho(), k);
   }
-  return true;
+  return false;
 }
 
 /**
@@ -212,6 +214,38 @@ template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Ke
     }
   }
 }
+
+/**
+ * @brief Busca un nodo en el árbol
+ * @param k Clave del nodo a buscar
+ * @return true si se ha encontrado el nodo, false en caso contrario
+*/
+
+template<class Key> bool ABE<Key>::Buscar(const Key& k) const {
+  return BuscarRama(this->raiz_, k);
+}
+
+/**
+ * @brief Busca un nodo en una rama del árbol
+ * @param nodo Nodo raíz de la rama
+ * @param k Clave del nodo a buscar
+ * @return true si se ha encontrado el nodo, false en caso contrario
+*/
+
+template<class Key> bool ABE<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) const {
+  if (nodo == nullptr) {
+    return false;
+  } else if (k == nodo->GetDato()) {
+    return true;
+  } else if (k < nodo->GetDato()) {
+    return BuscarRama(nodo->GetIzdo(), k);
+  } else if (k > nodo->GetDato()) {
+    return BuscarRama(nodo->GetDcho(), k);
+  }
+  return false;
+}
+
+
 
 
 

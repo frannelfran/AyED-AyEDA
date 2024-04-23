@@ -20,9 +20,9 @@ int main(int argc, char* argv[]) {
   
   // Insertar elementos en el árbol según la opción seleccionada
   if (options->introduce == "random") {
+    mt19937 generator(time(nullptr));
+    uniform_int_distribution<long int> distribution(10000000, 99999999);
     for (int i = 0; i < options->num_elements; i++) {
-      mt19937 generator(time(nullptr));
-      uniform_int_distribution<long int> distribution(10000000, 99999999);
       tree->Insertar(distribution(generator));
     }
   }
