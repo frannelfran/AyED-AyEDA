@@ -10,12 +10,32 @@ int main(int argc, char* argv[]) {
   }
 
   Ab<int>* ab = new Abb<int>();
-  if (ab->Insertar(5)) {
+  if (ab->Insertar(30)) {
     cout << "Nodo insertado" << endl;
   }
   else {
     cout << "Nodo no insertado" << endl;
   }
+  if (ab->Insertar(25)) {
+    cout << "Nodo insertado" << endl;
+  }
+  else {
+    cout << "Nodo no insertado" << endl;
+  }
+  if (ab->Insertar(15)) {
+    cout << "Nodo insertado" << endl;
+  }
+  else {
+    cout << "Nodo no insertado" << endl;
+  }
+  if (ab->Insertar(40)) {
+    cout << "Nodo insertado" << endl;
+  }
+  else {
+    cout << "Nodo no insertado" << endl;
+  }
+  
+  cout << *ab << endl;
   
   return 0;
 }

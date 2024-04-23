@@ -40,7 +40,7 @@ class Abb : public Ab<Key> {
 
 
   // Métodos de lapropia clase
-  void InsertarRama(NodoB<Key>*& nodo, const Key& k);
+  bool InsertarRama(NodoB<Key>*& nodo, const Key& k);
 };
 
 /**
@@ -49,9 +49,7 @@ class Abb : public Ab<Key> {
 */
 
 template <class Key> bool Abb<Key>::Insertar(const Key& k) {
-  NodoB<Key>* nodoAnterior = this->raiz_;
-  InsertarRama(this->raiz_, k);
-  return this->raiz_ != nodoAnterior;
+  return InsertarRama(this->raiz_, k);
 }
 
 /**
@@ -60,14 +58,16 @@ template <class Key> bool Abb<Key>::Insertar(const Key& k) {
  * @param k Clave del nodo a insertar
 */
 
-template <class Key> void Abb<Key>::InsertarRama(NodoB<Key>*& nodo, const Key& k) {
-  if (nodo == NULL) {
+template <class Key> bool Abb<Key>::InsertarRama(NodoB<Key>*& nodo, const Key& k) {
+  if (nodo == nullptr) {
     nodo = new NodoB<Key>(k);
+    return true;
   } else if (k < nodo->GetDato()) {
-    InsertarRama(nodo->GetIzdo(), k);
+    return InsertarRama(nodo->GetIzdo(), k);
   } else if (k > nodo->GetDato()) {
-    InsertarRama(nodo->GetDcho(), k);
+    return InsertarRama(nodo->GetDcho(), k);
   }
+  return false; // La clave ya existe en el árbol
 }
 
 /**
@@ -75,9 +75,27 @@ template <class Key> void Abb<Key>::InsertarRama(NodoB<Key>*& nodo, const Key& k
 */
 
 template<class Key> ostream& operator<<(ostream& os, const Ab<Key>& ab) {
-
-  
-
-  
+  queue<NodoB<Key>*> cola;
+  NodoB<Key>* nodo = ab.raiz_;
+  cola.push(nodo);
+  int nivel = 0;
+  while (!cola.empty()) {
+    int nivel_actual = cola.size();
+    os << "Nivel " << nivel << ": ";
+    for (int i = 0; i < nivel_actual; i++) {
+      nodo =  cola.front();
+      cola.pop();
+      if (nodo != NULL) {
+        os << "[" << nodo->GetDato() << "]";
+        cola.push(nodo->GetIzdo());
+        cola.push(nodo->GetDcho());
+      } else {
+        os << "[.]";
+      }
+    }
+    os << endl;
+    nivel++;
+  }
+  return os;
 }
 
