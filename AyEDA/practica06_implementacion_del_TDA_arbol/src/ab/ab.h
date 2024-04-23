@@ -13,6 +13,11 @@ class AB {
   // Constructores
   AB() : raiz_(nullptr) {}
 
+  // Destructor
+  ~AB() {
+    delete this->raiz_;
+  }
+
   // Métodos
   virtual bool Insertar(const Key& k) = 0;
   virtual bool Buscar(const Key& k) const = 0;
@@ -33,6 +38,9 @@ class ABB : public AB<Key> {
   // Constructor
   ABB() : AB<Key>() {}
 
+  // Destructor
+  ~ABB() {}
+
   // Métodos
   bool Insertar(const Key& k) override;
   bool Buscar(const Key& k) const override;
@@ -42,19 +50,6 @@ class ABB : public AB<Key> {
   bool InsertarRama(NodoB<Key>*& nodo, const Key& k);
   bool BuscarRama(NodoB<Key>* nodo, const Key& k) const;
   void InorderRama(NodoB<Key>* nodo) const;
-};
-
-template<class Key>
-class ABE : public AB<Key> {
- public:
-  // Constructor
-  ABE() : AB<Key>() {}
-
-  // Métodos
-  bool Insertar(const Key& k) override {}
-  bool Buscar(const Key& k) const override {}
-  void Inorder() const override {}
-  // Métodos de la propia clase
 };
 
 ////////////////////////////////////////////// Implementación de los métodos de la clase ABB<Key> //////////////////////////////////////////////
@@ -115,6 +110,7 @@ template<class Key> bool ABB<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) co
   } else {
     return BuscarRama(nodo->GetDcho(), k);
   }
+  return true;
 }
 
 /**
