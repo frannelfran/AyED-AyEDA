@@ -36,13 +36,28 @@ class ABB : public AB<Key> {
   // Métodos
   bool Insertar(const Key& k) override;
   bool Buscar(const Key& k) const override;
-  void Inorder() const override {}
+  void Inorder() const override;
 
-
-  // Métodos de lapropia clase
+  // Métodos de la propia clase
   bool InsertarRama(NodoB<Key>*& nodo, const Key& k);
   bool BuscarRama(NodoB<Key>* nodo, const Key& k) const;
+  void InorderRama(NodoB<Key>* nodo) const;
 };
+
+template<class Key>
+class ABE : public AB<Key> {
+ public:
+  // Constructor
+  ABE() : AB<Key>() {}
+
+  // Métodos
+  bool Insertar(const Key& k) override {}
+  bool Buscar(const Key& k) const override {}
+  void Inorder() const override {}
+  // Métodos de la propia clase
+};
+
+////////////////////////////////////////////// Implementación de los métodos de la clase ABB<Key> //////////////////////////////////////////////
 
 /**
  * @brief Inserta un nodo en el árbol
@@ -102,10 +117,26 @@ template<class Key> bool ABB<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) co
   }
 }
 
+/**
+ * @brief Recorre el árbol en inorden
+*/
 
+template<class Key> void ABB<Key>::Inorder() const {
+  InorderRama(this->raiz_);
+}
 
+/**
+ * @brief Recorre una rama del árbol en inorden
+ * @param nodo Nodo raíz de la rama
+*/
 
-
+template<class Key> void ABB<Key>::InorderRama(NodoB<Key>* nodo) const {
+  if (nodo != nullptr) {
+    InorderRama(nodo->GetIzdo());
+    cout << nodo->GetDato() << " ";
+    InorderRama(nodo->GetDcho());
+  }
+}
 
 /**
  * @overload Sobrecarga del operador <<
