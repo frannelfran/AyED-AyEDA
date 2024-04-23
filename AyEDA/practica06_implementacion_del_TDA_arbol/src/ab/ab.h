@@ -200,7 +200,7 @@ template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Ke
       return InsertarEquilRama(nodo->GetIzdo(), k);
     }
     else {
-      nodo->SetIzdo(new NodoB<Key>(k, nullptr, nullptr));
+      nodo->GetIzdo() = new NodoB<Key>(k, nullptr, nullptr);
       return true;
     }
   }
@@ -209,10 +209,11 @@ template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Ke
       return InsertarEquilRama(nodo->GetDcho(), k);
     }
     else {
-      nodo->SetDcho(new NodoB<Key>(k, nullptr, nullptr));
+      nodo->GetDcho() = new NodoB<Key>(k, nullptr, nullptr);
       return true;
     }
   }
+  return false;
 }
 
 /**
@@ -245,7 +246,27 @@ template<class Key> bool ABE<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) co
   return false;
 }
 
+/**
+ * @brief Recorre el árbol en inorden
+ * @param nodo Nodo raíz de la rama
+*/
 
+template<class Key> void ABE<Key>::Inorder() const {
+  InorderRama(this->raiz_);
+}
+
+/**
+ * @brief Recorre una rama del árbol en inorden
+ * @param nodo Nodo raíz de la rama
+*/
+
+template<class Key> void ABE<Key>::InorderRama(NodoB<Key>* nodo) const {
+  if (nodo != nullptr) {
+    InorderRama(nodo->GetIzdo());
+    cout << nodo->GetDato() << " ";
+    InorderRama(nodo->GetDcho());
+  }
+}
 
 
 
