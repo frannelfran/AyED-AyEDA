@@ -151,8 +151,8 @@ template<class Key> void ABB<Key>::Inorder() const {
 template<class Key> void ABB<Key>::InorderRama(NodoB<Key>* nodo) const {
   if (nodo != nullptr) {
     InorderRama(nodo->GetIzdo());
-    cout << nodo->GetDato() << " ";
     InorderRama(nodo->GetDcho());
+    cout << nodo->GetDato() << " ";
   }
 }
 
