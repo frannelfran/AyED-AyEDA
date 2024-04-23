@@ -8,8 +8,26 @@ using namespace std;
 template <class Key>
 class NodoB {
  public:
+  // Constructores
   NodoB(const Key& dato, NodoB<Key>* izdo, NodoB<Key>* dcho) : dato_(dato), izdo_(izdo), dcho_(dcho) {}
   NodoB(const Key& dato) : dato_(dato), izdo_(nullptr), dcho_(nullptr) {}
+
+  // Destructor
+  ~NodoB() {
+    delete izdo_;
+    delete dcho_;
+  }
+
+  // Destructores
+  void DeleteIzdo() {
+    delete izdo_;
+    izdo_ = nullptr;
+  }
+
+  void DeleteDcho() {
+    delete dcho_;
+    dcho_ = nullptr;
+  }
 
   // Getters
   inline NodoB<Key>*& GetIzdo() { return izdo_; }
