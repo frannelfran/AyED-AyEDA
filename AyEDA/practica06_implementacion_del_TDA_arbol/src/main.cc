@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 
   // Crear un árbol binario según la opción seleccionada
   if (options->type_tree == "abb") tree = new ABB<long int>();
+  else tree = new ABE<long int>();
   
   // Insertar elementos en el árbol según la opción seleccionada
   if (options->introduce == "random") {

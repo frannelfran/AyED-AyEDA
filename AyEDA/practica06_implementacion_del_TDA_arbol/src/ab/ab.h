@@ -52,6 +52,26 @@ class ABB : public AB<Key> {
   void InorderRama(NodoB<Key>* nodo) const;
 };
 
+template<class Key>
+class ABE : public AB<Key> {
+ public:
+  // Constructor
+  ABE() : AB<Key>() {}
+  
+  // Destructor
+  ~ABE() {}
+  
+  // Métodos
+  bool Insertar(const Key& k) override;
+  bool Buscar(const Key& k) const override {}
+  void Inorder() const override {}
+  
+  // Métodos de la propia clase
+  bool InsertarEquilRama(NodoB<Key>*& nodo, const Key& k);
+  const int Tam() { return TamRama(this->raiz_); }
+  const int TamRama(NodoB<Key>* nodo);
+};
+
 ////////////////////////////////////////////// Implementación de los métodos de la clase ABB<Key> //////////////////////////////////////////////
 
 /**
@@ -133,6 +153,69 @@ template<class Key> void ABB<Key>::InorderRama(NodoB<Key>* nodo) const {
     InorderRama(nodo->GetDcho());
   }
 }
+
+////////////////////////////////////////////// Implementación de los métodos de la clase ABE<Key> //////////////////////////////////////////////
+
+/**
+ * @brief Calcular el tamaño de la rama
+ * @param nodo Nodo raíz de la rama
+ * @return Tamaño de la rama
+*/
+
+template<class Key> const int ABE<Key>::TamRama(NodoB<Key>* nodo) {
+  if (nodo == nullptr) {
+    return 0;
+  } else {
+    return (1 + TamRama(nodo->GetIzdo()) + TamRama(nodo->GetDcho()));
+  }
+}
+
+/**
+ * @brief Inserta un nodo en el árbol
+ * @param k Clave del nodo a insertarç
+ * @return true si se ha insertado el nodo, false en caso contrario
+*/
+
+template<class Key> bool ABE<Key>::Insertar(const Key& k) {
+  if (this->raiz_ == nullptr) {
+    this->raiz_ = new NodoB<Key>(k, nullptr, nullptr);
+    return true;
+  } else {
+    return InsertarEquilRama(this->raiz_, k);
+  }
+}
+
+/**
+ * @brief Inserta un nodo en una rama del árbol
+ * @param nodo Nodo raíz de la rama
+ * @param k Clave del nodo a insertar
+ * @return true si se ha insertado el nodo, false en caso contrario
+*/
+
+template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Key& k) {
+  if (TamRama(nodo->GetIzdo()) <= TamRama(nodo->GetDcho())) {
+    if (nodo->GetIzdo() != nullptr) {
+      return InsertarEquilRama(nodo->GetIzdo(), k);
+    }
+    else {
+      nodo->SetIzdo(new NodoB<Key>(k, nullptr, nullptr));
+      return true;
+    }
+  }
+  else {
+    if (nodo->GetDcho() != nullptr) {
+      return InsertarEquilRama(nodo->GetDcho(), k);
+    }
+    else {
+      nodo->SetDcho(new NodoB<Key>(k, nullptr, nullptr));
+      return true;
+    }
+  }
+}
+
+
+
+
 
 /**
  * @overload Sobrecarga del operador <<

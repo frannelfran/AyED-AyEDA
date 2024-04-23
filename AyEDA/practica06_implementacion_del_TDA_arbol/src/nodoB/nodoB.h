@@ -16,6 +16,10 @@ class NodoB {
   inline NodoB<Key>*& GetDcho() { return dcho_; }
   inline Key GetDato() const { return dato_; }  
 
+  // Setters
+  inline void SetIzdo(NodoB<Key>* izdo) { izdo_ = izdo; }
+  inline void SetDcho(NodoB<Key>* dcho) { dcho_ = dcho; }
+
  protected:
   Key dato_;
   NodoB<Key>* izdo_;
