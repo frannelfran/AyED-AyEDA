@@ -15,7 +15,7 @@ class AB {
 
   // Métodos
   virtual bool Insertar(const Key& k) = 0;
-  virtual NodoB<Key>* Buscar(const Key& k) const = 0;
+  virtual bool Buscar(const Key& k) const = 0;
   virtual void Inorder() const = 0;
 
   // Sobrecarga de operadores
@@ -91,16 +91,17 @@ template<class Key> bool ABB<Key>::Buscar(const Key& k) const {
 */
 
 template<class Key> bool ABB<Key>::BuscarRama(NodoB<Key>* nodo, const Key& k) const {
-  if (nodo == NULL) {
-    return NULL;
+  if (nodo == nullptr) {
+    return false;
   } else if (k == nodo->GetDato()) {
-    return nodo;
+    return true;
   } else if (k < nodo->GetDato()) {
     return BuscarRama(nodo->GetIzdo(), k);
   } else {
-    return BuscarRama(nodo->GetDcho(), k)
+    return BuscarRama(nodo->GetDcho(), k);
   }
 }
+
 
 
 

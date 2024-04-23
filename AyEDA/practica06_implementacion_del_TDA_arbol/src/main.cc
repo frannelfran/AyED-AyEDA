@@ -9,33 +9,7 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  AB<int>* ab = new ABB<int>();
-  if (ab->Insertar(30)) {
-    cout << "Nodo insertado" << endl;
-  }
-  else {
-    cout << "Nodo no insertado" << endl;
-  }
-  if (ab->Insertar(25)) {
-    cout << "Nodo insertado" << endl;
-  }
-  else {
-    cout << "Nodo no insertado" << endl;
-  }
-  if (ab->Insertar(15)) {
-    cout << "Nodo insertado" << endl;
-  }
-  else {
-    cout << "Nodo no insertado" << endl;
-  }
-  if (ab->Insertar(40)) {
-    cout << "Nodo insertado" << endl;
-  }
-  else {
-    cout << "Nodo no insertado" << endl;
-  }
   
-  cout << *ab << endl;
   
   return 0;
 }
