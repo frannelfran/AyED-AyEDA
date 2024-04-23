@@ -200,7 +200,7 @@ template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Ke
       return InsertarEquilRama(nodo->GetIzdo(), k);
     }
     else {
-      nodo->GetIzdo() = new NodoB<Key>(k, nullptr, nullptr);
+      nodo->GetIzdo()->SetIzdo(new NodoB<Key>(k, nullptr, nullptr));
       return true;
     }
   }
@@ -209,7 +209,7 @@ template<class Key> bool ABE<Key>::InsertarEquilRama(NodoB<Key>*& nodo, const Ke
       return InsertarEquilRama(nodo->GetDcho(), k);
     }
     else {
-      nodo->GetDcho() = new NodoB<Key>(k, nullptr, nullptr);
+      nodo->GetDcho()->SetDcho(new NodoB<Key>(k, nullptr, nullptr));
       return true;
     }
   }
