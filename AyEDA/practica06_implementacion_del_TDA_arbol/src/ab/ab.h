@@ -24,29 +24,46 @@ class Ab {
   NodoB<Key>* raiz_;
 };
 
-// Clase ABE<Key> para representar un árbol binario equilibrado
-
-template <class Key>
-class Abe : public Ab<Key> {
- public:
-  // Métodos 
-  void Insertar(const Key& k) override;
-  NodoB<Key>* Buscar(const Key& k) const override;
-  void Inorder() const override;
-
-  // Funciones de la propia clase
-  NodoB<Key>* BuscarRama(NodoB<Key>* nodo, const Key& k);
-  void InsertarRama(NodoB<Key>*& nodo, const Key& k);
-};
-
 // Clase ABB<Key> para representar un árbol binario de búsqueda
-/*
+
 template <class Key>
 class Abb : public Ab<Key> {
  public:
+  // Constructor
+  Abb() : Ab<Key>(NULL) {}
+
   // Métodos
-  bool Insertar(const Key& k) override;
-  bool Buscar(const Key& k) const override;
-  void Inorder() const override;
+  void Insertar(const Key& k) override;
+  NodoB<Key>* Buscar(const Key& k) const override { return NULL; }
+  void Inorder() const override {}
+
+
+  // Métodos de lapropia clase
+  void InsertarRama(NodoB<Key>*& nodo, const Key& k);
 };
+
+/**
+ * @brief Inserta un nodo en el árbol
+ * @param k Clave del nodo a insertar
 */
+
+template <class Key> void Abb<Key>::Insertar(const Key& k) {
+  InsertarRama(this->raiz_, k);
+}
+
+/**
+ * @brief Inserta un nodo en una rama del árbol
+ * @param nodo Nodo raíz de la rama
+ * @param k Clave del nodo a insertar
+*/
+
+template <class Key> void Abb<Key>::InsertarRama(NodoB<Key>*& nodo, const Key& k) {
+  if (nodo == NULL) {
+    nodo = new NodoB<Key>(k);
+  } else if (k < nodo->GetDato()) {
+    InsertarRama(nodo->GetIzdo(), k);
+  } else if (k > nodo->GetDato()) {
+    InsertarRama(nodo->GetDcho(), k);
+  }
+}
+
